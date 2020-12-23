@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.holddie</groupId>
+    <artifactId>java-p7-in-action</artifactId>
+    <version>1.0.0</version>
+    <modules>
+        <module>netty-io</module>
+        <module>netty-tomcat</module>
+        <module>netty-rpc</module>
+        <module>netty-chat</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <google-java-format.version>1.9</google-java-format.version>
+        <git-code-format-maven-plugin.version>3.0</git-code-format-maven-plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.googlejavaformat</groupId>
+            <artifactId>google-java-format</artifactId>
+            <version>${google-java-format.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
