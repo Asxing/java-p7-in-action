@@ -12,6 +12,7 @@
         <module>netty-tomcat</module>
         <module>netty-rpc</module>
         <module>netty-chat</module>
+        <module>netty-order</module>
     </modules>
     <packaging>pom</packaging>
 

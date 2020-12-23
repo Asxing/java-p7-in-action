@@ -32,7 +32,4 @@ hs_err_pid*
 
 
 # Project exclude paths
-/netty-chat/target/
-/netty-io/target/
-/netty-rpc/target/
-/netty-tomcat/target/
+*/target/
