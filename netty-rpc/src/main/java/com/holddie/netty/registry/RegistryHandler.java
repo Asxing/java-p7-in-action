@@ -14,29 +14,30 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class RegistryHandler extends ChannelInboundHandlerAdapter {
 
-    //用保存所有可用的服务
-    public static ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
+    // 用保存所有可用的服务
+    public static ConcurrentHashMap<String, Object> registryMap =
+            new ConcurrentHashMap<String, Object>();
 
-    //保存所有相关的服务类
+    // 保存所有相关的服务类
     private List<String> classNames = new ArrayList<String>();
 
     public RegistryHandler() {
-        //完成递归扫描
+        // 完成递归扫描
         scannerClass("com.holddie.netty.provider");
         doRegister();
     }
-
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Object result = new Object();
         InvokerProtocol request = (InvokerProtocol) msg;
 
-        //当客户端建立连接时，需要从自定义协议中获取信息，拿到具体的服务和实参
-        //使用反射调用
+        // 当客户端建立连接时，需要从自定义协议中获取信息，拿到具体的服务和实参
+        // 使用反射调用
         if (registryMap.containsKey(request.getClassName())) {
             Object clazz = registryMap.get(request.getClassName());
-            Method method = clazz.getClass().getMethod(request.getMethodName(), request.getParames());
+            Method method =
+                    clazz.getClass().getMethod(request.getMethodName(), request.getParames());
             result = method.invoke(clazz, request.getValues());
         }
         ctx.write(result);
@@ -50,7 +51,6 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
         ctx.close();
     }
 
-
     /*
      * 递归扫描
      */
@@ -59,7 +59,7 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
         assert url != null;
         File dir = new File(url.getFile());
         for (File file : Objects.requireNonNull(dir.listFiles())) {
-            //如果是一个文件夹，继续递归
+            // 如果是一个文件夹，继续递归
             if (file.isDirectory()) {
                 scannerClass(packageName + "." + file.getName());
             } else {
@@ -68,9 +68,7 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    /**
-     * 完成注册
-     */
+    /** 完成注册 */
     private void doRegister() {
         if (classNames.size() == 0) {
             return;
@@ -85,5 +83,4 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
             }
         }
     }
-
 }

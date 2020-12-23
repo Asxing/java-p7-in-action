@@ -16,22 +16,22 @@ import java.io.IOException;
 
 /**
  * 客户端
- * @author Tom
  *
+ * @author Tom
  */
-public class ChatClient  {
-    
+public class ChatClient {
+
     private ChatClientHandler clientHandler;
     private String host;
     private int port;
-    
-    public ChatClient(String nickName){
+
+    public ChatClient(String nickName) {
         this.clientHandler = new ChatClientHandler(nickName);
     }
-    
-    public void connect(String host,int port){
-    		this.host = host;
-    		this.port = port;
+
+    public void connect(String host, int port) {
+        this.host = host;
+        this.port = port;
 
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -39,14 +39,15 @@ public class ChatClient  {
             b.group(workerGroup);
             b.channel(NioSocketChannel.class);
             b.option(ChannelOption.SO_KEEPALIVE, true);
-            b.handler(new ChannelInitializer<SocketChannel>() {
-                @Override
-                public void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new IMDecoder());
-                    ch.pipeline().addLast(new IMEncoder());
-                    ch.pipeline().addLast(clientHandler);
-                }
-            });
+            b.handler(
+                    new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        public void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new IMDecoder());
+                            ch.pipeline().addLast(new IMEncoder());
+                            ch.pipeline().addLast(clientHandler);
+                        }
+                    });
             ChannelFuture f = b.connect(this.host, this.port).sync();
             f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
@@ -55,14 +56,11 @@ public class ChatClient  {
             workerGroup.shutdownGracefully();
         }
     }
-    
-    
-    public static void main(String[] args) throws IOException{
-		new ChatClient("Cover").connect("127.0.0.1",8080);
-    	
-    	String url = "http://localhost:8080/images/a.png";
-    	System.out.println(url.toLowerCase().matches(".*\\.(gif|png|jpg)$"));
-		
+
+    public static void main(String[] args) throws IOException {
+        new ChatClient("Cover").connect("127.0.0.1", 8080);
+
+        String url = "http://localhost:8080/images/a.png";
+        System.out.println(url.toLowerCase().matches(".*\\.(gif|png|jpg)$"));
     }
-    
 }

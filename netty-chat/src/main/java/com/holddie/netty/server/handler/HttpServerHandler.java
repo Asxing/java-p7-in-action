@@ -21,7 +21,7 @@ import java.net.URL;
 @Slf4j
 public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
-    //获取class路径
+    // 获取class路径
     private URL baseURL = HttpServerHandler.class.getResource("");
     private final String webroot = "webroot";
 
@@ -31,7 +31,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
         basePath = (basePath.substring(0, start) + "/" + "classes/").replaceAll("/+", "/");
 
         String path = basePath + webroot + "/" + fileName;
-//        log.info("BaseURL:" + basePath);
+        //        log.info("BaseURL:" + basePath);
         path = !path.contains("file:") ? path : path.substring(5);
         path = path.replaceAll("//", "/");
         return new File(path);
@@ -50,7 +50,8 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
             return;
         }
 
-        HttpResponse response = new DefaultHttpResponse(request.getProtocolVersion(), HttpResponseStatus.OK);
+        HttpResponse response =
+                new DefaultHttpResponse(request.getProtocolVersion(), HttpResponseStatus.OK);
         String contextType = "text/html;";
         if (uri.endsWith(".css")) {
             contextType = "text/css;";
@@ -81,8 +82,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-            throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         Channel client = ctx.channel();
         log.info("Client:" + client.remoteAddress() + "异常");
         // 当出现异常就关闭连接
@@ -90,4 +90,3 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
         ctx.close();
     }
 }
-

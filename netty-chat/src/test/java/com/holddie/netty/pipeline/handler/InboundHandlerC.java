@@ -9,5 +9,4 @@ public class InboundHandlerC extends ChannelInboundHandlerAdapter {
         System.out.println("InboundHandlerC");
         ctx.fireChannelRead(msg);
     }
-
-}   
+}

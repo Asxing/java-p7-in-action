@@ -1,13 +1,12 @@
 package com.holddie.netty.consumer;
 
-
 import com.holddie.netty.api.IRpcHelloService;
 import com.holddie.netty.api.IRpcService;
 import com.holddie.netty.consumer.proxy.RpcProxy;
 
 public class RpcConsumer {
-	
-    public static void main(String [] args){  
+
+    public static void main(String[] args) {
         IRpcHelloService rpcHello = RpcProxy.create(IRpcHelloService.class);
         System.out.println(rpcHello.hello("Tom老师"));
 

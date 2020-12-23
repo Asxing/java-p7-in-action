@@ -7,9 +7,10 @@ import io.netty.channel.ChannelPromise;
 public class OutboundHandlerC extends ChannelOutboundHandlerAdapter {
 
     @Override
-    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise)
+            throws Exception {
         System.out.println("OutboundHandlerC.write");
         // 执行下一个OutboundHandler
-        ctx.write(msg,promise);
-    }  
-} 
+        ctx.write(msg, promise);
+    }
+}
