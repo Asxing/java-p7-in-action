@@ -1,6 +1,5 @@
 package com.holddie.netty.client.handler.dispatcher;
 
-
 import com.holddie.netty.common.OperationResult;
 
 import java.util.Map;
@@ -21,6 +20,4 @@ public class RequestPendingCenter {
             this.map.remove(streamId);
         }
     }
-
-
 }

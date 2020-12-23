@@ -1,6 +1,5 @@
 package com.holddie.netty.common.auth;
 
-
 import com.holddie.netty.common.Operation;
 import lombok.Data;
 import lombok.extern.java.Log;

@@ -1,6 +1,5 @@
 package com.holddie.netty.client.codec;
 
-
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 public class OrderFrameDecoder extends LengthFieldBasedFrameDecoder {

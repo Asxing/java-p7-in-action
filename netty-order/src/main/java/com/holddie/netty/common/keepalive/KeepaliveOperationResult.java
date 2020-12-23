@@ -7,5 +7,4 @@ import lombok.Data;
 public class KeepaliveOperationResult extends OperationResult {
 
     private final long time;
-
 }

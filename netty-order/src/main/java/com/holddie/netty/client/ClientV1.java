@@ -22,44 +22,44 @@ import io.netty.util.internal.UnstableApi;
 import javax.net.ssl.SSLException;
 import java.util.concurrent.ExecutionException;
 
-/**
- * This class hadn't add auth or do other improvements. so need to refer {@link ClientV0}
- */
+/** This class hadn't add auth or do other improvements. so need to refer {@link ClientV0} */
 @UnstableApi
 public class ClientV1 {
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException, SSLException {
+    public static void main(String[] args)
+            throws InterruptedException, ExecutionException, SSLException {
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.channel(NioSocketChannel.class);
 
         NioEventLoopGroup group = new NioEventLoopGroup();
 
-        try{
+        try {
             bootstrap.group(group);
 
             SslContextBuilder sslContextBuilder = SslContextBuilder.forClient();
             sslContextBuilder.trustManager(InsecureTrustManagerFactory.INSTANCE);
             SslContext sslContext = sslContextBuilder.build();
 
-            bootstrap.handler(new ChannelInitializer<NioSocketChannel>() {
-                @Override
-                protected void initChannel(NioSocketChannel ch) throws Exception {
-                    ChannelPipeline pipeline = ch.pipeline();
+            bootstrap.handler(
+                    new ChannelInitializer<NioSocketChannel>() {
+                        @Override
+                        protected void initChannel(NioSocketChannel ch) throws Exception {
+                            ChannelPipeline pipeline = ch.pipeline();
 
-                    pipeline.addLast(sslContext.newHandler(ch.alloc()));
+                            pipeline.addLast(sslContext.newHandler(ch.alloc()));
 
-                    pipeline.addLast(new OrderFrameDecoder());
-                    pipeline.addLast(new OrderFrameEncoder());
+                            pipeline.addLast(new OrderFrameDecoder());
+                            pipeline.addLast(new OrderFrameEncoder());
 
-                    pipeline.addLast(new OrderProtocolEncoder());
-                    pipeline.addLast(new OrderProtocolDecoder());
+                            pipeline.addLast(new OrderProtocolEncoder());
+                            pipeline.addLast(new OrderProtocolDecoder());
 
-                    pipeline.addLast(new OperationToRequestMessageEncoder());
+                            pipeline.addLast(new OperationToRequestMessageEncoder());
 
-                    pipeline.addLast(new LoggingHandler(LogLevel.INFO));
-                }
-            });
+                            pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+                        }
+                    });
 
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 8090);
 
@@ -71,9 +71,8 @@ public class ClientV1 {
 
             channelFuture.channel().closeFuture().sync();
 
-        } finally{
+        } finally {
             group.shutdownGracefully();
         }
     }
-
 }

@@ -7,5 +7,4 @@ import lombok.Data;
 public class AuthOperationResult extends OperationResult {
 
     private final boolean passAuth;
-
 }

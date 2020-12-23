@@ -10,7 +10,6 @@ import com.holddie.netty.common.order.OrderOperationResult;
 import java.util.function.Predicate;
 
 public enum OperationType {
-
     AUTH(1, AuthOperation.class, AuthOperationResult.class),
     KEEPALIVE(2, KeepaliveOperation.class, KeepaliveOperationResult.class),
     ORDER(3, OrderOperation.class, OrderOperationResult.class);
@@ -19,7 +18,10 @@ public enum OperationType {
     private Class<? extends Operation> operationClazz;
     private Class<? extends OperationResult> operationResultClazz;
 
-    OperationType(int opCode, Class<? extends Operation> operationClazz, Class<? extends OperationResult> responseClass) {
+    OperationType(
+            int opCode,
+            Class<? extends Operation> operationClazz,
+            Class<? extends OperationResult> responseClass) {
         this.opCode = opCode;
         this.operationClazz = operationClazz;
         this.operationResultClazz = responseClass;
@@ -55,5 +57,4 @@ public enum OperationType {
     public Class<? extends OperationResult> getOperationResultClazz() {
         return operationResultClazz;
     }
-
 }

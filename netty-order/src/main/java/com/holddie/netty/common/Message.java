@@ -40,5 +40,4 @@ public abstract class Message<T extends MessageBody> {
         T body = JsonUtil.fromJson(msg.toString(StandardCharsets.UTF_8), bodyClazz);
         this.messageBody = body;
     }
-
 }

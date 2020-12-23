@@ -9,9 +9,10 @@ import java.util.List;
 
 public class OrderProtocolEncoder extends MessageToMessageEncoder<ResponseMessage> {
 
-
     @Override
-    protected void encode(ChannelHandlerContext ctx, ResponseMessage responseMessage, List<Object> out) throws Exception {
+    protected void encode(
+            ChannelHandlerContext ctx, ResponseMessage responseMessage, List<Object> out)
+            throws Exception {
         ByteBuf buffer = ctx.alloc().buffer();
 
         responseMessage.encode(buffer);

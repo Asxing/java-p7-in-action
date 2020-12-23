@@ -1,4 +1,3 @@
 package com.holddie.netty.common;
 
-public abstract class MessageBody {
-}
+public abstract class MessageBody {}

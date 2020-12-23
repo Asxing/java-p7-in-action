@@ -1,6 +1,5 @@
 package com.holddie.netty.common.order;
 
-
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.holddie.netty.common.Operation;
 import lombok.Data;
@@ -23,7 +22,7 @@ public class OrderOperation extends Operation {
     @Override
     public OrderOperationResult execute() {
         log.info("order's executing startup with orderRequest: " + toString());
-        //execute order logic
+        // execute order logic
         Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
         log.info("order's executing complete");
         OrderOperationResult orderResponse = new OrderOperationResult(tableId, dish, true);

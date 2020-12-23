@@ -16,7 +16,8 @@ public class KeepaliveHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt == IdleStateEvent.FIRST_WRITER_IDLE_STATE_EVENT) {
-            log.info("write idle happen. so need to send keepalive to keep connection not closed by server");
+            log.info(
+                    "write idle happen. so need to send keepalive to keep connection not closed by server");
             KeepaliveOperation keepaliveOperation = new KeepaliveOperation();
             RequestMessage requestMessage = new RequestMessage(IdUtil.nextId(), keepaliveOperation);
             ctx.writeAndFlush(requestMessage);

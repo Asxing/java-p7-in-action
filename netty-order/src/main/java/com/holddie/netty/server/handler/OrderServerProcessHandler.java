@@ -8,11 +8,11 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 public class OrderServerProcessHandler extends SimpleChannelInboundHandler<RequestMessage> {
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, RequestMessage requestMessage) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, RequestMessage requestMessage)
+            throws Exception {
         Operation operation = requestMessage.getMessageBody();
         OperationResult operationResult = operation.execute();
 
@@ -26,6 +26,4 @@ public class OrderServerProcessHandler extends SimpleChannelInboundHandler<Reque
             log.error("not writable now, message dropped");
         }
     }
-
-
 }

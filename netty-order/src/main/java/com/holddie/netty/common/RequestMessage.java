@@ -1,8 +1,7 @@
 package com.holddie.netty.common;
 
 public class RequestMessage extends Message<Operation> {
-    public RequestMessage() {
-    }
+    public RequestMessage() {}
 
     public RequestMessage(Long streamId, Operation operation) {
         MessageHeader messageHeader = new MessageHeader();
@@ -16,5 +15,4 @@ public class RequestMessage extends Message<Operation> {
     public Class getMessageBodyDecodeClass(int opcode) {
         return OperationType.fromOpCode(opcode).getOperationClazz();
     }
-
 }

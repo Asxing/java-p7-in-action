@@ -10,7 +10,8 @@ import java.util.List;
 
 public class OperationToRequestMessageEncoder extends MessageToMessageEncoder<Operation> {
     @Override
-    protected void encode(ChannelHandlerContext ctx, Operation operation, List<Object> out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, Operation operation, List<Object> out)
+            throws Exception {
         RequestMessage requestMessage = new RequestMessage(IdUtil.nextId(), operation);
 
         out.add(requestMessage);

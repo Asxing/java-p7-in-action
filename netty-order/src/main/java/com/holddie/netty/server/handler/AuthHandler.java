@@ -36,6 +36,5 @@ public class AuthHandler extends SimpleChannelInboundHandler<RequestMessage> {
         } finally {
             ctx.pipeline().remove(this);
         }
-
     }
 }
