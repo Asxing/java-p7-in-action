@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p3behavior.template.abstracts;
 
 /**
  * 抽象模板方法
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -22,5 +23,4 @@ public abstract class AbstractDataParser {
     protected abstract void processData();
 
     protected abstract void readData();
-
 }

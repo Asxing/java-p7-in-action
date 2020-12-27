@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p2structure.s10facade.nofacade;
 
-
 import com.holddie.design.pattern.p2structure.s10facade.business.ICosting;
 import com.holddie.design.pattern.p2structure.s10facade.business.IInventory;
 import com.holddie.design.pattern.p2structure.s10facade.business.ILogistics;
@@ -15,6 +14,7 @@ import com.holddie.design.pattern.p2structure.s10facade.business.impl.PaymentGat
 
 /**
  * 不是使用门面类处理流程
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -23,10 +23,16 @@ import com.holddie.design.pattern.p2structure.s10facade.business.impl.PaymentGat
 public class NoFacadeMain {
     public static void main(String[] args) {
         // Creating the Order/Product details
-        OrderDetails orderDetails = new OrderDetails("Java Design Pattern book",
-                "Simplified book on design patterns in Java",
-                500, 10, "Street No 1", "Educational Area", 1212,
-                "8811123456");
+        OrderDetails orderDetails =
+                new OrderDetails(
+                        "Java Design Pattern book",
+                        "Simplified book on design patterns in Java",
+                        500,
+                        10,
+                        "Street No 1",
+                        "Educational Area",
+                        1212,
+                        "8811123456");
 
         // Updating the inventory.
         IInventory inventory = new InventoryManager();
@@ -40,10 +46,7 @@ public class NoFacadeMain {
         ICosting costManager = new CostManager();
         orderDetails.setPrice(
                 costManager.applyDiscount(
-                        orderDetails.getPrice(),
-                        orderDetails.getDiscountPercent()
-                )
-        );
+                        orderDetails.getPrice(), orderDetails.getDiscountPercent()));
 
         // Going through various steps if payment gateway like card verification,
         // charging from the card.
@@ -53,10 +56,12 @@ public class NoFacadeMain {
 
         // Completing the order by providing logistics.
         ILogistics logistics = new LogisticsManager();
-        String shippingAddress = String.format("%s, %s - %d",
-                orderDetails.getAddressLine1(),
-                orderDetails.getAddressLine2(),
-                orderDetails.getPinCode());
+        String shippingAddress =
+                String.format(
+                        "%s, %s - %d",
+                        orderDetails.getAddressLine1(),
+                        orderDetails.getAddressLine2(),
+                        orderDetails.getPinCode());
         logistics.shipProducts(orderDetails.getProductName(), shippingAddress);
     }
 }

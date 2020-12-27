@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p2structure.s07bridge.abstraction;
 
-
 import com.holddie.design.pattern.p2structure.s07bridge.implemention.FileDownloadImplementor;
 
 /**
  * 下载功能具体实现
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

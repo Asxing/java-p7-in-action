@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p2structure.s10facade.facade;
 
-
 import com.holddie.design.pattern.p2structure.s10facade.business.ICosting;
 import com.holddie.design.pattern.p2structure.s10facade.business.IInventory;
 import com.holddie.design.pattern.p2structure.s10facade.business.ILogistics;
@@ -15,6 +14,7 @@ import com.holddie.design.pattern.p2structure.s10facade.business.impl.PaymentGat
 
 /**
  * 门面类使用
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -32,16 +32,15 @@ public class FacadeMain {
         orderVerify.verifyShippingAddress(orderDetails.getPinCode());
         orderDetails.setPrice(
                 costManager.applyDiscount(
-                        orderDetails.getPrice(),
-                        orderDetails.getDiscountPercent()
-                )
-        );
+                        orderDetails.getPrice(), orderDetails.getDiscountPercent()));
         paymentGateway.verifyCardDetails(orderDetails.getCardNo());
         paymentGateway.processPayment(orderDetails.getCardNo(), orderDetails.getPrice());
-        String shippingAddress = String.format("%s, %s - %d",
-                orderDetails.getAddressLine1(),
-                orderDetails.getAddressLine2(),
-                orderDetails.getPinCode());
+        String shippingAddress =
+                String.format(
+                        "%s, %s - %d",
+                        orderDetails.getAddressLine1(),
+                        orderDetails.getAddressLine2(),
+                        orderDetails.getPinCode());
         logistics.shipProducts(orderDetails.getCardNo(), shippingAddress);
     }
 }

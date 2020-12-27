@@ -1,23 +1,14 @@
 package com.holddie.design.principle.solid05interfacegregation.simple;
 
-/**
- * Created by Tom
- */
+/** Created by Tom */
 public class Dog implements IAnimal {
 
     @Override
-    public void eat() {
-
-    }
+    public void eat() {}
 
     @Override
-    public void fly() {
-
-    }
+    public void fly() {}
 
     @Override
-    public void swim() {
-
-    }
-
+    public void swim() {}
 }

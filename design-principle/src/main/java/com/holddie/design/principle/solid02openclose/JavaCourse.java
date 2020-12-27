@@ -1,9 +1,7 @@
 package com.holddie.design.principle.solid02openclose;
 
-/**
- * Created by Tom
- */
-public class JavaCourse implements ICourse{
+/** Created by Tom */
+public class JavaCourse implements ICourse {
     private Integer Id;
     private String name;
     private Double price;
@@ -25,5 +23,4 @@ public class JavaCourse implements ICourse{
     public Double getPrice() {
         return this.price;
     }
-
 }

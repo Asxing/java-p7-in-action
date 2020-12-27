@@ -8,12 +8,8 @@ package com.holddie.design.pattern.p1creation.c03abstractFactory;
  */
 public class UsFan implements IFan {
     @Override
-    public void switchOn() {
-
-    }
+    public void switchOn() {}
 
     @Override
-    public void switchOff() {
-
-    }
+    public void switchOff() {}
 }

@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.chainOfResponsibility.concrete;
 
-
 import com.holddie.design.pattern.p3behavior.chainOfResponsibility.handler.ApproveHandler;
 
 /**
  * 抽象Leader
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -17,5 +17,4 @@ public abstract class AbstractLeader implements ApproveHandler {
     public void setNextHandler(ApproveHandler nextHandler) {
         this.nextHandler = nextHandler;
     }
-
 }

@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p1creation.c01singlton;
 
 /**
  * 懒汉模式双重检查机制
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -10,8 +11,7 @@ package com.holddie.design.pattern.p1creation.c01singlton;
 public class Singleton05 {
     private static volatile Singleton05 INSTANCE;
 
-    private Singleton05() {
-    }
+    private Singleton05() {}
 
     public static Singleton05 getInstance() {
         if (INSTANCE == null) {

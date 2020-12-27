@@ -1,12 +1,9 @@
 package com.holddie.design.pattern.p3behavior.observer.simple;
 
-
 import com.holddie.design.pattern.p3behavior.observer.simple.observer.Follower;
 import com.holddie.design.pattern.p3behavior.observer.simple.subject.OfficalAccount;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -22,6 +19,5 @@ public class App {
         officalAccount.register(erick);
 
         officalAccount.pushArticle("i am xiaozhu  peiqi !");
-
     }
 }

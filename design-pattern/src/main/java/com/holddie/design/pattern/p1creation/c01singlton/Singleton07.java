@@ -20,8 +20,7 @@ public enum Singleton07 {
     }
 }
 
-
-class TestEnumSingleton{
+class TestEnumSingleton {
     public static void main(String[] args) {
         System.out.println(Singleton07.INSTANCE.getId());
         System.out.println(Singleton07.INSTANCE.getId());

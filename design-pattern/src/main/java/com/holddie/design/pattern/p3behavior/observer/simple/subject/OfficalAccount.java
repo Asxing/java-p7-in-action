@@ -1,7 +1,5 @@
 package com.holddie.design.pattern.p3behavior.observer.simple.subject;
 
-
-
 import com.holddie.design.pattern.p3behavior.observer.simple.observer.IObserver;
 
 import java.util.ArrayList;
@@ -9,6 +7,7 @@ import java.util.List;
 
 /**
  * 主题具体实现
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -39,8 +38,7 @@ public class OfficalAccount implements ISubject {
 
     @Override
     public void notifyAllObserver(String s) {
-        for (IObserver follower :
-                followers) {
+        for (IObserver follower : followers) {
             follower.update(oaName, s);
         }
         System.out.println("notify update.............");

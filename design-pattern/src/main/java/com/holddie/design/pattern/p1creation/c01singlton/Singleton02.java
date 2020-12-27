@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p1creation.c01singlton;
 
 /**
  * 饿汉模式（静态代码块）
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -10,8 +11,7 @@ package com.holddie.design.pattern.p1creation.c01singlton;
 public class Singleton02 {
     private static final Singleton02 INSTANCE;
 
-    private Singleton02() {
-    }
+    private Singleton02() {}
 
     static {
         try {
@@ -24,5 +24,4 @@ public class Singleton02 {
     public static Singleton02 getInstance() {
         return INSTANCE;
     }
-
 }

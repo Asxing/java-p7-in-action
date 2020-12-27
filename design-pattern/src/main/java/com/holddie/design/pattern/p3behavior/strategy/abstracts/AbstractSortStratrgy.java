@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * 策略抽象
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -12,5 +13,4 @@ import java.util.List;
 public interface AbstractSortStratrgy {
 
     void sort(List<Integer> list);
-
 }

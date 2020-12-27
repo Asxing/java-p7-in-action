@@ -1,12 +1,12 @@
 package com.holddie.design.pattern.p3behavior.command.util;
 
-
 import com.holddie.design.pattern.p3behavior.command.receiver.FileSystemReceiver;
 import com.holddie.design.pattern.p3behavior.command.receiver.UnixFileSystemReveiver;
 import com.holddie.design.pattern.p3behavior.command.receiver.WindowsFileSystemReceiver;
 
 /**
  * 获取操作系统对应实现类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -23,5 +23,4 @@ public class FileSystemReceiverUtil {
             return new UnixFileSystemReveiver();
         }
     }
-
 }

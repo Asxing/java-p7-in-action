@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 基础员工抽象类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -21,5 +22,4 @@ public abstract class BaseEmployee implements IEmployee {
     protected int employeeId;
 
     protected List<Subscription> subscriptions;
-
 }

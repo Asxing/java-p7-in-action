@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p1creation.c02factory.factoryMethod;
 
 /**
  * ProperFan工厂方法类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -15,13 +16,9 @@ public class PropellerFanFactory implements IFanFactory {
 
     private class ProperFan implements IFan {
         @Override
-        public void switchOn() {
-
-        }
+        public void switchOn() {}
 
         @Override
-        public void switchOff() {
-
-        }
+        public void switchOff() {}
     }
 }

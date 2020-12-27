@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.interpreter.demo1.implement;
 
-
 import com.holddie.design.pattern.p3behavior.interpreter.demo1.abs.AbstractExpression;
 
 /**
  * 乘运算符
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -14,7 +14,8 @@ public class MultiplyExpression extends AbstractExpression {
     private AbstractExpression leftExpression;
     private AbstractExpression rightExpression;
 
-    public MultiplyExpression(AbstractExpression leftExpression, AbstractExpression rightExpression) {
+    public MultiplyExpression(
+            AbstractExpression leftExpression, AbstractExpression rightExpression) {
         this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
     }

@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Boss
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -19,13 +20,16 @@ public class Manager extends BaseEmployee {
 
     private List<IEmployee> teamMembers;
 
-    public Manager(String name, int employeeId, List<Subscription> subscriptions, List<IEmployee> teamMembers) {
+    public Manager(
+            String name,
+            int employeeId,
+            List<Subscription> subscriptions,
+            List<IEmployee> teamMembers) {
         this.name = name;
         this.employeeId = employeeId;
         this.subscriptions = subscriptions;
         this.teamMembers = teamMembers;
     }
-
 
     @Override
     public double getCost() {
@@ -49,12 +53,10 @@ public class Manager extends BaseEmployee {
 
         int memberCount = 0;
         if (teamMembers != null) {
-            for (IEmployee member :
-                    teamMembers) {
+            for (IEmployee member : teamMembers) {
                 List<Subscription> subs = member.getSubscriptions();
                 if (subs != null) {
-                    for (Subscription sub :
-                            subs) {
+                    for (Subscription sub : subs) {
                         if (sub.getSType() == type) {
                             memberCount++;
                         }

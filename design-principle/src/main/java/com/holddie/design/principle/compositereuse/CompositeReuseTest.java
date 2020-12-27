@@ -1,8 +1,6 @@
 package com.holddie.design.principle.compositereuse;
 
-/**
- * Created by Tom
- */
+/** Created by Tom */
 public class CompositeReuseTest {
 
     public static void main(String[] args) {
@@ -10,5 +8,4 @@ public class CompositeReuseTest {
         productDao.setDbConnection(new OracleConnection());
         productDao.addProduct();
     }
-
 }

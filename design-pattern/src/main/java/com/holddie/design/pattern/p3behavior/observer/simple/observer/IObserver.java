@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p3behavior.observer.simple.observer;
 
 /**
  * 抽象观察者
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

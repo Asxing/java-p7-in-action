@@ -7,13 +7,13 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class TankTimeProxy {
 
-	@Before("execution(void com.holddie.design.proxy.springAop.v2Annotaion.Tank.move())")
-	public void before() {
-		System.out.println("before");
-	}
+    @Before("execution(void com.holddie.design.proxy.springAop.v2Annotaion.Tank.move())")
+    public void before() {
+        System.out.println("before");
+    }
 
-	@After("execution(void com.holddie.design.proxy.springAop.v2Annotaion.Tank.move())")
-	public void after() {
-		System.out.println("after");
-	}
+    @After("execution(void com.holddie.design.proxy.springAop.v2Annotaion.Tank.move())")
+    public void after() {
+        System.out.println("after");
+    }
 }

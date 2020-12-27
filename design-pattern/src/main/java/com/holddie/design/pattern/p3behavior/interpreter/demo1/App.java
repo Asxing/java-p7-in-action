@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p3behavior.interpreter.demo1;
 
-
 import com.holddie.design.pattern.p3behavior.interpreter.demo1.abs.AbstractExpression;
 import com.holddie.design.pattern.p3behavior.interpreter.demo1.implement.DivExpression;
 import com.holddie.design.pattern.p3behavior.interpreter.demo1.implement.MinusExpression;
@@ -10,9 +9,7 @@ import com.holddie.design.pattern.p3behavior.interpreter.demo1.implement.PlusExp
 
 import java.util.Stack;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -21,13 +18,13 @@ public class App {
         Stack<AbstractExpression> stack = new Stack<>();
 
         String[] tokenList = tokenString.split(" ");
-        for (String s :
-                tokenList) {
+        for (String s : tokenList) {
             if (isOperator(s)) {
                 AbstractExpression rightExpression = stack.pop();
                 AbstractExpression leftExpression = stack.pop();
 
-                AbstractExpression operator = getOperatorInstance(s, leftExpression, rightExpression);
+                AbstractExpression operator =
+                        getOperatorInstance(s, leftExpression, rightExpression);
                 int result = operator.interpret();
                 NumberExpression numberExpression = new NumberExpression(result);
                 stack.push(numberExpression);
@@ -38,10 +35,10 @@ public class App {
         }
 
         System.out.println("result: " + stack.pop().interpret());
-
     }
 
-    private static AbstractExpression getOperatorInstance(String s, AbstractExpression leftExpression, AbstractExpression rightExpression) {
+    private static AbstractExpression getOperatorInstance(
+            String s, AbstractExpression leftExpression, AbstractExpression rightExpression) {
         switch (s) {
             case "+":
                 return new PlusExpression(leftExpression, rightExpression);

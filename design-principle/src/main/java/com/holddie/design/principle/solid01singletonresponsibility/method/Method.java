@@ -1,22 +1,21 @@
 package com.holddie.design.principle.solid01singletonresponsibility.method;
 
-/**
- * Created by Tom
- */
+/** Created by Tom */
 public class Method {
-    private void modifyUserInfo(String userName,String address){
+    private void modifyUserInfo(String userName, String address) {
         userName = "Tom";
         address = "Changsha";
     }
 
-    private void modifyUserInfo(String userName,String... fileds){
+    private void modifyUserInfo(String userName, String... fileds) {
         userName = "Tom";
-//        address = "Changsha";
+        //        address = "Changsha";
     }
-    private void modifyUserInfo(String userName,String address,boolean bool){
-        if(bool){
 
-        }else{
+    private void modifyUserInfo(String userName, String address, boolean bool) {
+        if (bool) {
+
+        } else {
 
         }
 
@@ -24,14 +23,11 @@ public class Method {
         address = "Changsha";
     }
 
-    private void modifyUserName(String userName){
+    private void modifyUserName(String userName) {
         userName = "Tom";
     }
-    private void modifyAddress(String address){
+
+    private void modifyAddress(String address) {
         address = "Changsha";
     }
-
-
-
-
 }

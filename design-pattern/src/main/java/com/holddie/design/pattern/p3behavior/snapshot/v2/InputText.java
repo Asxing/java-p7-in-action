@@ -1,26 +1,21 @@
 package com.holddie.design.pattern.p3behavior.snapshot.v2;
 
 public class InputText {
-  private StringBuilder text = new StringBuilder();
+    private StringBuilder text = new StringBuilder();
 
-  public String getText() {
-    return text.toString();
-  }
+    public String getText() {
+        return text.toString();
+    }
 
-  public void append(String input) {
-    text.append(input);
-  }
+    public void append(String input) {
+        text.append(input);
+    }
 
-  public Snapshot createSnapshot() {
-    return new Snapshot(text.toString());
-  }
+    public Snapshot createSnapshot() {
+        return new Snapshot(text.toString());
+    }
 
-  public void restoreSnapshot(Snapshot snapshot) {
-    this.text.replace(0, this.text.length(), snapshot.getText());
-  }
+    public void restoreSnapshot(Snapshot snapshot) {
+        this.text.replace(0, this.text.length(), snapshot.getText());
+    }
 }
-
-
-
-
-

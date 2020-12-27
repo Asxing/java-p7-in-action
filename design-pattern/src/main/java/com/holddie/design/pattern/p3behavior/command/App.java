@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p3behavior.command;
 
-
 import com.holddie.design.pattern.p3behavior.command.concretecommand.CloseFileCommand;
 import com.holddie.design.pattern.p3behavior.command.concretecommand.OpenFileCommand;
 import com.holddie.design.pattern.p3behavior.command.concretecommand.WriteFileCommand;
@@ -8,9 +7,7 @@ import com.holddie.design.pattern.p3behavior.command.invoker.FileInvoker;
 import com.holddie.design.pattern.p3behavior.command.receiver.FileSystemReceiver;
 import com.holddie.design.pattern.p3behavior.command.util.FileSystemReceiverUtil;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -31,6 +28,5 @@ public class App {
         CloseFileCommand closeFileCommand = new CloseFileCommand(fs);
         FileInvoker fileInvoker2 = new FileInvoker(closeFileCommand);
         fileInvoker2.execute();
-
     }
 }

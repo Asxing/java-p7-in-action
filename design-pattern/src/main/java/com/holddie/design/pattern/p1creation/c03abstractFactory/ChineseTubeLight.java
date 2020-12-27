@@ -8,17 +8,11 @@ package com.holddie.design.pattern.p1creation.c03abstractFactory;
  */
 public class ChineseTubeLight implements ITubeLight {
     @Override
-    public void switchOn() {
-
-    }
+    public void switchOn() {}
 
     @Override
-    public void switchOff() {
-
-    }
+    public void switchOff() {}
 
     @Override
-    public void turnOn() {
-
-    }
+    public void turnOn() {}
 }

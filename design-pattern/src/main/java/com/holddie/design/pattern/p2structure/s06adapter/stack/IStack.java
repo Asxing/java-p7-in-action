@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s06adapter.stack;
 
 /**
  * 定义栈（一种数据结构）的标准方法
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -18,5 +19,4 @@ public interface IStack<T> {
     public void push(T e) throws StackException;
 
     public void clear();
-
 }

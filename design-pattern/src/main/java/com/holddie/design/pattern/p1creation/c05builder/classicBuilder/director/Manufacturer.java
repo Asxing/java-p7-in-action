@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p1creation.c05builder.classicBuilder.director;
 
-
 import com.holddie.design.pattern.p1creation.c05builder.classicBuilder.builder.IMobilePhoneBuilder;
 
 /**
  * 导演类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -12,7 +12,7 @@ import com.holddie.design.pattern.p1creation.c05builder.classicBuilder.builder.I
  */
 public class Manufacturer {
 
-    public void construct(IMobilePhoneBuilder phoneBuilder){
+    public void construct(IMobilePhoneBuilder phoneBuilder) {
         phoneBuilder.buildBattery();
         phoneBuilder.buildOS();
         phoneBuilder.buildScreen();

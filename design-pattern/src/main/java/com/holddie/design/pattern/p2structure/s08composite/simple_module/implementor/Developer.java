@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p2structure.s08composite.simple_module.implementor;
 
-
 import com.holddie.design.pattern.p2structure.s08composite.simple_module.abstraction.IEmployee;
 
 /**
  * 开发
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

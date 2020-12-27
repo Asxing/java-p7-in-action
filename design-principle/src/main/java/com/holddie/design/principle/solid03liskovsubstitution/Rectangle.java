@@ -1,9 +1,6 @@
 package com.holddie.design.principle.solid03liskovsubstitution;
 
-/**
- * 长方形
- * Created by Tom
- */
+/** 长方形 Created by Tom */
 public class Rectangle implements Quadrangle {
     private long height;
     private long width;

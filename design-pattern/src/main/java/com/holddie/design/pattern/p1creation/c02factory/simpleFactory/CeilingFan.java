@@ -8,12 +8,8 @@ package com.holddie.design.pattern.p1creation.c02factory.simpleFactory;
  */
 public class CeilingFan implements IFan {
     @Override
-    public void switchOn() {
-
-    }
+    public void switchOn() {}
 
     @Override
-    public void swtichOff() {
-
-    }
+    public void swtichOff() {}
 }

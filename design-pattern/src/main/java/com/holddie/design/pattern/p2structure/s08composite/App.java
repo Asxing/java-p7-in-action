@@ -1,12 +1,9 @@
 package com.holddie.design.pattern.p2structure.s08composite;
 
-
 import com.holddie.design.pattern.p2structure.s08composite.simple_module.implementor.Developer;
 import com.holddie.design.pattern.p2structure.s08composite.simple_module.implementor.Manager;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -21,6 +18,5 @@ public class App {
         manager.add(developer3);
 
         manager.print();
-
     }
 }

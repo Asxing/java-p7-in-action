@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.command.invoker;
 
-
 import com.holddie.design.pattern.p3behavior.command.command.Command;
 
 /**
  * 文件调用者
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -17,7 +17,7 @@ public class FileInvoker {
         this.command = command;
     }
 
-    public void execute(){
+    public void execute() {
         this.command.execute();
     }
 }

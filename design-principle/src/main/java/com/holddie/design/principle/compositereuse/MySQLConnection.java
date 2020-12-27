@@ -1,8 +1,6 @@
 package com.holddie.design.principle.compositereuse;
 
-/**
- * Created by Tom
- */
+/** Created by Tom */
 public class MySQLConnection extends DBConnection {
     @Override
     public String getConnection() {

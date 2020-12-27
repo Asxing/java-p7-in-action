@@ -1,13 +1,10 @@
 package com.holddie.design.principle.solid01singletonresponsibility;
 
-
 import com.holddie.design.principle.solid01singletonresponsibility.simple.Course;
 import com.holddie.design.principle.solid01singletonresponsibility.simple.LiveCourse;
 import com.holddie.design.principle.solid01singletonresponsibility.simple.ReplayCourse;
 
-/**
- * Created by Tom.
- */
+/** Created by Tom. */
 public class SingletonResponsibilityTest {
     public static void main(String[] args) {
         Course course = new Course();
@@ -19,7 +16,5 @@ public class SingletonResponsibilityTest {
 
         ReplayCourse replayCourse = new ReplayCourse();
         replayCourse.study("录播课");
-
-
     }
 }

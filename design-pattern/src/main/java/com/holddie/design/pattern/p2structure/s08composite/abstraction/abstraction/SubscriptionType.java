@@ -7,9 +7,7 @@ package com.holddie.design.pattern.p2structure.s08composite.abstraction.abstract
  * @date 2018/5/29 9:31
  */
 public enum SubscriptionType {
-
     PRINT,
     SOFTWARE_LICENSE,
     TRAINING;
-
 }

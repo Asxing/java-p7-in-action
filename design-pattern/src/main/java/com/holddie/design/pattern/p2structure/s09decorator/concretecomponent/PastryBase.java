@@ -5,6 +5,7 @@ import lombok.Data;
 
 /**
  * 甜点底盘
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -16,7 +17,6 @@ public class PastryBase implements BakeryComponent {
     private String name = "Pastry Base";
 
     private double price = 200.0;
-
 
     @Override
     public String getName() {

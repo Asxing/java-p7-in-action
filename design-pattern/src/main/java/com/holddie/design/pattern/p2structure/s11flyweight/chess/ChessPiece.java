@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ChessPiece {
-	private ChessPieceUnit chessPieceUnit;
-	private int positionX;
-	private int positionY;
+    private ChessPieceUnit chessPieceUnit;
+    private int positionX;
+    private int positionY;
 }

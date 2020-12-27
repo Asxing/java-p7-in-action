@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p2structure.s09decorator;
 
-
 import com.holddie.design.pattern.p2structure.s09decorator.component.BakeryComponent;
 import com.holddie.design.pattern.p2structure.s09decorator.concretecomponent.CakeBase;
 import com.holddie.design.pattern.p2structure.s09decorator.concretecomponent.PastryBase;
@@ -9,13 +8,12 @@ import com.holddie.design.pattern.p2structure.s09decorator.concretedecorator.Che
 import com.holddie.design.pattern.p2structure.s09decorator.concretedecorator.CreamDecorator;
 import com.holddie.design.pattern.p2structure.s09decorator.concretedecorator.NameCardDecorator;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
 
     private static void printProductDetails(BakeryComponent bakeryComponent) {
-        String out = "Item: " + bakeryComponent.getName() + ", Price: " + bakeryComponent.getPrice();
+        String out =
+                "Item: " + bakeryComponent.getName() + ", Price: " + bakeryComponent.getPrice();
         System.out.println(out);
     }
 
@@ -31,7 +29,8 @@ public class App {
         CherryDecorator cherryDecorator = new CherryDecorator(creamDecorator);
         printProductDetails(cherryDecorator);
 
-        ArtificialScentDecorator artificialScentDecorator = new ArtificialScentDecorator(cherryDecorator);
+        ArtificialScentDecorator artificialScentDecorator =
+                new ArtificialScentDecorator(cherryDecorator);
         printProductDetails(artificialScentDecorator);
 
         NameCardDecorator nameCardDecorator = new NameCardDecorator(artificialScentDecorator);
@@ -42,6 +41,5 @@ public class App {
 
         CreamDecorator creamDecorator1 = new CreamDecorator(pastry);
         printProductDetails(creamDecorator1);
-
     }
 }

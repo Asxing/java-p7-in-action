@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * 业务调用逻辑
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -19,8 +20,7 @@ public class SortingManager {
 
     List<Integer> list;
 
-    public SortingManager() {
-    }
+    public SortingManager() {}
 
     public SortingManager(AbstractSortStratrgy sortStratrgy, List<Integer> list) {
         this.sortStratrgy = sortStratrgy;
@@ -31,5 +31,4 @@ public class SortingManager {
         System.out.println("=========================");
         sortStratrgy.sort(list);
     }
-
 }

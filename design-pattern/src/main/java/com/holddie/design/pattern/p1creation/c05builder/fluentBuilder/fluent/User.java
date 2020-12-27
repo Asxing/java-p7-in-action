@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p1creation.c05builder.fluentBuilder.fluent;
 
 /**
  * 流式建造者模式
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -27,7 +28,6 @@ public class User {
         this.address = builder.address;
     }
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -50,13 +50,22 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return "User{"
+                + "firstName='"
+                + firstName
+                + '\''
+                + ", lastName='"
+                + lastName
+                + '\''
+                + ", age="
+                + age
+                + ", phone='"
+                + phone
+                + '\''
+                + ", address='"
+                + address
+                + '\''
+                + '}';
     }
 
     public static class UserBuilder {
@@ -96,8 +105,6 @@ public class User {
             return user;
         }
 
-        private void validateUserObject(User user) {
-        }
-
+        private void validateUserObject(User user) {}
     }
 }

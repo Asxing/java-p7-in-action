@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p1creation.c01singlton;
 
 /**
  * 懒汉模式（同步）
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -10,8 +11,7 @@ package com.holddie.design.pattern.p1creation.c01singlton;
 public class Singleton04 {
     private static Singleton04 INSTANCE;
 
-    private Singleton04() {
-    }
+    private Singleton04() {}
 
     private static synchronized Singleton04 getInstance() {
         if (INSTANCE == null) {

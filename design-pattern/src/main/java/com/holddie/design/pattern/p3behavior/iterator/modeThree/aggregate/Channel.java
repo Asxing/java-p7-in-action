@@ -4,6 +4,7 @@ import lombok.Data;
 
 /**
  * 循环后获得的实体
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -23,9 +24,6 @@ public class Channel {
 
     @Override
     public String toString() {
-        return "Channel{" +
-                "frequency=" + frequency +
-                ", typeEnum=" + typeEnum +
-                '}';
+        return "Channel{" + "frequency=" + frequency + ", typeEnum=" + typeEnum + '}';
     }
 }

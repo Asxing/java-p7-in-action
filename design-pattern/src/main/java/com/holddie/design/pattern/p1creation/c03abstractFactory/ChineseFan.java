@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p1creation.c03abstractFactory;
 
-
 /**
  * @author yangze1
  * @version 1.0.0
@@ -9,12 +8,8 @@ package com.holddie.design.pattern.p1creation.c03abstractFactory;
  */
 public class ChineseFan implements IFan {
     @Override
-    public void switchOn() {
-
-    }
+    public void switchOn() {}
 
     @Override
-    public void switchOff() {
-
-    }
+    public void switchOff() {}
 }

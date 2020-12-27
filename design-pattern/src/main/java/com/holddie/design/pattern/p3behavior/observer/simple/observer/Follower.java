@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p3behavior.observer.simple.observer;
 
 /**
  * 监听者
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -22,8 +23,6 @@ public class Follower implements IObserver {
 
     @Override
     public String toString() {
-        return "Follower{" +
-                "followerName='" + followerName + '\'' +
-                '}';
+        return "Follower{" + "followerName='" + followerName + '\'' + '}';
     }
 }

@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p2structure.s09decorator.decorator;
 
-
 import com.holddie.design.pattern.p2structure.s09decorator.component.BakeryComponent;
 
 /**
  * 抽象装饰器类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

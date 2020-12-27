@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.chainOfResponsibility.concrete;
 
-
 import com.holddie.design.pattern.p3behavior.chainOfResponsibility.entity.Leave;
 
 /**
  * 团队Leader
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -18,11 +18,10 @@ public class TeamLeader extends AbstractLeader {
     public void approve(Leave leave) {
 
         if (leave.getNumberOfDays() < MAX_LEAVES_CAN_APPROVE) {
-            String output = String.format(
-                    "LeaveId: %d, Days: %d, Approver: %s",
-                    leave.getLeaveId(),
-                    leave.getNumberOfDays(),
-                    "TeamLeader");
+            String output =
+                    String.format(
+                            "LeaveId: %d, Days: %d, Approver: %s",
+                            leave.getLeaveId(), leave.getNumberOfDays(), "TeamLeader");
             System.out.println(output);
         } else {
             if (nextHandler != null) {

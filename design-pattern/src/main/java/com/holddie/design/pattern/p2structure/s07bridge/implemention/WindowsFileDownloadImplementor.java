@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s07bridge.implemention;
 
 /**
  * Windows 下载具体实现
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

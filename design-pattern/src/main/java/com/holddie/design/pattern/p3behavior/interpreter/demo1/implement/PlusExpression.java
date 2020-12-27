@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p3behavior.interpreter.demo1.implement;
 
-
 import com.holddie.design.pattern.p3behavior.interpreter.demo1.abs.AbstractExpression;
 
 /**

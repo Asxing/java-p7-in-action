@@ -1,17 +1,11 @@
 package com.holddie.design.principle.solid01singletonresponsibility.interfaced;
-/**
- * Created by Tom
- */
-public class CourseImpl implements ICourseManager,ICourseInfo {
+/** Created by Tom */
+public class CourseImpl implements ICourseManager, ICourseInfo {
     @Override
-    public void studyCourse() {
-
-    }
+    public void studyCourse() {}
 
     @Override
-    public void refundCourse() {
-
-    }
+    public void refundCourse() {}
 
     @Override
     public String getCourseName() {

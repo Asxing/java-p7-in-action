@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p1creation.c03abstractFactory;
 
 /**
  * 抽象工厂实现类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -19,7 +20,6 @@ public class AbstractFactoryMain {
         chineseFan.switchOff();
         chineseTubeLight.turnOn();
 
-
         IElectricalFactory usElectricalFactory = new UsElectricalFactory();
         IFan usFan = usElectricalFactory.createFan();
         ITubeLight usTubeLight = usElectricalFactory.createTubeLight();
@@ -28,6 +28,3 @@ public class AbstractFactoryMain {
         usTubeLight.turnOn();
     }
 }
-
-
-

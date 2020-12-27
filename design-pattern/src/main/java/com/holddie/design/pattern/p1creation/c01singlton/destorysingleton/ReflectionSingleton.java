@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p1creation.c01singlton.destorysingleton;
 
-
 import com.holddie.design.pattern.p1creation.c01singlton.Singleton03;
 
 import java.lang.reflect.Constructor;
@@ -8,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * 反射破坏单例模式
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -42,6 +42,4 @@ public class ReflectionSingleton {
         System.out.println(singleton01.hashCode());
         System.out.println(singleton02.hashCode());
     }
-
-
 }

@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p2structure.s08composite;
 
-
 import com.holddie.design.pattern.p2structure.s08composite.abstraction.Util;
 import com.holddie.design.pattern.p2structure.s08composite.abstraction.abstraction.IEmployee;
 import com.holddie.design.pattern.p2structure.s08composite.abstraction.abstraction.Subscription;
@@ -12,6 +11,7 @@ import java.util.List;
 
 /**
  * 测试demo
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -21,8 +21,12 @@ public class AppComplex {
     public static void main(String[] args) {
         // 创建一些开发者并赋予订购项
         IEmployee emp1 = new Developer("A", 1);
-        List<Subscription> subs = Arrays.asList(Util.getIntellijSubscription(), Util.getJProfilierSubscription(),
-                Util.getCSDNSubscription(), Util.getTrainingSubscription());
+        List<Subscription> subs =
+                Arrays.asList(
+                        Util.getIntellijSubscription(),
+                        Util.getJProfilierSubscription(),
+                        Util.getCSDNSubscription(),
+                        Util.getTrainingSubscription());
         emp1.setSubscriptions(subs);
 
         IEmployee emp2 = new Developer("B", 2);
@@ -66,15 +70,20 @@ public class AppComplex {
         Util.printCostDetails(emp1);
 
         // 获取一组员工的成本细节
-        List<IEmployee> employees = Arrays.asList(emp1, emp2, emp3, emp4, emp5, emp6, emp7, emp8, emp9, emp10);
+        List<IEmployee> employees =
+                Arrays.asList(emp1, emp2, emp3, emp4, emp5, emp6, emp7, emp8, emp9, emp10);
         System.out.println("Let's check cost details of list of employees");
         for (IEmployee employee : employees) {
             Util.printCostDetails(employee);
         }
 
         // 设置经理
-        subs = Arrays.asList(Util.getIntellijSubscription(), Util.getJProfilierSubscription(),
-                Util.getCSDNSubscription(), Util.getTrainingSubscription());
+        subs =
+                Arrays.asList(
+                        Util.getIntellijSubscription(),
+                        Util.getJProfilierSubscription(),
+                        Util.getCSDNSubscription(),
+                        Util.getTrainingSubscription());
         List<IEmployee> teamMembers = Arrays.asList(emp1, emp2, emp3);
         IEmployee mng1 = new Manager("MA", 11, subs, teamMembers);
 

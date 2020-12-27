@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p2structure.s08composite.simple_module.implementor;
 
-
 import com.holddie.design.pattern.p2structure.s08composite.simple_module.abstraction.IEmployee;
 
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.List;
 
 /**
  * Boss
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -55,8 +55,7 @@ public class Manager implements IEmployee {
         System.out.println("name: " + name);
         System.out.println("Salary: " + salary);
         System.out.println("--------------------");
-        for (IEmployee ep :
-                employees) {
+        for (IEmployee ep : employees) {
             ep.print();
         }
     }

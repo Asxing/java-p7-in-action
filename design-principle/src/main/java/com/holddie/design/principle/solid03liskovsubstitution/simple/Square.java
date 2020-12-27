@@ -1,9 +1,6 @@
 package com.holddie.design.principle.solid03liskovsubstitution.simple;
 
-/**
- * 正方形
- * Created by Tom
- */
+/** 正方形 Created by Tom */
 public class Square extends Rectangle {
     private long length;
 

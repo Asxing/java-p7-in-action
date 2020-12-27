@@ -17,5 +17,4 @@ public class Subscription {
     private String name;
 
     private double cost;
-
 }

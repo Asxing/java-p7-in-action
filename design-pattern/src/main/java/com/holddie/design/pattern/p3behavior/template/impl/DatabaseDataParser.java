@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.template.impl;
 
-
 import com.holddie.design.pattern.p3behavior.template.abstracts.AbstractDataParser;
 
 /**
  * 数据库处理数据
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

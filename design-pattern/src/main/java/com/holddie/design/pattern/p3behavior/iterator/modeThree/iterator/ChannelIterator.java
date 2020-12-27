@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p3behavior.iterator.modeThree.iterator;
 
-
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate.Channel;
 
 /**
@@ -14,5 +13,4 @@ public interface ChannelIterator {
     public boolean hasNext();
 
     public Channel next();
-
 }

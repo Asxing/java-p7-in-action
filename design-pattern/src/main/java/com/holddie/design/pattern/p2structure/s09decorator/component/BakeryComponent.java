@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s09decorator.component;
 
 /**
  * 对象抽象接口
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

@@ -1,15 +1,12 @@
 package com.holddie.design.pattern.p3behavior.iterator.modeThree;
 
-
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate.Channel;
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate.ChannelCollection;
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate.ChannelTypeEnum;
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.concrete.aggregate.ChannelCollectionImpl;
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.iterator.ChannelIterator;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
 
     private static ChannelCollection populateChannel() {
@@ -48,7 +45,5 @@ public class App {
             Channel channel = channelIterator1.next();
             System.out.println(channel);
         }
-
-
     }
 }

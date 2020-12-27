@@ -1,8 +1,6 @@
 package com.holddie.design.principle.solid06dependencyinversion;
 
-/**
- * Created by Tom
- */
+/** Created by Tom */
 public class PythonCourse implements ICourse {
     @Override
     public void study() {

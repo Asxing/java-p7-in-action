@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p2structure.s06adapter.impl;
 
-
 import com.holddie.design.pattern.p2structure.s06adapter.interfac.IVga;
 
 /**
  * VGA 原先具体的操作
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

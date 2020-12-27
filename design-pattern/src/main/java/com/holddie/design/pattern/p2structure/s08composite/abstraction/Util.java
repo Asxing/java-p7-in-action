@@ -1,12 +1,12 @@
 package com.holddie.design.pattern.p2structure.s08composite.abstraction;
 
-
 import com.holddie.design.pattern.p2structure.s08composite.abstraction.abstraction.IEmployee;
 import com.holddie.design.pattern.p2structure.s08composite.abstraction.abstraction.Subscription;
 import com.holddie.design.pattern.p2structure.s08composite.abstraction.abstraction.SubscriptionType;
 
 /**
  * 工具辅助类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -19,8 +19,16 @@ public class Util {
         int licenseSubCount = employee.getSubscriptionCount(SubscriptionType.SOFTWARE_LICENSE);
         int printSubCount = employee.getSubscriptionCount(SubscriptionType.PRINT);
         int trainingSubCount = employee.getSubscriptionCount(SubscriptionType.TRAINING);
-        String outMsg = "Cost: %f, Count License: %d, Count Print: %d, Count Training: %d, Emp ID: %d\n";
-        System.out.print(String.format(outMsg, cost, licenseSubCount, printSubCount, trainingSubCount, employee.getEmployeeId()));
+        String outMsg =
+                "Cost: %f, Count License: %d, Count Print: %d, Count Training: %d, Emp ID: %d\n";
+        System.out.print(
+                String.format(
+                        outMsg,
+                        cost,
+                        licenseSubCount,
+                        printSubCount,
+                        trainingSubCount,
+                        employee.getEmployeeId()));
     }
 
     public static Subscription getIntellijSubscription() {
@@ -54,5 +62,4 @@ public class Util {
         sub.setCost(300);
         return sub;
     }
-
 }

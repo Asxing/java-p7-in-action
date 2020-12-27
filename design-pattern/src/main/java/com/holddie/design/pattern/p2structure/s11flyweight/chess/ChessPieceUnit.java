@@ -6,15 +6,13 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ChessPieceUnit {
-	private int id;
-	private String text;
-	private Color color;
+    private int id;
+    private String text;
+    private Color color;
 
-	public static enum Color {
-		/**
-		 * red black
-		 */
-		RED,
-		BLACK
-	}
+    public static enum Color {
+        /** red black */
+        RED,
+        BLACK
+    }
 }

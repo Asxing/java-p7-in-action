@@ -1,9 +1,6 @@
 package com.holddie.design.principle.solid03liskovsubstitution;
 
-/**
- * 正方形
- * Created by Tom
- */
+/** 正方形 Created by Tom */
 public class Square implements Quadrangle {
     private long length;
 

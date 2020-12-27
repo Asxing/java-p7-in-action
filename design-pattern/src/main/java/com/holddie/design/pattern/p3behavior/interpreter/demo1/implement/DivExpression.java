@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.interpreter.demo1.implement;
 
-
 import com.holddie.design.pattern.p3behavior.interpreter.demo1.abs.AbstractExpression;
 
 /**
  * 除运算符
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

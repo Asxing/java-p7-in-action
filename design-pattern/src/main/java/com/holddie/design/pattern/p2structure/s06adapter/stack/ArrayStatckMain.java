@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s06adapter.stack;
 
 /**
  * Stack测试类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -11,7 +12,6 @@ public class ArrayStatckMain {
 
     public static void main(String[] args) {
         IStack<Integer> stack = new Array2StackAdapter<>(15);
-
 
         for (int i = 0; i < 13; i++) {
             stack.push(i);
@@ -27,7 +27,5 @@ public class ArrayStatckMain {
             System.out.println("异常喽！");
             e.printStackTrace();
         }
-
     }
-
 }

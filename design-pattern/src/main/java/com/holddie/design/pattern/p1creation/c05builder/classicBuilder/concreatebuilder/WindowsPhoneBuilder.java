@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p1creation.c05builder.classicBuilder.concreatebuilder;
 
-
 import com.holddie.design.pattern.p1creation.c05builder.classicBuilder.builder.IMobilePhoneBuilder;
 import com.holddie.design.pattern.p1creation.c05builder.classicBuilder.product.MobilePhone;
 import com.holddie.design.pattern.p1creation.c05builder.classicBuilder.product.enumEntity.BatteryType;

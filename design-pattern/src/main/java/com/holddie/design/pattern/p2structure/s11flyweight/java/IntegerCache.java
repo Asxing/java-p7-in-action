@@ -5,21 +5,20 @@ import java.util.Objects;
 import java.util.WeakHashMap;
 
 public class IntegerCache {
-	public static final WeakHashMap<Integer, WeakReference<Integer>> cache = new WeakHashMap<>();
+    public static final WeakHashMap<Integer, WeakReference<Integer>> cache = new WeakHashMap<>();
 
-	private IntegerCache() {
-	}
+    private IntegerCache() {}
 
-	public static Integer valueOf(int i) {
-		final WeakReference<Integer> cached = IntegerCache.cache.get(i);
-		if (Objects.nonNull(cached)) {
-			final Integer value = cached.get();
-			if (Objects.nonNull(value)) {
-				return value;
-			}
-		}
-		WeakReference<Integer> val = new WeakReference<>(i);
-		IntegerCache.cache.put(i, val);
-		return val.get();
-	}
+    public static Integer valueOf(int i) {
+        final WeakReference<Integer> cached = IntegerCache.cache.get(i);
+        if (Objects.nonNull(cached)) {
+            final Integer value = cached.get();
+            if (Objects.nonNull(value)) {
+                return value;
+            }
+        }
+        WeakReference<Integer> val = new WeakReference<>(i);
+        IntegerCache.cache.put(i, val);
+        return val.get();
+    }
 }

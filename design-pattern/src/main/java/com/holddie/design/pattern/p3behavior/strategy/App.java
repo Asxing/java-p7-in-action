@@ -8,9 +8,7 @@ import com.holddie.design.pattern.p3behavior.strategy.manager.SortingManager;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -28,6 +26,5 @@ public class App {
         HeapSortStrategy heapSortStrategy = new HeapSortStrategy();
         sortingManager.setSortStratrgy(heapSortStrategy);
         sortingManager.sortList();
-
     }
 }

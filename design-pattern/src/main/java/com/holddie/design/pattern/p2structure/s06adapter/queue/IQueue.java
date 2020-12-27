@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s06adapter.queue;
 
 /**
  * 队列基本方法
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

@@ -1,12 +1,9 @@
 package com.holddie.design.pattern.p3behavior.template;
 
-
 import com.holddie.design.pattern.p3behavior.template.impl.CSVDataParser;
 import com.holddie.design.pattern.p3behavior.template.impl.DatabaseDataParser;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -18,6 +15,5 @@ public class App {
 
         DatabaseDataParser databaseDataParser = new DatabaseDataParser();
         databaseDataParser.process();
-
     }
 }

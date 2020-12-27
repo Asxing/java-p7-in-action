@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s06adapter.stack;
 
 /**
  * 数组数据结构适配栈数据结构
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -14,7 +15,6 @@ public class Array2StackAdapter<T> implements IStack<T> {
     private int top; // 指向栈顶元素
 
     private T[] array;
-
 
     public Array2StackAdapter(int initialCapacity) {
         if (initialCapacity <= 0) {
@@ -61,8 +61,7 @@ public class Array2StackAdapter<T> implements IStack<T> {
 
     @Override
     public void clear() {
-        for (T x :
-                array) {
+        for (T x : array) {
             x = null;
         }
         top = -1;
@@ -74,8 +73,7 @@ public class Array2StackAdapter<T> implements IStack<T> {
             return "[ ]";
         }
         StringBuilder out = new StringBuilder("[");
-        for (T x :
-                array) {
+        for (T x : array) {
             out.append(x).append(" ,");
         }
         out.substring(0, out.length() - 2);

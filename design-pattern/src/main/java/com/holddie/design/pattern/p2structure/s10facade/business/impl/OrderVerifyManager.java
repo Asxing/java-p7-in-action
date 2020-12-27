@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p2structure.s10facade.business.impl;
 
-
 import com.holddie.design.pattern.p2structure.s10facade.business.IOrderVerify;
 
 /**
  * 订单校验功能实现
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

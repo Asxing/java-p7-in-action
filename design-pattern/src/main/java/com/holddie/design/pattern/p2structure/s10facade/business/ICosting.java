@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s10facade.business;
 
 /**
  * 费用计算接口
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -10,5 +11,4 @@ package com.holddie.design.pattern.p2structure.s10facade.business;
 public interface ICosting {
 
     public float applyDiscount(float price, float discountPercent);
-
 }

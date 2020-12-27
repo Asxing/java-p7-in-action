@@ -1,8 +1,6 @@
 package com.holddie.design.principle.solid05interfacegregation.simple;
 
-/**
- * Created by Tom
- */
+/** Created by Tom */
 public interface IAnimal {
 
     void eat();
@@ -10,5 +8,4 @@ public interface IAnimal {
     void fly();
 
     void swim();
-
 }

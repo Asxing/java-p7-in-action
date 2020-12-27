@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p1creation.c01singlton.destorysingleton;
 
-
 import com.holddie.design.pattern.p1creation.c01singlton.Singleton06;
 
 import java.io.FileInputStream;
@@ -13,6 +12,7 @@ import java.io.ObjectOutputStream;
 
 /**
  * 反序列化破坏单例模式
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -25,8 +25,7 @@ public class SerializationSingleton {
 
         ObjectOutput out = null;
         try {
-            out = new ObjectOutputStream(new FileOutputStream(
-                    "filename.ser"));
+            out = new ObjectOutputStream(new FileOutputStream("filename.ser"));
             out.writeObject(singleton06);
             out.close();
 
@@ -45,5 +44,4 @@ public class SerializationSingleton {
             e.printStackTrace();
         }
     }
-
 }

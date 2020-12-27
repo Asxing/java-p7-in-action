@@ -1,12 +1,10 @@
 package com.holddie.design.pattern.p3behavior.iterator.modeThree.concrete.iterator;
 
-
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate.Channel;
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate.ChannelTypeEnum;
 import com.holddie.design.pattern.p3behavior.iterator.modeThree.iterator.ChannelIterator;
 
 import java.util.List;
-
 
 /**
  * @author yangze1

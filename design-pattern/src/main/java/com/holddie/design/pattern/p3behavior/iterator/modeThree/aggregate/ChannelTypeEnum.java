@@ -7,23 +7,15 @@ package com.holddie.design.pattern.p3behavior.iterator.modeThree.aggregate;
  * @date 2018/6/6 8:56
  */
 public enum ChannelTypeEnum {
-    /**
-     * 英语
-     */
+    /** 英语 */
     ENGLISH,
 
-    /**
-     * 中文
-     */
+    /** 中文 */
     CHINESE,
 
-    /**
-     * 法语
-     */
+    /** 法语 */
     FRENCH,
 
-    /**
-     * 所有
-     */
+    /** 所有 */
     ALL;
 }

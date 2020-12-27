@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.chainOfResponsibility.handler;
 
-
 import com.holddie.design.pattern.p3behavior.chainOfResponsibility.entity.Leave;
 
 /**
  * 调用链抽象接口
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com

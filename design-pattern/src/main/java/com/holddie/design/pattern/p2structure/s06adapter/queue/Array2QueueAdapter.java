@@ -2,6 +2,7 @@ package com.holddie.design.pattern.p2structure.s06adapter.queue;
 
 /**
  * 数组实现队列的功能
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -14,7 +15,6 @@ public class Array2QueueAdapter<T> implements IQueue<T> {
     private T[] S;
     private int front = 0;
     private int rear = 0;
-
 
     Array2QueueAdapter(int capacity) {
         this.capacity = capacity;

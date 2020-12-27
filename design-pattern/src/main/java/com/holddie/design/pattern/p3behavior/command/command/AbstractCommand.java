@@ -1,10 +1,10 @@
 package com.holddie.design.pattern.p3behavior.command.command;
 
-
 import com.holddie.design.pattern.p3behavior.command.receiver.FileSystemReceiver;
 
 /**
  * 抽象命令实现类
+ *
  * @author yangze1
  * @version 1.0.0
  * @email holddie@163.com
@@ -17,5 +17,4 @@ public class AbstractCommand {
     public AbstractCommand(FileSystemReceiver fileSystemReceiver) {
         this.fileSystemReceiver = fileSystemReceiver;
     }
-
 }
