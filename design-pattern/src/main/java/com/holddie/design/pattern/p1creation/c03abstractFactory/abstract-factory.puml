@@ -1,0 +1,78 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "class AbstractFactory(抽象工厂模式)" #DDDDDD {
+
+interface IElectricalFactory{
++createFan():IFan
++createTubeLight():ITubeLight
+}
+note top of IElectricalFactory: 世界电子工厂标准 
+
+class ChineseElectricalFactory {
++createFan():IFan
++createTubeLight():ITubeLight
+}
+note top of ChineseElectricalFactory: 中国电子工厂标准
+
+class UsElectricalFactory {
++createFan():IFan
++createTubeLight():ITubeLight
+}
+note top of UsElectricalFactory: 美国电子工厂标准
+
+
+interface IFan {
++switchOn():void
++switchOff():void
+}
+note top of IFan: 电扇标准功能
+
+
+class ChineseFan {
++switchOn():void
++switchOff():void
+}
+note top of ChineseFan: 中国电扇标准功能
+
+class UsFan {
++switchOn():void
++switchOff():void
+}
+note top of UsFan: 美国电扇标准功能
+
+interface ITubeLight{
++switchOn():void
++switchOff():void
++turnOn():void
+}
+note top of ITubeLight: 灯管标准功能 
+
+class ChineseTubeLight{
++switchOn():void
++switchOff():void
++turnOn():void
+}
+note top of ChineseTubeLight: 中国灯管标准
+
+class UsTubeLight{
++switchOn():void
++switchOff():void
++turnOn():void
+}
+note top of UsTubeLight: 美国灯管标准
+
+
+ITubeLight <|.. UsTubeLight
+ITubeLight <|.. ChineseTubeLight
+IFan <|.. ChineseFan
+IFan <|.. UsFan
+IElectricalFactory <|.. ChineseElectricalFactory
+IElectricalFactory <|.. UsElectricalFactory
+ChineseElectricalFactory ..> ChineseTubeLight 
+ChineseElectricalFactory ..> ChineseFan 
+UsElectricalFactory ..> UsTubeLight 
+UsElectricalFactory ..> UsFan 
+    
+}
+@enduml

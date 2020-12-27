@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "class FactoryMethod(工厂方法模式)" #DDDDDD {
+    interface IFanFactory{
+    +createFan():IFan
+    }
+    
+    class CeilingFanFactory{
+    +createFan():IFan
+    }
+    
+    class PropellerFanFactory{
+    +createFan():IFan
+    }
+   
+    interface IFan {
+    +switchOn():void
+    +switchOff():void
+    }
+    
+    class CeilingFan {
+    +switchOn():void
+    +switchOff():void
+    }
+    
+    class ProperFan{
+    +switchOn():void
+    +switchOff():void
+    }
+    
+    IFanFactory <|.. CeilingFanFactory
+    IFanFactory <|.. PropellerFanFactory
+    IFan <|.. CeilingFan 
+    IFan <|.. ProperFan
+    CeilingFan <.. CeilingFanFactory
+    ProperFan <.. PropellerFanFactory
+   
+}
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "classic Builder(经典建造器模式)" #DDDDDD {
+    abstract class IMobilePhoneBuilder
+    {
+    +buildBattery():void
+    +buildOS():void
+    +buildScreen():void
+    +buildStylus():void
+    +builder():void
+    }
+    note right: 抽象手机建造Builder类
+
+    class AndroidPhoneBuilder
+    {
+    +buildBattery():void
+    +buildOS():void
+    +buildScreen():void
+    +buildStylus():void
+    +builder():void
+    }
+    note right: 安卓手机建造Builder类
+
+    class WindowsPhoneBuilder
+    {
+    +buildBattery():void
+    +buildOS():void
+    +buildScreen():void
+    +buildStylus():void
+    +builder():void
+    }
+    note right: Windows手机建造Builder类
+    
+    class Manufacturer
+    {
+    +construct(IMobilePhoneBuilder phoneBuilder):void
+    }
+    note right: 统一组装过程
+
+    abstract class Phone
+    note right:手机的抽象类
+
+    Manufacturer o-- IMobilePhoneBuilder
+    IMobilePhoneBuilder <|-- AndroidPhoneBuilder
+    IMobilePhoneBuilder <|-- WindowsPhoneBuilder
+    Phone <.. AndroidPhoneBuilder:<<use>>
+    Phone <.. WindowsPhoneBuilder:<<use>>
+}
+@enduml

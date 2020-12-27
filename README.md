@@ -1,5 +1,9 @@
 # java-p7-in-action
 
+## 设计原则
+
+- [SOLID 设计原则](https://github.com/HoldDie/java-p7-in-action/tree/master/design-principle)
+- [23 种设计模式](https://github.com/HoldDie/java-p7-in-action/tree/master/design-pattern)
 
 ## Netty 模块
 

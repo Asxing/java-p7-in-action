@@ -13,6 +13,8 @@
         <module>netty-rpc</module>
         <module>netty-chat</module>
         <module>netty-order</module>
+        <module>design-principle</module>
+        <module>design-pattern</module>
     </modules>
     <packaging>pom</packaging>
 
