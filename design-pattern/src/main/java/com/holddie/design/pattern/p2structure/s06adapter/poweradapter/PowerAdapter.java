@@ -1,11 +1,9 @@
 package com.holddie.design.pattern.p2structure.s06adapter.poweradapter;
 
-/**
- * Created by Tom on 2019/3/16.
- */
+/** Created by Tom on 2019/3/16. */
 public class PowerAdapter implements DC5 {
 
-   private AC220 ac220;
+    private AC220 ac220;
 
     public PowerAdapter(AC220 ac220) {
         this.ac220 = ac220;

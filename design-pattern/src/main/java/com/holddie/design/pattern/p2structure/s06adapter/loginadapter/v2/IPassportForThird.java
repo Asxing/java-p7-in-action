@@ -1,16 +1,13 @@
 package com.holddie.design.pattern.p2structure.s06adapter.loginadapter.v2;
 
-
 import com.holddie.design.pattern.p2structure.s06adapter.loginadapter.ResultMsg;
 
-/**
- * 只扩展
- * Created by Tom on 2019/3/16.
- */
+/** 只扩展 Created by Tom on 2019/3/16. */
 public interface IPassportForThird {
 
     /**
      * QQ登录
+     *
      * @param id
      * @return
      */
@@ -18,6 +15,7 @@ public interface IPassportForThird {
 
     /**
      * 微信登录
+     *
      * @param id
      * @return
      */
@@ -25,6 +23,7 @@ public interface IPassportForThird {
 
     /**
      * 记住登录状态后自动登录
+     *
      * @param token
      * @return
      */
@@ -32,6 +31,7 @@ public interface IPassportForThird {
 
     /**
      * 手机号登录
+     *
      * @param telphone
      * @param code
      * @return
@@ -40,6 +40,7 @@ public interface IPassportForThird {
 
     /**
      * 注册后自动登录
+     *
      * @param username
      * @param passport
      * @return

@@ -1,8 +1,6 @@
 package com.holddie.design.pattern.p2structure.s06adapter.loginadapter;
 
-/**
- * Created by Tom.
- */
+/** Created by Tom. */
 public class Member {
 
     private String username;
