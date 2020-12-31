@@ -1,7 +1,7 @@
-package com.holddie.design.pattern.p2structure.s06adapter.impl;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter.impl;
 
-import com.holddie.design.pattern.p2structure.s06adapter.interfac.IHdmi;
-import com.holddie.design.pattern.p2structure.s06adapter.interfac.IVga;
+import com.holddie.design.pattern.p2structure.s06adapter.machineadapter.interfac.IHdmi;
+import com.holddie.design.pattern.p2structure.s06adapter.machineadapter.interfac.IVga;
 
 /**
  * VGA 接口适配 HDMI 接口

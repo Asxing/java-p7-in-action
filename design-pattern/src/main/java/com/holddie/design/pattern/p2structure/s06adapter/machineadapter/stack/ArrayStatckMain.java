@@ -1,4 +1,4 @@
-package com.holddie.design.pattern.p2structure.s06adapter.stack;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter.stack;
 
 /**
  * Stack测试类

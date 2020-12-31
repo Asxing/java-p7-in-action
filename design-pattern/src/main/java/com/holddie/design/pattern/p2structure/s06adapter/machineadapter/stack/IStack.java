@@ -1,4 +1,4 @@
-package com.holddie.design.pattern.p2structure.s06adapter.stack;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter.stack;
 
 /**
  * 定义栈（一种数据结构）的标准方法

@@ -1,4 +1,4 @@
-package com.holddie.design.pattern.p2structure.s06adapter.interfac;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter.interfac;
 
 /**
  * HDMI 接口

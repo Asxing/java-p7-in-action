@@ -1,4 +1,4 @@
-package com.holddie.design.pattern.p2structure.s06adapter.queue;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter.queue;
 
 /**
  * 队列基本方法

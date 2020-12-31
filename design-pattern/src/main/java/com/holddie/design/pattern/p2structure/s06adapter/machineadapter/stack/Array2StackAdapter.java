@@ -1,4 +1,4 @@
-package com.holddie.design.pattern.p2structure.s06adapter.stack;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter.stack;
 
 /**
  * 数组数据结构适配栈数据结构

@@ -1,7 +1,7 @@
-package com.holddie.design.pattern.p2structure.s06adapter;
+package com.holddie.design.pattern.p2structure.s06adapter.machineadapter;
 
-import com.holddie.design.pattern.p2structure.s06adapter.impl.Vga2HdmiAdapter;
-import com.holddie.design.pattern.p2structure.s06adapter.impl.VgaDisplay;
+import com.holddie.design.pattern.p2structure.s06adapter.machineadapter.impl.Vga2HdmiAdapter;
+import com.holddie.design.pattern.p2structure.s06adapter.machineadapter.impl.VgaDisplay;
 
 /** Hello world! */
 public class App {
