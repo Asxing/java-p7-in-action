@@ -24,6 +24,8 @@ public class UserResource {
                 userService -> {
                     userService.save(username, password);
                     userService.get(username);
+                    userService.save(username, password + password);
+                    userService.get(username);
                     userService.delete(username);
                     userService.get(username);
                     log.info("==============================");

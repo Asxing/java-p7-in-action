@@ -19,6 +19,13 @@ public class UserServiceJedisImpl implements UserService {
         jedis.set(userName, password);
     }
 
+    @Override
+    public void update(String userName, String password) {
+        userName = genUserName(userName);
+        log.info("jedis update username:{}, password:{}", userName, password);
+        jedis.set(userName, password); 
+    }
+
     private String genUserName(String userName) {
         return "jedis:" + userName;
     }
@@ -35,4 +42,6 @@ public class UserServiceJedisImpl implements UserService {
         log.info("jedis delete username: {}", userName);
         jedis.del(genUserName(userName));
     }
+    
+    
 }

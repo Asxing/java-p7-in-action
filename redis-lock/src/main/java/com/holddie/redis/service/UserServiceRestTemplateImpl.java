@@ -19,6 +19,13 @@ public class UserServiceRestTemplateImpl implements UserService {
         redisTemplate.opsForValue().set(userName, password);
     }
 
+    @Override
+    public void update(String userName, String password) {
+        userName = genUserName(userName);
+        log.info("redisTemplate update username:{}, password:{}", userName, password);
+        redisTemplate.opsForValue().set(userName, password); 
+    }
+
     private String genUserName(String userName) {
         return "redisTemplate:" + userName;
     }
