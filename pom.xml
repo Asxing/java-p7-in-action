@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    
     <groupId>com.holddie</groupId>
     <artifactId>java-p7-in-action</artifactId>
     <version>1.0.0</version>
@@ -15,6 +22,7 @@
         <module>netty-order</module>
         <module>design-principle</module>
         <module>design-pattern</module>
+        <module>redis-lock</module>
     </modules>
     <packaging>pom</packaging>
 
