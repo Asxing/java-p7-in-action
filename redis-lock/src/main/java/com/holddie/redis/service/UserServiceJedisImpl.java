@@ -10,30 +10,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserServiceJedisImpl implements UserService {
 
-	@Autowired
-	private Jedis jedis;
+    @Autowired private Jedis jedis;
 
-	@Override
-	public void save(String userName, String password) {
-		userName = genUserName(userName);
-		log.info("jedis save username:{}, password:{}", userName, password);
-		jedis.set(userName, password);
-	}
+    @Override
+    public void save(String userName, String password) {
+        userName = genUserName(userName);
+        log.info("jedis save username:{}, password:{}", userName, password);
+        jedis.set(userName, password);
+    }
 
-	private String genUserName(String userName) {
-		return "jedis:" + userName;
-	}
+    private String genUserName(String userName) {
+        return "jedis:" + userName;
+    }
 
-	@Override
-	public String get(String userName) {
-		String password =  jedis.get(genUserName(userName));
-		log.info("jedis get username: {}, password: {}", genUserName(userName), password);
-		return password;
-	}
+    @Override
+    public String get(String userName) {
+        String password = jedis.get(genUserName(userName));
+        log.info("jedis get username: {}, password: {}", genUserName(userName), password);
+        return password;
+    }
 
-	@Override
-	public void delete(String userName) {
-		log.info("jedis delete username: {}", userName);
-		jedis.del(genUserName(userName));
-	}
+    @Override
+    public void delete(String userName) {
+        log.info("jedis delete username: {}", userName);
+        jedis.del(genUserName(userName));
+    }
 }

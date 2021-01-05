@@ -1,6 +1,5 @@
 package com.holddie.design.pattern.p2structure.s06adapter.loginadapter.v2;
 
-
 /** Created by Tom. */
 public class PassportTest {
 

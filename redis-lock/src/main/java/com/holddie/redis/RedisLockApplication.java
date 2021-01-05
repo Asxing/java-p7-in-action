@@ -9,9 +9,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class RedisLockApplication {
 
-	public static void main(String[] args) {
-		ConfigurableApplicationContext run = SpringApplication.run(RedisLockApplication.class);
-		UserResource userResource = run.getBean(UserResource.class);
-		userResource.execRedisCommand();
-	}
+    public static void main(String[] args) {
+        ConfigurableApplicationContext run = SpringApplication.run(RedisLockApplication.class);
+        UserResource userResource = run.getBean(UserResource.class);
+        userResource.execRedisCommand();
+    }
 }
