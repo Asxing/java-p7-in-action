@@ -7,6 +7,8 @@ import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,9 +45,18 @@ public class RedisConfiguration {
         return redisTemplate;
     }
 
+    @Bean
+    public JedisPool jedisPool() {
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(20);
+        config.setMaxIdle(10);
+        config.setMinIdle(5);
+        return new JedisPool(config, redisHost, redisPort);
+    }
+
     @Bean("JedisClient")
     public Jedis JedisClient() {
-        return new Jedis(redisHost, redisPort);
+        return jedisPool().getResource();
     }
 
     @Bean("lettuceClient")
