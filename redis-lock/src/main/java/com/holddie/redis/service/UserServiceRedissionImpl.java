@@ -29,7 +29,7 @@ public class UserServiceRedissionImpl implements UserService {
         userName = genUserName(userName);
         log.info("redissonClient update username:{}, password:{}", userName, password);
         RBucket<Object> bucket = redissonClient.getBucket(userName);
-        bucket.set(password); 
+        bucket.set(password);
     }
 
     private String genUserName(String userName) {

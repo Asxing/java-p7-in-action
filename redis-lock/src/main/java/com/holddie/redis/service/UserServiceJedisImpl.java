@@ -23,7 +23,7 @@ public class UserServiceJedisImpl implements UserService {
     public void update(String userName, String password) {
         userName = genUserName(userName);
         log.info("jedis update username:{}, password:{}", userName, password);
-        jedis.set(userName, password); 
+        jedis.set(userName, password);
     }
 
     private String genUserName(String userName) {
@@ -42,6 +42,4 @@ public class UserServiceJedisImpl implements UserService {
         log.info("jedis delete username: {}", userName);
         jedis.del(genUserName(userName));
     }
-    
-    
 }

@@ -26,7 +26,7 @@ public class UserServiceLettuceImpl implements UserService {
     public void update(String userName, String password) {
         userName = genUserName(userName);
         log.info("lettuceClient update username:{}, password:{}", userName, password);
-        redisCommands.set(userName, password); 
+        redisCommands.set(userName, password);
     }
 
     private String genUserName(String userName) {
