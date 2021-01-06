@@ -24,7 +24,7 @@ public class UserServiceJedisImpl implements UserService {
     }
 
     @Override
-    @CachePut(cacheNames = "user", key = "#userName")
+    @CachePut(cacheNames = "user_details", key = "#userName")
     public void update(String userName, String password) {
         userName = genUserName(userName);
         log.info("jedis update username:{}, password:{}", userName, password);
@@ -36,7 +36,7 @@ public class UserServiceJedisImpl implements UserService {
     }
 
     @Override
-    @Cacheable(cacheNames = "user", key = "#userName")
+    @Cacheable(value = "user_details", key = "#userName", unless = "#result == null")
     public String get(String userName) {
         String password = jedis.get(genUserName(userName));
         log.info("jedis get username: {}, password: {}", genUserName(userName), password);
@@ -44,7 +44,7 @@ public class UserServiceJedisImpl implements UserService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "user", key = "#userName")
+    @CacheEvict(cacheNames = "user_details", key = "#userName")
     public void delete(String userName) {
         log.info("jedis delete username: {}", userName);
         jedis.del(genUserName(userName));
