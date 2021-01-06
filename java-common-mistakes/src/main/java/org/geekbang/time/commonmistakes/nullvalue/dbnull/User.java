@@ -14,5 +14,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     private Long score;
 }

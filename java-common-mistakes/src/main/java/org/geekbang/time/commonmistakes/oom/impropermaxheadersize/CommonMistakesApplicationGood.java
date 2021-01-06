@@ -5,7 +5,6 @@ import org.geekbang.time.commonmistakes.common.Utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 @Slf4j
 public class CommonMistakesApplicationGood {
@@ -13,5 +12,4 @@ public class CommonMistakesApplicationGood {
         Utils.loadPropertySource(CommonMistakesApplicationGood.class, "good.properties");
         SpringApplication.run(CommonMistakesApplicationGood.class, args);
     }
-
 }

@@ -27,8 +27,7 @@ public class TemplateMethodController {
         items.put(2L, 4);
     }
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    @Autowired private ApplicationContext applicationContext;
 
     @GetMapping("wrong")
     public Cart wrong(@RequestParam("userId") int userId) {

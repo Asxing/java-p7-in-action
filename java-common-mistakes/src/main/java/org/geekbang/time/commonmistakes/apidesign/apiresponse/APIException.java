@@ -3,10 +3,8 @@ package org.geekbang.time.commonmistakes.apidesign.apiresponse;
 import lombok.Getter;
 
 public class APIException extends RuntimeException {
-    @Getter
-    private int errorCode;
-    @Getter
-    private String errorMessage;
+    @Getter private int errorCode;
+    @Getter private String errorMessage;
 
     public APIException(int errorCode, String errorMessage) {
         super(errorMessage);

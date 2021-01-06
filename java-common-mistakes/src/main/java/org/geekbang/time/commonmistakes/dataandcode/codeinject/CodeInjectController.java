@@ -20,7 +20,7 @@ public class CodeInjectController {
     private ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
     private ScriptEngine jsEngine = scriptEngineManager.getEngineByName("js");
 
-    //haha';java.lang.System.exit(0);'
+    // haha';java.lang.System.exit(0);'
     @GetMapping("wrong")
     public Object wrong(@RequestParam("name") String name) {
         try {
@@ -30,7 +30,6 @@ public class CodeInjectController {
         }
         return null;
     }
-
 
     @GetMapping("right")
     public Object right(@RequestParam("name") String name) {

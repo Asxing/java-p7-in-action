@@ -14,6 +14,7 @@ public class CipherData {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
-    private String iv;//初始化向量
-    private String secureKey;//密钥
+
+    private String iv; // 初始化向量
+    private String secureKey; // 密钥
 }

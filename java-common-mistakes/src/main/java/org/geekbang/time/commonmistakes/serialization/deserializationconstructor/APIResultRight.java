@@ -1,6 +1,5 @@
 package org.geekbang.time.commonmistakes.serialization.deserializationconstructor;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -10,8 +9,7 @@ public class APIResultRight {
     private boolean success;
     private int code;
 
-    public APIResultRight() {
-    }
+    public APIResultRight() {}
 
     @JsonCreator
     public APIResultRight(@JsonProperty("code") int code) {

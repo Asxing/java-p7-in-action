@@ -13,4 +13,3 @@ public class CommonMistakesApplicationTimeoutByFeign {
         SpringApplication.run(CommonMistakesApplicationTimeoutByFeign.class, args);
     }
 }
-

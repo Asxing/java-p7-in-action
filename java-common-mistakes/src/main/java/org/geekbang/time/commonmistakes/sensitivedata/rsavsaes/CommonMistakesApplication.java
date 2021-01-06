@@ -14,7 +14,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
 public class CommonMistakesApplication {
     private static KeyPair rsaKeyPair = genRSAKeyPair(2048);
     private static SecretKey aesKey = genAESKey(256);
@@ -25,10 +24,28 @@ public class CommonMistakesApplication {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("rsa");
-        IntStream.rangeClosed(1, count).parallel().forEach(i -> rsa((UUID.randomUUID().toString() + IntStream.rangeClosed(1, 64).mapToObj(__ -> "a").collect(Collectors.joining(""))).getBytes()));
+        IntStream.rangeClosed(1, count)
+                .parallel()
+                .forEach(
+                        i ->
+                                rsa(
+                                        (UUID.randomUUID().toString()
+                                                        + IntStream.rangeClosed(1, 64)
+                                                                .mapToObj(__ -> "a")
+                                                                .collect(Collectors.joining("")))
+                                                .getBytes()));
         stopWatch.stop();
         stopWatch.start("aes");
-        IntStream.rangeClosed(1, count).parallel().forEach(i -> aes((UUID.randomUUID().toString() + IntStream.rangeClosed(1, 64).mapToObj(__ -> "a").collect(Collectors.joining(""))).getBytes()));
+        IntStream.rangeClosed(1, count)
+                .parallel()
+                .forEach(
+                        i ->
+                                aes(
+                                        (UUID.randomUUID().toString()
+                                                        + IntStream.rangeClosed(1, 64)
+                                                                .mapToObj(__ -> "a")
+                                                                .collect(Collectors.joining("")))
+                                                .getBytes()));
         stopWatch.stop();
         System.out.println(stopWatch.prettyPrint());
     }
@@ -125,4 +142,3 @@ public class CommonMistakesApplication {
         return null;
     }
 }
-

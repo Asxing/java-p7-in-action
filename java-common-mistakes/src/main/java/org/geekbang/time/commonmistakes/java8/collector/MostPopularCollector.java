@@ -24,15 +24,19 @@ public class MostPopularCollector<T> implements Collector<T, Map<T, Integer>, Op
 
     @Override
     public BinaryOperator<Map<T, Integer>> combiner() {
-        return (a, b) -> Stream.concat(a.entrySet().stream(), b.entrySet().stream())
-                .collect(Collectors.groupingBy(Map.Entry::getKey, summingInt(Map.Entry::getValue)));
+        return (a, b) ->
+                Stream.concat(a.entrySet().stream(), b.entrySet().stream())
+                        .collect(
+                                Collectors.groupingBy(
+                                        Map.Entry::getKey, summingInt(Map.Entry::getValue)));
     }
 
     @Override
     public Function<Map<T, Integer>, Optional<T>> finisher() {
-        return (acc) -> acc.entrySet().stream()
-                .reduce(BinaryOperator.maxBy(Map.Entry.comparingByValue()))
-                .map(Map.Entry::getKey);
+        return (acc) ->
+                acc.entrySet().stream()
+                        .reduce(BinaryOperator.maxBy(Map.Entry.comparingByValue()))
+                        .map(Map.Entry::getKey);
     }
 
     @Override

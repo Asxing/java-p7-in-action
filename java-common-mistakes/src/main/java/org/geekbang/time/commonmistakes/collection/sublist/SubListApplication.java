@@ -21,28 +21,29 @@ public class SubListApplication {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) throws InterruptedException {
 
         oom();
-        //wrong();
-        //right1();
-//        right2();
-        //oomfix();
+        // wrong();
+        // right1();
+        //        right2();
+        // oomfix();
     }
 
     private static void oom() {
         for (int i = 0; i < 1000; i++) {
-            List<Integer> rawList = IntStream.rangeClosed(1, 100000).boxed().collect(Collectors.toList());
+            List<Integer> rawList =
+                    IntStream.rangeClosed(1, 100000).boxed().collect(Collectors.toList());
             data.add(rawList.subList(0, 1));
         }
     }
 
     private static void oomfix() {
         for (int i = 0; i < 1000; i++) {
-            List<Integer> rawList = IntStream.rangeClosed(1, 100000).boxed().collect(Collectors.toList());
+            List<Integer> rawList =
+                    IntStream.rangeClosed(1, 100000).boxed().collect(Collectors.toList());
             data.add(new ArrayList<>(rawList.subList(0, 1)));
         }
     }
@@ -67,4 +68,3 @@ public class SubListApplication {
         subList.forEach(System.out::println);
     }
 }
-

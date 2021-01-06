@@ -10,19 +10,13 @@ import org.springframework.web.bind.annotation.*;
 public class APIVersoinController {
 
     @GetMapping("/api/item/v1")
-    public void wrong1() {
-
-    }
+    public void wrong1() {}
 
     @GetMapping("/api/v1/shop")
-    public void wrong2() {
-
-    }
+    public void wrong2() {}
 
     @GetMapping("/v1/api/merchant")
-    public void wrong3() {
-
-    }
+    public void wrong3() {}
 
     @GetMapping("/v1/api/user")
     public int right1() {

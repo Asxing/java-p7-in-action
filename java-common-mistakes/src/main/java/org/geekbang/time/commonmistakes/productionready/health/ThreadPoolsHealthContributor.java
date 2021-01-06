@@ -15,8 +15,12 @@ public class ThreadPoolsHealthContributor implements CompositeHealthContributor 
     private Map<String, HealthContributor> contributors = new HashMap<>();
 
     ThreadPoolsHealthContributor() {
-        this.contributors.put("demoThreadPool", new ThreadPoolHealthIndicator(ThreadPoolProvider.getDemoThreadPool()));
-        this.contributors.put("ioThreadPool", new ThreadPoolHealthIndicator(ThreadPoolProvider.getIOThreadPool()));
+        this.contributors.put(
+                "demoThreadPool",
+                new ThreadPoolHealthIndicator(ThreadPoolProvider.getDemoThreadPool()));
+        this.contributors.put(
+                "ioThreadPool",
+                new ThreadPoolHealthIndicator(ThreadPoolProvider.getIOThreadPool()));
     }
 
     @Override
@@ -27,6 +31,7 @@ public class ThreadPoolsHealthContributor implements CompositeHealthContributor 
     @Override
     public Iterator<NamedContributor<HealthContributor>> iterator() {
         return contributors.entrySet().stream()
-                .map((entry) -> NamedContributor.of(entry.getKey(), entry.getValue())).iterator();
+                .map((entry) -> NamedContributor.of(entry.getKey(), entry.getValue()))
+                .iterator();
     }
 }

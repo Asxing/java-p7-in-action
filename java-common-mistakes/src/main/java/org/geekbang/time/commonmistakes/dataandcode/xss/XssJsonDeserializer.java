@@ -11,7 +11,8 @@ import java.io.IOException;
 public class XssJsonDeserializer extends JsonDeserializer<String> {
 
     @Override
-    public String deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public String deserialize(JsonParser jsonParser, DeserializationContext ctxt)
+            throws IOException, JsonProcessingException {
         String value = jsonParser.getValueAsString();
         if (value != null) {
             return HtmlUtils.htmlEscape(value);

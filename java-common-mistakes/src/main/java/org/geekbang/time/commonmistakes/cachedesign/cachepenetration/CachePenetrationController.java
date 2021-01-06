@@ -22,16 +22,20 @@ import java.util.stream.IntStream;
 @RestController
 public class CachePenetrationController {
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    @Autowired private StringRedisTemplate stringRedisTemplate;
     private AtomicInteger atomicInteger = new AtomicInteger();
     private BloomFilter<Integer> bloomFilter;
 
     @PostConstruct
     public void init() {
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
-        }, 0, 1, TimeUnit.SECONDS);
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
+                        },
+                        0,
+                        1,
+                        TimeUnit.SECONDS);
 
         bloomFilter = BloomFilter.create(Funnels.integerFunnel(), 10000, 0.01);
         IntStream.rangeClosed(1, 10000).forEach(bloomFilter::put);
@@ -59,7 +63,6 @@ public class CachePenetrationController {
             } else {
                 stringRedisTemplate.opsForValue().set(key, "NODATA", 30, TimeUnit.SECONDS);
             }
-
         }
         return data;
     }

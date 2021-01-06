@@ -8,8 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @Transactional
     public User register() {
@@ -23,5 +22,4 @@ public class UserService {
         }
         return user;
     }
-
 }

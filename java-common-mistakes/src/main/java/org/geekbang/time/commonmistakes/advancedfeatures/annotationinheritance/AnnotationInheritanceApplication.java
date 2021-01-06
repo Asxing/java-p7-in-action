@@ -18,25 +18,45 @@ public class AnnotationInheritanceApplication {
 
     public static void wrong() throws NoSuchMethodException {
         Parent parent = new Parent();
-        log.info("ParentClass:{}", getAnnotationValue(parent.getClass().getAnnotation(MyAnnotation.class)));
-        log.info("ParentMethod:{}", getAnnotationValue(parent.getClass().getMethod("foo").getAnnotation(MyAnnotation.class)));
-
+        log.info(
+                "ParentClass:{}",
+                getAnnotationValue(parent.getClass().getAnnotation(MyAnnotation.class)));
+        log.info(
+                "ParentMethod:{}",
+                getAnnotationValue(
+                        parent.getClass().getMethod("foo").getAnnotation(MyAnnotation.class)));
 
         Child child = new Child();
-        log.info("ChildClass:{}", getAnnotationValue(child.getClass().getAnnotation(MyAnnotation.class)));
-        log.info("ChildMethod:{}", getAnnotationValue(child.getClass().getMethod("foo").getAnnotation(MyAnnotation.class)));
-
+        log.info(
+                "ChildClass:{}",
+                getAnnotationValue(child.getClass().getAnnotation(MyAnnotation.class)));
+        log.info(
+                "ChildMethod:{}",
+                getAnnotationValue(
+                        child.getClass().getMethod("foo").getAnnotation(MyAnnotation.class)));
     }
 
     public static void right() throws NoSuchMethodException {
         Parent parent = new Parent();
-        log.info("ParentClass:{}", getAnnotationValue(parent.getClass().getAnnotation(MyAnnotation.class)));
-        log.info("ParentMethod:{}", getAnnotationValue(parent.getClass().getMethod("foo").getAnnotation(MyAnnotation.class)));
+        log.info(
+                "ParentClass:{}",
+                getAnnotationValue(parent.getClass().getAnnotation(MyAnnotation.class)));
+        log.info(
+                "ParentMethod:{}",
+                getAnnotationValue(
+                        parent.getClass().getMethod("foo").getAnnotation(MyAnnotation.class)));
 
         Child child = new Child();
-        log.info("ChildClass:{}", getAnnotationValue(AnnotatedElementUtils.findMergedAnnotation(child.getClass(), MyAnnotation.class)));
-        log.info("ChildMethod:{}", getAnnotationValue(AnnotatedElementUtils.findMergedAnnotation(child.getClass().getMethod("foo"), MyAnnotation.class)));
-
+        log.info(
+                "ChildClass:{}",
+                getAnnotationValue(
+                        AnnotatedElementUtils.findMergedAnnotation(
+                                child.getClass(), MyAnnotation.class)));
+        log.info(
+                "ChildMethod:{}",
+                getAnnotationValue(
+                        AnnotatedElementUtils.findMergedAnnotation(
+                                child.getClass().getMethod("foo"), MyAnnotation.class)));
     }
 
     @MyAnnotation(value = "Class")
@@ -44,15 +64,12 @@ public class AnnotationInheritanceApplication {
     static class Parent {
 
         @MyAnnotation(value = "Method")
-        public void foo() {
-        }
+        public void foo() {}
     }
 
     @Slf4j
     static class Child extends Parent {
         @Override
-        public void foo() {
-        }
+        public void foo() {}
     }
 }
-

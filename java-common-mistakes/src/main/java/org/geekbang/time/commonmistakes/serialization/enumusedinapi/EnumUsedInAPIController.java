@@ -16,22 +16,30 @@ import java.util.List;
 @RequestMapping("enumusedinapi")
 @RestController
 public class EnumUsedInAPIController {
-    @Autowired
-    private RestTemplate restTemplate;
+    @Autowired private RestTemplate restTemplate;
 
     @GetMapping("getOrderStatusClient")
     public void getOrderStatusClient() {
-        StatusEnumClient result = restTemplate.getForObject("http://localhost:45678/enumusedinapi/getOrderStatus", StatusEnumClient.class);
+        StatusEnumClient result =
+                restTemplate.getForObject(
+                        "http://localhost:45678/enumusedinapi/getOrderStatus",
+                        StatusEnumClient.class);
         log.info("result {}", result);
     }
 
     @GetMapping("queryOrdersByStatusListClient")
     public void queryOrdersByStatusListClient() {
-        List<StatusEnumClient> request = Arrays.asList(StatusEnumClient.CREATED, StatusEnumClient.PAID);
+        List<StatusEnumClient> request =
+                Arrays.asList(StatusEnumClient.CREATED, StatusEnumClient.PAID);
         HttpEntity<List<StatusEnumClient>> entity = new HttpEntity<>(request, new HttpHeaders());
-        List<StatusEnumClient> response = restTemplate.exchange("http://localhost:45678/enumusedinapi/queryOrdersByStatusList",
-                HttpMethod.POST, entity, new ParameterizedTypeReference<List<StatusEnumClient>>() {
-                }).getBody();
+        List<StatusEnumClient> response =
+                restTemplate
+                        .exchange(
+                                "http://localhost:45678/enumusedinapi/queryOrdersByStatusList",
+                                HttpMethod.POST,
+                                entity,
+                                new ParameterizedTypeReference<List<StatusEnumClient>>() {})
+                        .getBody();
         log.info("result {}", response);
     }
 
@@ -41,7 +49,8 @@ public class EnumUsedInAPIController {
     }
 
     @PostMapping("queryOrdersByStatusList")
-    public List<StatusEnumServer> queryOrdersByStatus(@RequestBody List<StatusEnumServer> enumServers) {
+    public List<StatusEnumServer> queryOrdersByStatus(
+            @RequestBody List<StatusEnumServer> enumServers) {
         enumServers.add(StatusEnumServer.CANCELED);
         return enumServers;
     }

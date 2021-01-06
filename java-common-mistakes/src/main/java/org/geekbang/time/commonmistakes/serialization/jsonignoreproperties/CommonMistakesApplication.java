@@ -15,16 +15,15 @@ public class CommonMistakesApplication {
         SpringApplication.run(CommonMistakesApplication.class, args);
     }
 
-//    @Bean
-//    public ObjectMapper objectMapper() {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.configure(SerializationFeature.WRITE_ENUMS_USING_INDEX, true);
-//        return objectMapper;
-//    }
+    //    @Bean
+    //    public ObjectMapper objectMapper() {
+    //        ObjectMapper objectMapper = new ObjectMapper();
+    //        objectMapper.configure(SerializationFeature.WRITE_ENUMS_USING_INDEX, true);
+    //        return objectMapper;
+    //    }
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer customizer() {
         return builder -> builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_INDEX);
     }
 }
-

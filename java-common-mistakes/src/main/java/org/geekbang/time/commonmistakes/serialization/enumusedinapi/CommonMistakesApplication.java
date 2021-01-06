@@ -20,7 +20,8 @@ public class CommonMistakesApplication {
     }
 
     @Bean
-    public RestTemplate restTemplate(MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter) {
+    public RestTemplate restTemplate(
+            MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter) {
         return new RestTemplateBuilder()
                 .additionalMessageConverters(mappingJackson2HttpMessageConverter)
                 .build();
@@ -33,4 +34,3 @@ public class CommonMistakesApplication {
         return module;
     }
 }
-

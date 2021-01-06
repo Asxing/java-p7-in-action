@@ -21,4 +21,3 @@ public class CommonMistakesApplication {
         return module;
     }
 }
-

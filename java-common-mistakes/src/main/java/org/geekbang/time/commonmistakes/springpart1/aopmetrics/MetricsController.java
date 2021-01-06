@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("metricstest")
 @Metrics(logParameters = false, logReturn = false)
 public class MetricsController {
-    @Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
     @GetMapping("transaction")
     public int transaction(@RequestParam("name") String name) {

@@ -5,16 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 @Slf4j
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
-    @Autowired
-    private SubUserService subUserService;
+    @Autowired private SubUserService subUserService;
 
     @Transactional
     public void createUserWrong(UserEntity entity) {
@@ -26,7 +23,6 @@ public class UserService {
         return userRepository.findByName(name).size();
     }
 
-
     @Transactional
     public void createUserWrong2(UserEntity entity) {
         createMainUser(entity);
@@ -37,7 +33,6 @@ public class UserService {
             log.error("create sub user error:{}", ex.getMessage());
         }
     }
-
 
     @Transactional
     public void createUserRight(UserEntity entity) {

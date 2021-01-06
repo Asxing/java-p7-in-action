@@ -7,11 +7,14 @@ import org.aspectj.lang.annotation.Before;
 
 @Aspect
 @Slf4j
-//@Component
+// @Component
 public class Wrong2Aspect {
 
     @Before("@within(org.springframework.cloud.openfeign.FeignClient)")
     public void before(JoinPoint pjp) {
-        log.info("@within(org.springframework.cloud.openfeign.FeignClient) pjp {}, args:{}", pjp, pjp.getArgs());
+        log.info(
+                "@within(org.springframework.cloud.openfeign.FeignClient) pjp {}, args:{}",
+                pjp,
+                pjp.getArgs());
     }
 }

@@ -14,13 +14,12 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class FeignAndRibbonController {
 
-    @Autowired
-    private Client client;
+    @Autowired private Client client;
 
     @GetMapping("client")
     public void timeout() {
         long begin = System.currentTimeMillis();
-        try{
+        try {
             client.server();
         } catch (Exception ex) {
             log.warn("执行耗时：{}ms 错误：{}", System.currentTimeMillis() - begin, ex.getMessage());

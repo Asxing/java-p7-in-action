@@ -24,7 +24,10 @@ public class TrustClientUserIdController {
     }
 
     @GetMapping("login")
-    public long login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+    public long login(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            HttpSession session) {
         if (username.equals("admin") && password.equals("admin")) {
             session.setAttribute("currentUser", 1L);
             return 1L;

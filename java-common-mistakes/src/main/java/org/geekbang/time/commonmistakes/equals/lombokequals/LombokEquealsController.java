@@ -26,11 +26,9 @@ public class LombokEquealsController {
         log.info("employee1.equals(employee2) ? {}", employee1.equals(employee2));
     }
 
-
     @Data
     class Person {
-        @EqualsAndHashCode.Exclude
-        private String name;
+        @EqualsAndHashCode.Exclude private String name;
         private String identity;
 
         public Person(String name, String identity) {

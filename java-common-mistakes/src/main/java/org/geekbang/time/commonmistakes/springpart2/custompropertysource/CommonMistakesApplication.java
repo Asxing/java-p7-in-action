@@ -25,8 +25,7 @@ public class CommonMistakesApplication {
     private static final String MYSQL_URL_PLACEHOLDER = "%%MYSQL.URL%%";
     private static final String MYSQL_USERNAME_PLACEHOLDER = "%%MYSQL.USERNAME%%";
     private static final String MYSQL_PASSWORD_PLACEHOLDER = "%%MYSQL.PASSWORD%%";
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    @Autowired private JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
         Utils.loadPropertySource(CommonMistakesApplication.class, "db.properties");
@@ -45,13 +44,17 @@ public class CommonMistakesApplication {
         if (dataSourceUrl != null && !dataSourceUrl.contains(MYSQL_URL_PLACEHOLDER))
             throw new IllegalArgumentException("请使用占位符" + MYSQL_URL_PLACEHOLDER + "来替换数据库URL配置！");
         if (username != null && !username.contains(MYSQL_USERNAME_PLACEHOLDER))
-            throw new IllegalArgumentException("请使用占位符" + MYSQL_USERNAME_PLACEHOLDER + "来替换数据库账号配置！");
+            throw new IllegalArgumentException(
+                    "请使用占位符" + MYSQL_USERNAME_PLACEHOLDER + "来替换数据库账号配置！");
         if (password != null && !password.contains(MYSQL_PASSWORD_PLACEHOLDER))
-            throw new IllegalArgumentException("请使用占位符" + MYSQL_PASSWORD_PLACEHOLDER + "来替换数据库密码配置！");
+            throw new IllegalArgumentException(
+                    "请使用占位符" + MYSQL_PASSWORD_PLACEHOLDER + "来替换数据库密码配置！");
 
-        //这里我把值写死了，实际应用中可以从外部服务来获取
+        // 这里我把值写死了，实际应用中可以从外部服务来获取
         Map<String, String> property = new HashMap<>();
-        property.put(MYSQL_URL_PLACEHOLDER, "jdbc:mysql://localhost:6657/common_mistakes?characterEncoding=UTF-8&useSSL=false");
+        property.put(
+                MYSQL_URL_PLACEHOLDER,
+                "jdbc:mysql://localhost:6657/common_mistakes?characterEncoding=UTF-8&useSSL=false");
         property.put(MYSQL_USERNAME_PLACEHOLDER, "root");
         property.put(MYSQL_PASSWORD_PLACEHOLDER, "kIo9u7Oi0eg");
 
@@ -60,14 +63,21 @@ public class CommonMistakesApplication {
                 .filter(ps -> ps instanceof EnumerablePropertySource)
                 .map(ps -> ((EnumerablePropertySource) ps).getPropertyNames())
                 .flatMap(Arrays::stream)
-                .forEach(propKey -> {
-                    String propValue = env.getProperty(propKey);
-                    property.entrySet().forEach(item -> {
-                        if (propValue.contains(item.getKey())) {
-                            modifiedProps.put(propKey, propValue.replaceAll(item.getKey(), item.getValue()));
-                        }
-                    });
-                });
+                .forEach(
+                        propKey -> {
+                            String propValue = env.getProperty(propKey);
+                            property.entrySet()
+                                    .forEach(
+                                            item -> {
+                                                if (propValue.contains(item.getKey())) {
+                                                    modifiedProps.put(
+                                                            propKey,
+                                                            propValue.replaceAll(
+                                                                    item.getKey(),
+                                                                    item.getValue()));
+                                                }
+                                            });
+                        });
 
         if (!modifiedProps.isEmpty()) {
             log.info("modifiedProps: {}", modifiedProps);
@@ -81,6 +91,4 @@ public class CommonMistakesApplication {
             log.info("result {}", jdbcTemplate.queryForObject("SELECT NOW()", String.class));
         };
     }
-
 }
-

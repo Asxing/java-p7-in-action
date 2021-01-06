@@ -12,8 +12,9 @@ public class FooService {
     List<String> data = new ArrayList<>();
 
     public void oom() {
-        data.add(IntStream.rangeClosed(1, 10_000)
-                .mapToObj(__ -> "a")
-                .collect(Collectors.joining("")));
+        data.add(
+                IntStream.rangeClosed(1, 10_000)
+                        .mapToObj(__ -> "a")
+                        .collect(Collectors.joining("")));
     }
 }

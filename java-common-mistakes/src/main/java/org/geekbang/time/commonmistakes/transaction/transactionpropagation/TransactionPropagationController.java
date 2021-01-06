@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TransactionPropagationController {
 
-    @Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
     @GetMapping("wrong")
     public int wrong(@RequestParam("name") String name) {

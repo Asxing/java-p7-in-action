@@ -15,13 +15,16 @@ public class ParallelTest {
 
     @Test
     public void parallel() {
-        IntStream.rangeClosed(1, 100).parallel().forEach(i -> {
-            System.out.println(LocalDateTime.now() + " : " + i);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-        });
+        IntStream.rangeClosed(1, 100)
+                .parallel()
+                .forEach(
+                        i -> {
+                            System.out.println(LocalDateTime.now() + " : " + i);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                            }
+                        });
     }
 
     @Test
@@ -38,7 +41,7 @@ public class ParallelTest {
         Assert.assertEquals(taskCount, threadpool(taskCount, threadCount));
         stopWatch.stop();
 
-        //试试把这段放到forkjoin下面？
+        // 试试把这段放到forkjoin下面？
         stopWatch.start("stream");
         Assert.assertEquals(taskCount, stream(taskCount, threadCount));
         stopWatch.stop();
@@ -66,10 +69,16 @@ public class ParallelTest {
     private int thread(int taskCount, int threadCount) throws InterruptedException {
         AtomicInteger atomicInteger = new AtomicInteger();
         CountDownLatch countDownLatch = new CountDownLatch(threadCount);
-        IntStream.rangeClosed(1, threadCount).mapToObj(i -> new Thread(() -> {
-            IntStream.rangeClosed(1, taskCount / threadCount).forEach(j -> increment(atomicInteger));
-            countDownLatch.countDown();
-        })).forEach(Thread::start);
+        IntStream.rangeClosed(1, threadCount)
+                .mapToObj(
+                        i ->
+                                new Thread(
+                                        () -> {
+                                            IntStream.rangeClosed(1, taskCount / threadCount)
+                                                    .forEach(j -> increment(atomicInteger));
+                                            countDownLatch.countDown();
+                                        }))
+                .forEach(Thread::start);
         countDownLatch.await();
         return atomicInteger.get();
     }
@@ -77,7 +86,8 @@ public class ParallelTest {
     private int threadpool(int taskCount, int threadCount) throws InterruptedException {
         AtomicInteger atomicInteger = new AtomicInteger();
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
-        IntStream.rangeClosed(1, taskCount).forEach(i -> executorService.execute(() -> increment(atomicInteger)));
+        IntStream.rangeClosed(1, taskCount)
+                .forEach(i -> executorService.execute(() -> increment(atomicInteger)));
         executorService.shutdown();
         executorService.awaitTermination(1, TimeUnit.HOURS);
         return atomicInteger.get();
@@ -86,23 +96,36 @@ public class ParallelTest {
     private int forkjoin(int taskCount, int threadCount) throws InterruptedException {
         AtomicInteger atomicInteger = new AtomicInteger();
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
-        forkJoinPool.execute(() -> IntStream.rangeClosed(1, taskCount).parallel().forEach(i -> increment(atomicInteger)));
+        forkJoinPool.execute(
+                () ->
+                        IntStream.rangeClosed(1, taskCount)
+                                .parallel()
+                                .forEach(i -> increment(atomicInteger)));
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1, TimeUnit.HOURS);
         return atomicInteger.get();
     }
 
     private int stream(int taskCount, int threadCount) {
-        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", String.valueOf(threadCount));
+        System.setProperty(
+                "java.util.concurrent.ForkJoinPool.common.parallelism",
+                String.valueOf(threadCount));
         AtomicInteger atomicInteger = new AtomicInteger();
         IntStream.rangeClosed(1, taskCount).parallel().forEach(i -> increment(atomicInteger));
         return atomicInteger.get();
     }
 
-    private int completableFuture(int taskCount, int threadCount) throws InterruptedException, ExecutionException {
+    private int completableFuture(int taskCount, int threadCount)
+            throws InterruptedException, ExecutionException {
         AtomicInteger atomicInteger = new AtomicInteger();
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
-        CompletableFuture.runAsync(() -> IntStream.rangeClosed(1, taskCount).parallel().forEach(i -> increment(atomicInteger)), forkJoinPool).get();
+        CompletableFuture.runAsync(
+                        () ->
+                                IntStream.rangeClosed(1, taskCount)
+                                        .parallel()
+                                        .forEach(i -> increment(atomicInteger)),
+                        forkJoinPool)
+                .get();
         return atomicInteger.get();
     }
 }

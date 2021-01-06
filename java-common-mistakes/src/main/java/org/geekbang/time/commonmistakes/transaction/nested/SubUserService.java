@@ -6,15 +6,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 @Slf4j
 public class SubUserService {
 
-    @Autowired
-    private UserDataMapper userDataMapper;
+    @Autowired private UserDataMapper userDataMapper;
 
-    //比较切换为REQUIRES_NEW，这里的createSubUser可以插入数据成功
+    // 比较切换为REQUIRES_NEW，这里的createSubUser可以插入数据成功
     @Transactional(propagation = Propagation.NESTED)
     public void createSubUser(String name) {
         userDataMapper.insert(name, "sub");

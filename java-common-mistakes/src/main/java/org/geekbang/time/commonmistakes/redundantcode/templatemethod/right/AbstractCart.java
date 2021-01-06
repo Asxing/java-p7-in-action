@@ -16,24 +16,43 @@ public abstract class AbstractCart {
         Cart cart = new Cart();
 
         List<Item> itemList = new ArrayList<>();
-        items.entrySet().stream().forEach(entry -> {
-            Item item = new Item();
-            item.setId(entry.getKey());
-            item.setPrice(Db.getItemPrice(entry.getKey()));
-            item.setQuantity(entry.getValue());
-            itemList.add(item);
-        });
+        items.entrySet().stream()
+                .forEach(
+                        entry -> {
+                            Item item = new Item();
+                            item.setId(entry.getKey());
+                            item.setPrice(Db.getItemPrice(entry.getKey()));
+                            item.setQuantity(entry.getValue());
+                            itemList.add(item);
+                        });
         cart.setItems(itemList);
 
-        itemList.stream().forEach(item -> {
-            processCouponPrice(userId, item);
-            processDeliveryPrice(userId, item);
-        });
+        itemList.stream()
+                .forEach(
+                        item -> {
+                            processCouponPrice(userId, item);
+                            processDeliveryPrice(userId, item);
+                        });
 
-        cart.setTotalItemPrice(cart.getItems().stream().map(item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()))).reduce(BigDecimal.ZERO, BigDecimal::add));
-        cart.setTotalDeliveryPrice(cart.getItems().stream().map(Item::getDeliveryPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
-        cart.setTotalDiscount(cart.getItems().stream().map(Item::getCouponPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
-        cart.setPayPrice(cart.getTotalItemPrice().add(cart.getTotalDeliveryPrice()).subtract(cart.getTotalDiscount()));
+        cart.setTotalItemPrice(
+                cart.getItems().stream()
+                        .map(
+                                item ->
+                                        item.getPrice()
+                                                .multiply(BigDecimal.valueOf(item.getQuantity())))
+                        .reduce(BigDecimal.ZERO, BigDecimal::add));
+        cart.setTotalDeliveryPrice(
+                cart.getItems().stream()
+                        .map(Item::getDeliveryPrice)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add));
+        cart.setTotalDiscount(
+                cart.getItems().stream()
+                        .map(Item::getCouponPrice)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add));
+        cart.setPayPrice(
+                cart.getTotalItemPrice()
+                        .add(cart.getTotalDeliveryPrice())
+                        .subtract(cart.getTotalDiscount()));
         return cart;
     }
 

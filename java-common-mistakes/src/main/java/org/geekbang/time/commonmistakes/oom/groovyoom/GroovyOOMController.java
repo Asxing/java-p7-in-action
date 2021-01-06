@@ -15,7 +15,6 @@ import java.util.stream.LongStream;
 @Slf4j
 public class GroovyOOMController {
 
-
     public static final String SCRIPT_TEMPLATE = "a=%s + %s; return a;";
     public static final ConcurrentHashMap<String, Script> SCRIPT_CACHE = new ConcurrentHashMap<>();
     public static final String SCRIPT_METHOD = "add";
@@ -24,26 +23,32 @@ public class GroovyOOMController {
 
     @GetMapping("wrong")
     public Object wrong() {
-        LongStream.rangeClosed(1, 10000).forEach(i -> {
-            wrongGroovy(String.format(SCRIPT_TEMPLATE, i, i));
-        });
+        LongStream.rangeClosed(1, 10000)
+                .forEach(
+                        i -> {
+                            wrongGroovy(String.format(SCRIPT_TEMPLATE, i, i));
+                        });
         return wrongGroovy(String.format(SCRIPT_TEMPLATE, 1, 1));
     }
 
     @GetMapping("right1")
     public Object right1() {
-        LongStream.rangeClosed(1, 10000).forEach(i -> {
-            wrongGroovy(String.format(SCRIPT_TEMPLATE, i, i));
-            shell.resetLoadedClasses();
-        });
+        LongStream.rangeClosed(1, 10000)
+                .forEach(
+                        i -> {
+                            wrongGroovy(String.format(SCRIPT_TEMPLATE, i, i));
+                            shell.resetLoadedClasses();
+                        });
         return wrongGroovy(String.format(SCRIPT_TEMPLATE, 1, 1));
     }
 
     @GetMapping("right")
     public Object right() {
-        LongStream.rangeClosed(1, 100000).forEach(i -> {
-            rightGroovy(SCRIPT_PERFECT, SCRIPT_METHOD, i, i);
-        });
+        LongStream.rangeClosed(1, 100000)
+                .forEach(
+                        i -> {
+                            rightGroovy(SCRIPT_PERFECT, SCRIPT_METHOD, i, i);
+                        });
         return rightGroovy(SCRIPT_PERFECT, SCRIPT_METHOD, 1, 1);
     }
 

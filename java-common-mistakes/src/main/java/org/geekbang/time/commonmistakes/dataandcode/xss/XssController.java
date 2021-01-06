@@ -14,13 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Controller
 public class XssController {
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @GetMapping
     public String index(ModelMap modelMap) {
         User user = userRepository.findById(1L).orElse(new User());
-        //modelMap.addAttribute("username", HtmlUtils.htmlEscape(user.getName()));
+        // modelMap.addAttribute("username", HtmlUtils.htmlEscape(user.getName()));
         modelMap.addAttribute("username", user.getName());
         return "xss";
     }
@@ -53,7 +52,8 @@ public class XssController {
 
     @GetMapping("writeCookie")
     @ResponseBody
-    public void writeCookie(@RequestParam("httpOnly") boolean httpOnly, HttpServletResponse response) {
+    public void writeCookie(
+            @RequestParam("httpOnly") boolean httpOnly, HttpServletResponse response) {
         Cookie cookie = new Cookie("test", "zhuye");
         cookie.setHttpOnly(httpOnly);
         response.addCookie(cookie);

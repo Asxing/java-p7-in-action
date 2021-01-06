@@ -17,32 +17,44 @@ public class AvoidNullPointerExceptionController {
 
     @GetMapping("wrong")
     public int wrong(@RequestParam(value = "test", defaultValue = "1111") String test) {
-        return wrongMethod(test.charAt(0) == '1' ? null : new FooService(),
-                test.charAt(1) == '1' ? null : 1,
-                test.charAt(2) == '1' ? null : "OK",
-                test.charAt(3) == '1' ? null : "OK").size();
+        return wrongMethod(
+                        test.charAt(0) == '1' ? null : new FooService(),
+                        test.charAt(1) == '1' ? null : 1,
+                        test.charAt(2) == '1' ? null : "OK",
+                        test.charAt(3) == '1' ? null : "OK")
+                .size();
     }
 
     @GetMapping("right")
     public int right(@RequestParam(value = "test", defaultValue = "1111") String test) {
-        return Optional.ofNullable(rightMethod(test.charAt(0) == '1' ? null : new FooService(),
-                test.charAt(1) == '1' ? null : 1,
-                test.charAt(2) == '1' ? null : "OK",
-                test.charAt(3) == '1' ? null : "OK"))
-                .orElse(Collections.emptyList()).size();
+        return Optional.ofNullable(
+                        rightMethod(
+                                test.charAt(0) == '1' ? null : new FooService(),
+                                test.charAt(1) == '1' ? null : 1,
+                                test.charAt(2) == '1' ? null : "OK",
+                                test.charAt(3) == '1' ? null : "OK"))
+                .orElse(Collections.emptyList())
+                .size();
     }
 
-
     private List<String> wrongMethod(FooService fooService, Integer i, String s, String t) {
-        log.info("result {} {} {} {}", i + 1, s.equals("OK"), s.equals(t),
+        log.info(
+                "result {} {} {} {}",
+                i + 1,
+                s.equals("OK"),
+                s.equals(t),
                 new ConcurrentHashMap<String, String>().put(null, null));
-        if (fooService.getBarService().bar().equals("OK"))
-            log.info("OK");
+        if (fooService.getBarService().bar().equals("OK")) log.info("OK");
         return null;
     }
 
     private List<String> rightMethod(FooService fooService, Integer i, String s, String t) {
-        log.info("result {} {} {} {}", Optional.ofNullable(i).orElse(0) + 1, "OK".equals(s), Objects.equals(s, t), new HashMap<String, String>().put(null, null));
+        log.info(
+                "result {} {} {} {}",
+                Optional.ofNullable(i).orElse(0) + 1,
+                "OK".equals(s),
+                Objects.equals(s, t),
+                new HashMap<String, String>().put(null, null));
         Optional.ofNullable(fooService)
                 .map(FooService::getBarService)
                 .filter(barService -> "OK".equals(barService.bar()))
@@ -51,9 +63,7 @@ public class AvoidNullPointerExceptionController {
     }
 
     class FooService {
-        @Getter
-        private BarService barService;
-
+        @Getter private BarService barService;
     }
 
     class BarService {

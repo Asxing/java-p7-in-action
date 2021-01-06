@@ -52,21 +52,19 @@ public class Services {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (isVip)
-            return itemPrice.multiply(new BigDecimal("0.9"));
-        else
-            return itemPrice;
+        if (isVip) return itemPrice.multiply(new BigDecimal("0.9"));
+        else return itemPrice;
     }
 
-    public static BigDecimal calcDeliverPrice(int averageWaitMinutes, int distance, String weather) {
+    public static BigDecimal calcDeliverPrice(
+            int averageWaitMinutes, int distance, String weather) {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        BigDecimal price = new BigDecimal("5")
-                .add(BigDecimal.valueOf(distance * 1.5 / 1000));
+        BigDecimal price = new BigDecimal("5").add(BigDecimal.valueOf(distance * 1.5 / 1000));
 
         if (averageWaitMinutes > 10)
             price = price.add(BigDecimal.valueOf((averageWaitMinutes - 10) * 0.1));

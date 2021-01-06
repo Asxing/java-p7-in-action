@@ -10,8 +10,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 @Slf4j
 public class UserServiceHealthIndicator implements HealthIndicator {
-    @Autowired
-    private RestTemplate restTemplate;
+    @Autowired private RestTemplate restTemplate;
 
     @Override
     public Health health() {
@@ -19,7 +18,9 @@ public class UserServiceHealthIndicator implements HealthIndicator {
         long userId = 1L;
         User user = null;
         try {
-            user = restTemplate.getForObject("http://localhost:45678/user?userId=" + userId, User.class);
+            user =
+                    restTemplate.getForObject(
+                            "http://localhost:45678/user?userId=" + userId, User.class);
             if (user != null && user.getUserId() == userId) {
                 return Health.up()
                         .withDetail("user", user)

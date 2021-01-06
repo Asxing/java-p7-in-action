@@ -19,17 +19,22 @@ public class CommonMistakesApplication {
 
     private static void test1() {
         long begin = System.currentTimeMillis();
-        List<Future<Integer>> futures = IntStream.rangeClosed(1, 4)
-                .mapToObj(i -> threadPool.submit(getAsyncTask(i)))
-                .collect(Collectors.toList());
-        List<Integer> result = futures.stream().map(future -> {
-            try {
-                return future.get(2, TimeUnit.MILLISECONDS);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return -1;
-            }
-        }).collect(Collectors.toList());
+        List<Future<Integer>> futures =
+                IntStream.rangeClosed(1, 4)
+                        .mapToObj(i -> threadPool.submit(getAsyncTask(i)))
+                        .collect(Collectors.toList());
+        List<Integer> result =
+                futures.stream()
+                        .map(
+                                future -> {
+                                    try {
+                                        return future.get(2, TimeUnit.MILLISECONDS);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        return -1;
+                                    }
+                                })
+                        .collect(Collectors.toList());
         log.info("result {} took {} ms", result, System.currentTimeMillis() - begin);
     }
 
@@ -45,7 +50,8 @@ public class CommonMistakesApplication {
         int count = 4;
         List<Integer> result = new ArrayList<>(count);
         CountDownLatch countDownLatch = new CountDownLatch(count);
-        IntStream.rangeClosed(1, count).forEach(i -> threadPool.execute(executeAsyncTask(i, countDownLatch, result)));
+        IntStream.rangeClosed(1, count)
+                .forEach(i -> threadPool.execute(executeAsyncTask(i, countDownLatch, result)));
         try {
             countDownLatch.await(3, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
@@ -54,7 +60,8 @@ public class CommonMistakesApplication {
         log.info("result {} took {} ms", result, System.currentTimeMillis() - begin);
     }
 
-    private static Runnable executeAsyncTask(int i, CountDownLatch countDownLatch, List<Integer> result) {
+    private static Runnable executeAsyncTask(
+            int i, CountDownLatch countDownLatch, List<Integer> result) {
         return () -> {
             try {
                 TimeUnit.SECONDS.sleep(i);
@@ -68,4 +75,3 @@ public class CommonMistakesApplication {
         };
     }
 }
-

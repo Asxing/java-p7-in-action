@@ -27,47 +27,61 @@ public class WeakHashMapOOMController {
     @GetMapping("wrong")
     public void wrong() {
         String userName = "zhuye";
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                () -> log.info("cache size:{}", cache.size()), 1, 1, TimeUnit.SECONDS);
-        LongStream.rangeClosed(1, 2000000).forEach(i -> {
-            User user = new User(userName + i);
-            cache.put(user, new UserProfile(user, "location" + i));
-        });
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> log.info("cache size:{}", cache.size()), 1, 1, TimeUnit.SECONDS);
+        LongStream.rangeClosed(1, 2000000)
+                .forEach(
+                        i -> {
+                            User user = new User(userName + i);
+                            cache.put(user, new UserProfile(user, "location" + i));
+                        });
     }
 
     @GetMapping("right")
     public void right() {
         String userName = "zhuye";
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                () -> log.info("cache size:{}", cache2.size()), 1, 1, TimeUnit.SECONDS);
-        LongStream.rangeClosed(1, 2000000).forEach(i -> {
-            User user = new User(userName + i);
-            cache2.put(user, new WeakReference(new UserProfile(user, "location" + i)));
-        });
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> log.info("cache size:{}", cache2.size()), 1, 1, TimeUnit.SECONDS);
+        LongStream.rangeClosed(1, 2000000)
+                .forEach(
+                        i -> {
+                            User user = new User(userName + i);
+                            cache2.put(
+                                    user, new WeakReference(new UserProfile(user, "location" + i)));
+                        });
     }
 
     @GetMapping("right2")
     public void right2() {
         String userName = "zhuye";
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                () -> log.info("cache size:{}", cache.size()), 1, 1, TimeUnit.SECONDS);
-        LongStream.rangeClosed(1, 2000000).forEach(i -> {
-            User user = new User(userName + i);
-            cache.put(user, new UserProfile(new User(user.getName()), "location" + i));
-        });
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> log.info("cache size:{}", cache.size()), 1, 1, TimeUnit.SECONDS);
+        LongStream.rangeClosed(1, 2000000)
+                .forEach(
+                        i -> {
+                            User user = new User(userName + i);
+                            cache.put(
+                                    user,
+                                    new UserProfile(new User(user.getName()), "location" + i));
+                        });
     }
 
     @GetMapping("right3")
     public void right3() {
         String userName = "zhuye";
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                () -> log.info("cache size:{}", cache3.size()), 1, 1, TimeUnit.SECONDS);
-        LongStream.rangeClosed(1, 20000000).forEach(i -> {
-            User user = new User(userName + i);
-            cache3.put(user, new UserProfile(user, "location" + i));
-        });
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> log.info("cache size:{}", cache3.size()), 1, 1, TimeUnit.SECONDS);
+        LongStream.rangeClosed(1, 20000000)
+                .forEach(
+                        i -> {
+                            User user = new User(userName + i);
+                            cache3.put(user, new UserProfile(user, "location" + i));
+                        });
     }
-
 
     @Data
     @AllArgsConstructor

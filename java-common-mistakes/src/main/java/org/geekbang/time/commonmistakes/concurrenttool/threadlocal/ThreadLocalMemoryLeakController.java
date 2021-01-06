@@ -17,10 +17,15 @@ public class ThreadLocalMemoryLeakController {
 
     @GetMapping("wrong")
     public void wrong() {
-        List<String> d = IntStream.rangeClosed(1, 10).mapToObj(i -> IntStream.rangeClosed(1, 1000000)
-                .mapToObj(__ -> "a")
-                .collect(Collectors.joining("")) + UUID.randomUUID().toString())
-                .collect(Collectors.toList());
+        List<String> d =
+                IntStream.rangeClosed(1, 10)
+                        .mapToObj(
+                                i ->
+                                        IntStream.rangeClosed(1, 1000000)
+                                                        .mapToObj(__ -> "a")
+                                                        .collect(Collectors.joining(""))
+                                                + UUID.randomUUID().toString())
+                        .collect(Collectors.toList());
         data.set(d);
     }
 }

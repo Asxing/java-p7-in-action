@@ -11,15 +11,16 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import javax.persistence.*;
 
 @Entity
-@Document(indexName = "news", replicas = 0) //ES
-@Table(name = "news", indexes = {@Index(columnList = "cateid")}) //MySQL
+@Document(indexName = "news", replicas = 0) // ES
+@Table(
+        name = "news",
+        indexes = {@Index(columnList = "cateid")}) // MySQL
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicUpdate
 public class News {
-    @Id
-    private long id;
+    @Id private long id;
 
     @Field(type = FieldType.Keyword)
     private String category;

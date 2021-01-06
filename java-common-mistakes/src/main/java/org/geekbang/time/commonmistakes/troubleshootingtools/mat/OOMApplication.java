@@ -8,10 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OOMApplication implements CommandLineRunner {
 
-    @Autowired
-    FooService fooService;
+    @Autowired FooService fooService;
 
-    //-Xmx512m -Xms512m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=.
+    // -Xmx512m -Xms512m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=.
     public static void main(String[] args) {
         SpringApplication.run(OOMApplication.class, args);
     }

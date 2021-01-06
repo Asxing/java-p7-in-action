@@ -7,10 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class APIVersionCondition implements RequestCondition<APIVersionCondition> {
 
-    @Getter
-    private String apiVersion;
-    @Getter
-    private String headerKey;
+    @Getter private String apiVersion;
+    @Getter private String headerKey;
 
     public APIVersionCondition(String apiVersion, String headerKey) {
         this.apiVersion = apiVersion;

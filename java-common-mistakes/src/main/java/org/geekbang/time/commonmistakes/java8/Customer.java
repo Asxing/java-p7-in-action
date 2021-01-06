@@ -6,7 +6,6 @@ import lombok.Data;
 import java.util.Arrays;
 import java.util.List;
 
-
 @Data
 @AllArgsConstructor
 public class Customer {
@@ -19,7 +18,6 @@ public class Customer {
                 new Customer(11L, "小王"),
                 new Customer(12L, "小李"),
                 new Customer(13L, "小朱"),
-                new Customer(14L, "小徐")
-        );
+                new Customer(14L, "小徐"));
     }
 }

@@ -53,7 +53,6 @@ public class CompareToController {
         log.info("index2 = " + index2);
     }
 
-
     @Data
     @AllArgsConstructor
     class Student implements Comparable<Student> {
@@ -63,8 +62,7 @@ public class CompareToController {
         @Override
         public int compareTo(Student other) {
             int result = Integer.compare(other.id, id);
-            if (result == 0)
-                log.info("this {} == other {}", this, other);
+            if (result == 0) log.info("this {} == other {}", this, other);
             return result;
         }
     }

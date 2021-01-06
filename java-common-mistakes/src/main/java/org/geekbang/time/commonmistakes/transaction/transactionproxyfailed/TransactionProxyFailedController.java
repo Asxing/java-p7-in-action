@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TransactionProxyFailedController {
 
-    @Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
     @GetMapping("wrong1")
     public int wrong1(@RequestParam("name") String name) {
@@ -44,5 +43,4 @@ public class TransactionProxyFailedController {
         }
         return userService.getUserCount(name);
     }
-
 }

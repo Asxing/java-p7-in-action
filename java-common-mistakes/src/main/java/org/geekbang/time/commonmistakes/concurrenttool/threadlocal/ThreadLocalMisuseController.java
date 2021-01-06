@@ -16,9 +16,9 @@ public class ThreadLocalMisuseController {
 
     @GetMapping("wrong")
     public Map wrong(@RequestParam("userId") Integer userId) {
-        String before  = Thread.currentThread().getName() + ":" + currentUser.get();
+        String before = Thread.currentThread().getName() + ":" + currentUser.get();
         currentUser.set(userId);
-        String after  = Thread.currentThread().getName() + ":" + currentUser.get();
+        String after = Thread.currentThread().getName() + ":" + currentUser.get();
         Map result = new HashMap();
         result.put("before", before);
         result.put("after", after);
@@ -27,7 +27,7 @@ public class ThreadLocalMisuseController {
 
     @GetMapping("right")
     public Map right(@RequestParam("userId") Integer userId) {
-        String before  = Thread.currentThread().getName() + ":" + currentUser.get();
+        String before = Thread.currentThread().getName() + ":" + currentUser.get();
         currentUser.set(userId);
         try {
             String after = Thread.currentThread().getName() + ":" + currentUser.get();

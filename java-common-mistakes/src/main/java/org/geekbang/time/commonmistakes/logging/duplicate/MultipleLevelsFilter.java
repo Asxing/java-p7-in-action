@@ -14,25 +14,21 @@ import java.util.stream.Collectors;
 
 public class MultipleLevelsFilter extends Filter<ILoggingEvent> {
 
-    @Getter
-    @Setter
-    private String levels;
+    @Getter @Setter private String levels;
     private List<Integer> levelList;
 
     @Override
     public FilterReply decide(ILoggingEvent event) {
 
         if (levelList == null && !StringUtils.isEmpty(levels)) {
-            levelList = Arrays.asList(levels.split("\\|")).stream()
-                    .map(item -> Level.valueOf(item))
-                    .map(level -> level.toInt())
-                    .collect(Collectors.toList());
+            levelList =
+                    Arrays.asList(levels.split("\\|")).stream()
+                            .map(item -> Level.valueOf(item))
+                            .map(level -> level.toInt())
+                            .collect(Collectors.toList());
         }
 
-        if (levelList.contains(event.getLevel().toInt()))
-            return FilterReply.ACCEPT;
-        else
-            return FilterReply.DENY;
+        if (levelList.contains(event.getLevel().toInt())) return FilterReply.ACCEPT;
+        else return FilterReply.DENY;
     }
-
 }

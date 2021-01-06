@@ -16,8 +16,7 @@ import java.sql.SQLException;
 @Slf4j
 public class BatchInsertApplication implements CommandLineRunner {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    @Autowired private JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(BatchInsertApplication.class, args);
@@ -26,11 +25,12 @@ public class BatchInsertApplication implements CommandLineRunner {
     @PostConstruct
     public void init() {
         jdbcTemplate.execute("drop table IF EXISTS `testuser`;");
-        jdbcTemplate.execute("create TABLE `testuser` (\n" +
-                "  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n" +
-                "  `name` varchar(255) NOT NULL,\n" +
-                "  PRIMARY KEY (`id`)\n" +
-                ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+        jdbcTemplate.execute(
+                "create TABLE `testuser` (\n"
+                        + "  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n"
+                        + "  `name` varchar(255) NOT NULL,\n"
+                        + "  PRIMARY KEY (`id`)\n"
+                        + ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
     }
 
     @Override
@@ -38,17 +38,20 @@ public class BatchInsertApplication implements CommandLineRunner {
 
         long begin = System.currentTimeMillis();
         String sql = "INSERT INTO `testuser` (`name`) VALUES (?)";
-        jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
-            @Override
-            public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
-                preparedStatement.setString(1, "usera" + i);
-            }
+        jdbcTemplate.batchUpdate(
+                sql,
+                new BatchPreparedStatementSetter() {
+                    @Override
+                    public void setValues(PreparedStatement preparedStatement, int i)
+                            throws SQLException {
+                        preparedStatement.setString(1, "usera" + i);
+                    }
 
-            @Override
-            public int getBatchSize() {
-                return 10000;
-            }
-        });
+                    @Override
+                    public int getBatchSize() {
+                        return 10000;
+                    }
+                });
         log.info("took : {} ms", System.currentTimeMillis() - begin);
     }
 }

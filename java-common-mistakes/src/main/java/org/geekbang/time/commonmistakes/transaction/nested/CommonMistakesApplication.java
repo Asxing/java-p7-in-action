@@ -9,12 +9,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.PostConstruct;
 
-
-@SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class})
+@SpringBootApplication(
+        exclude = {HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class})
 public class CommonMistakesApplication {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    @Autowired private JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(CommonMistakesApplication.class, args);
@@ -23,12 +22,12 @@ public class CommonMistakesApplication {
     @PostConstruct
     public void init() {
         jdbcTemplate.execute("drop table IF EXISTS `userdata`;");
-        jdbcTemplate.execute("create TABLE `userdata` (\n" +
-                "  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n" +
-                "  `name` varchar(255) NOT NULL,\n" +
-                "  `source` varchar(10) NOT NULL,\n" +
-                "  PRIMARY KEY (`id`)\n" +
-                ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
-
+        jdbcTemplate.execute(
+                "create TABLE `userdata` (\n"
+                        + "  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n"
+                        + "  `name` varchar(255) NOT NULL,\n"
+                        + "  `source` varchar(10) NOT NULL,\n"
+                        + "  PRIMARY KEY (`id`)\n"
+                        + ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
     }
 }

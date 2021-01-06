@@ -15,10 +15,13 @@ public class PreventCouponFarmingController {
     @GetMapping("wrong")
     public int wrong() {
         CouponCenter couponCenter = new CouponCenter();
-        IntStream.rangeClosed(1, 10000).forEach(i -> {
-            Coupon coupon = couponCenter.generateCouponWrong(1L, new BigDecimal("100"));
-            couponCenter.sendCoupon(coupon);
-        });
+        IntStream.rangeClosed(1, 10000)
+                .forEach(
+                        i -> {
+                            Coupon coupon =
+                                    couponCenter.generateCouponWrong(1L, new BigDecimal("100"));
+                            couponCenter.sendCoupon(coupon);
+                        });
         return couponCenter.getTotalSentCoupon();
     }
 
@@ -26,10 +29,12 @@ public class PreventCouponFarmingController {
     public int right() {
         CouponCenter couponCenter = new CouponCenter();
         CouponBatch couponBatch = couponCenter.generateCouponBatch();
-        IntStream.rangeClosed(1, 10000).forEach(i -> {
-            Coupon coupon = couponCenter.generateCouponRight(1L, couponBatch);
-            couponCenter.sendCoupon(coupon);
-        });
+        IntStream.rangeClosed(1, 10000)
+                .forEach(
+                        i -> {
+                            Coupon coupon = couponCenter.generateCouponRight(1L, couponBatch);
+                            couponCenter.sendCoupon(coupon);
+                        });
         return couponCenter.getTotalSentCoupon();
     }
 }

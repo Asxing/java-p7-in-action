@@ -15,6 +15,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     private String name;
     private String nickname;
     private Integer age;

@@ -13,7 +13,6 @@ public class AsListApplication {
     public static void main(String[] args) {
 
         right2();
-
     }
 
     private static void wrong1() {
@@ -31,7 +30,6 @@ public class AsListApplication {
         List list2 = Arrays.asList(arr2);
         log.info("list:{} size:{} class:{}", list2, list2.size(), list2.get(0).getClass());
     }
-
 
     private static void wrong2() {
         String[] arr = {"1", "2", "3"};
@@ -57,4 +55,3 @@ public class AsListApplication {
         log.info("arr:{} list:{}", Arrays.toString(arr), list);
     }
 }
-

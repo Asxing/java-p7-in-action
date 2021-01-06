@@ -12,4 +12,3 @@ public class CommonMistakesApplicationBad {
         SpringApplication.run(CommonMistakesApplicationBad.class, args);
     }
 }
-

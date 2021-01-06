@@ -11,17 +11,19 @@ import java.beans.PropertyEditorSupport;
 public class SecurityAdvice {
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
-            @Override
-            public String getAsText() {
-                Object value = getValue();
-                return value != null ? value.toString() : "";
-            }
+        binder.registerCustomEditor(
+                String.class,
+                new PropertyEditorSupport() {
+                    @Override
+                    public String getAsText() {
+                        Object value = getValue();
+                        return value != null ? value.toString() : "";
+                    }
 
-            @Override
-            public void setAsText(String text) {
-                setValue(text == null ? null : HtmlUtils.htmlEscape(text));
-            }
-        });
+                    @Override
+                    public void setAsText(String text) {
+                        setValue(text == null ? null : HtmlUtils.htmlEscape(text));
+                    }
+                });
     }
 }

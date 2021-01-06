@@ -21,26 +21,34 @@ public class ScriptingSandbox {
 
     public ScriptingSandbox(ScriptEngine scriptEngine) throws InstantiationException {
         this.scriptEngine = scriptEngine;
-        securityManager = new SecurityManager() {
-            //仅在需要的时候检查权限
-            @Override
-            public void checkPermission(Permission perm) {
-                if (needCheck.get() && accessControlContext != null) {
-                    super.checkPermission(perm, accessControlContext);
-                }
-            }
-        };
-        //设置执行脚本需要的权限
-        setPermissions(Arrays.asList(
-                new RuntimePermission("getProtectionDomain"),
-                new PropertyPermission("jdk.internal.lambda.dumpProxyClasses", "read"),
-                new FilePermission(Shell.class.getProtectionDomain().getPermissions().elements().nextElement().getName(), "read"),
-                new RuntimePermission("createClassLoader"),
-                new RuntimePermission("accessClassInPackage.jdk.internal.org.objectweb.*"),
-                new RuntimePermission("accessClassInPackage.jdk.nashorn.internal.*"),
-                new RuntimePermission("accessDeclaredMembers"),
-                new ReflectPermission("suppressAccessChecks")
-        ));
+        securityManager =
+                new SecurityManager() {
+                    // 仅在需要的时候检查权限
+                    @Override
+                    public void checkPermission(Permission perm) {
+                        if (needCheck.get() && accessControlContext != null) {
+                            super.checkPermission(perm, accessControlContext);
+                        }
+                    }
+                };
+        // 设置执行脚本需要的权限
+        setPermissions(
+                Arrays.asList(
+                        new RuntimePermission("getProtectionDomain"),
+                        new PropertyPermission("jdk.internal.lambda.dumpProxyClasses", "read"),
+                        new FilePermission(
+                                Shell.class
+                                        .getProtectionDomain()
+                                        .getPermissions()
+                                        .elements()
+                                        .nextElement()
+                                        .getName(),
+                                "read"),
+                        new RuntimePermission("createClassLoader"),
+                        new RuntimePermission("accessClassInPackage.jdk.internal.org.objectweb.*"),
+                        new RuntimePermission("accessClassInPackage.jdk.nashorn.internal.*"),
+                        new RuntimePermission("accessDeclaredMembers"),
+                        new ReflectPermission("suppressAccessChecks")));
     }
 
     public void setPermissions(List<Permission> permissionCollection) {
@@ -52,8 +60,9 @@ public class ScriptingSandbox {
             }
         }
 
-        ProtectionDomain domain = new ProtectionDomain(new CodeSource(null, (CodeSigner[]) null), perms);
-        accessControlContext = new AccessControlContext(new ProtectionDomain[]{domain});
+        ProtectionDomain domain =
+                new ProtectionDomain(new CodeSource(null, (CodeSigner[]) null), perms);
+        accessControlContext = new AccessControlContext(new ProtectionDomain[] {domain});
     }
 
     public Object eval(final String code) {
@@ -62,15 +71,18 @@ public class ScriptingSandbox {
         System.setSecurityManager(securityManager);
         needCheck.set(true);
         try {
-            //在AccessController的保护下执行脚本
-            return AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
-                try {
-                    return scriptEngine.eval(code);
-                } catch (ScriptException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }, accessControlContext);
+            // 在AccessController的保护下执行脚本
+            return AccessController.doPrivileged(
+                    (PrivilegedAction<Object>)
+                            () -> {
+                                try {
+                                    return scriptEngine.eval(code);
+                                } catch (ScriptException e) {
+                                    e.printStackTrace();
+                                }
+                                return null;
+                            },
+                    accessControlContext);
 
         } catch (Exception ex) {
             log.error("抱歉，无法执行脚本 {}", code, ex);

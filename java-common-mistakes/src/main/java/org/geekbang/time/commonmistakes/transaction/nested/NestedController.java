@@ -12,8 +12,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("nested")
 public class NestedController {
-    @Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
     @GetMapping("test")
     public int right() {

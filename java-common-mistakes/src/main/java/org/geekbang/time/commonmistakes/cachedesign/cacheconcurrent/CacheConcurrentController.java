@@ -20,19 +20,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RestController
 public class CacheConcurrentController {
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    @Autowired private StringRedisTemplate stringRedisTemplate;
 
     private AtomicInteger atomicInteger = new AtomicInteger();
-    @Autowired
-    private RedissonClient redissonClient;
+    @Autowired private RedissonClient redissonClient;
 
     @PostConstruct
     public void init() {
         stringRedisTemplate.opsForValue().set("hotsopt", getExpensiveData(), 5, TimeUnit.SECONDS);
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
-        }, 0, 1, TimeUnit.SECONDS);
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
+                        },
+                        0,
+                        1,
+                        TimeUnit.SECONDS);
     }
 
     @GetMapping("wrong")

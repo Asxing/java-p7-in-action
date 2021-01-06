@@ -19,11 +19,12 @@ import java.util.UUID;
 public class StorePasswordController {
 
     private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @GetMapping("wrong1")
-    public UserData wrong1(@RequestParam(value = "name", defaultValue = "朱晔") String name, @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
+    public UserData wrong1(
+            @RequestParam(value = "name", defaultValue = "朱晔") String name,
+            @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
         UserData userData = new UserData();
         userData.setId(1L);
         userData.setName(name);
@@ -32,7 +33,9 @@ public class StorePasswordController {
     }
 
     @GetMapping("wrong2")
-    public UserData wrong2(@RequestParam(value = "name", defaultValue = "朱晔") String name, @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
+    public UserData wrong2(
+            @RequestParam(value = "name", defaultValue = "朱晔") String name,
+            @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
         UserData userData = new UserData();
         userData.setId(1L);
         userData.setName(name);
@@ -41,7 +44,9 @@ public class StorePasswordController {
     }
 
     @GetMapping("wrong3")
-    public UserData wrong3(@RequestParam(value = "name", defaultValue = "朱晔") String name, @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
+    public UserData wrong3(
+            @RequestParam(value = "name", defaultValue = "朱晔") String name,
+            @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
         UserData userData = new UserData();
         userData.setId(1L);
         userData.setName(name);
@@ -50,7 +55,9 @@ public class StorePasswordController {
     }
 
     @GetMapping("wrong4")
-    public UserData wrong4(@RequestParam(value = "name", defaultValue = "朱晔") String name, @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
+    public UserData wrong4(
+            @RequestParam(value = "name", defaultValue = "朱晔") String name,
+            @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
         UserData userData = new UserData();
         userData.setId(1L);
         userData.setName(name);
@@ -59,7 +66,9 @@ public class StorePasswordController {
     }
 
     @GetMapping("right")
-    public UserData right(@RequestParam(value = "name", defaultValue = "朱晔") String name, @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
+    public UserData right(
+            @RequestParam(value = "name", defaultValue = "朱晔") String name,
+            @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
         UserData userData = new UserData();
         userData.setId(1L);
         userData.setName(name);
@@ -68,9 +77,10 @@ public class StorePasswordController {
         return userRepository.save(userData);
     }
 
-
     @GetMapping("better")
-    public UserData better(@RequestParam(value = "name", defaultValue = "朱晔") String name, @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
+    public UserData better(
+            @RequestParam(value = "name", defaultValue = "朱晔") String name,
+            @RequestParam(value = "password", defaultValue = "Abcd1234") String password) {
         UserData userData = new UserData();
         userData.setId(1L);
         userData.setName(name);
@@ -104,5 +114,4 @@ public class StorePasswordController {
         stopWatch.stop();
         log.info("{}", stopWatch.prettyPrint());
     }
-
 }

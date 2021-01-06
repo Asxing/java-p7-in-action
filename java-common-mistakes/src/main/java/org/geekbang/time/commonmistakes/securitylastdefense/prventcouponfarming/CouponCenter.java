@@ -11,8 +11,7 @@ public class CouponCenter {
     AtomicInteger totalSent = new AtomicInteger(0);
 
     public void sendCoupon(Coupon coupon) {
-        if (coupon != null)
-            totalSent.incrementAndGet();
+        if (coupon != null) totalSent.incrementAndGet();
     }
 
     public int getTotalSentCoupon() {

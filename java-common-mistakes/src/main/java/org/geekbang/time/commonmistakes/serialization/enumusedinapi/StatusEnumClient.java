@@ -13,8 +13,7 @@ enum StatusEnumClient {
     @JsonEnumDefaultValue
     UNKNOWN(-1, "未知");
 
-    @JsonValue
-    private final int status;
+    @JsonValue private final int status;
     private final String desc;
 
     StatusEnumClient(Integer status, String desc) {
@@ -23,7 +22,8 @@ enum StatusEnumClient {
     }
 
     //    @JsonCreator
-//    public static StatusEnumClient parse(Object o) {
-//        return Arrays.stream(StatusEnumClient.values()).filter(value->o.equals(value.status)).findFirst().orElse(null);
-//    }
+    //    public static StatusEnumClient parse(Object o) {
+    //        return
+    // Arrays.stream(StatusEnumClient.values()).filter(value->o.equals(value.status)).findFirst().orElse(null);
+    //    }
 }

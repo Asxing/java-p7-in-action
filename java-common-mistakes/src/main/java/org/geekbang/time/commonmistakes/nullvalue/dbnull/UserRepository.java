@@ -25,5 +25,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM `user` WHERE score IS NULL")
     List<User> right3();
-
 }

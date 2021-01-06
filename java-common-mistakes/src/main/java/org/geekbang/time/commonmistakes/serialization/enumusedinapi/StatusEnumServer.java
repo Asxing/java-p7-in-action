@@ -10,8 +10,7 @@ enum StatusEnumServer {
     DELIVERED(3, "已送到"),
     FINISHED(4, "已完成"),
     CANCELED(5, "已取消");
-    @JsonValue
-    private final int status;
+    @JsonValue private final int status;
     private final String desc;
 
     StatusEnumServer(Integer status, String desc) {
@@ -19,8 +18,9 @@ enum StatusEnumServer {
         this.desc = desc;
     }
 
-//    @JsonCreator
-//    public static StatusEnumServer parse(Object o) {
-//        return Arrays.stream(StatusEnumServer.values()).filter(value->o.equals(value.status)).findFirst().orElse(null);
-//    }
+    //    @JsonCreator
+    //    public static StatusEnumServer parse(Object o) {
+    //        return
+    // Arrays.stream(StatusEnumServer.values()).filter(value->o.equals(value.status)).findFirst().orElse(null);
+    //    }
 }

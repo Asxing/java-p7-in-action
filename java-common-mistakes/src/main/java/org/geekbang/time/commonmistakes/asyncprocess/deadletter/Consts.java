@@ -8,6 +8,4 @@ public class Consts {
     public static final String DEAD_EXCHANGE = "deadtest";
     public static final String DEAD_QUEUE = "deadtest";
     public static final String DEAD_ROUTING_KEY = "deadtest";
-
-
 }

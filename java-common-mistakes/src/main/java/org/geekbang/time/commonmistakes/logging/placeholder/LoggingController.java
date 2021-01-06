@@ -23,14 +23,12 @@ public class LoggingController {
         log.debug("debug2:{}", slowString("debug2"));
         stopWatch.stop();
         stopWatch.start("debug3");
-        if (log.isDebugEnabled())
-            log.debug("debug3:{}", slowString("debug3"));
+        if (log.isDebugEnabled()) log.debug("debug3:{}", slowString("debug3"));
         stopWatch.stop();
         stopWatch.start("debug4");
         log.debug("debug4:{}", () -> slowString("debug4"));
         stopWatch.stop();
         log.info(stopWatch.prettyPrint());
-
     }
 
     private String slowString(String s) {

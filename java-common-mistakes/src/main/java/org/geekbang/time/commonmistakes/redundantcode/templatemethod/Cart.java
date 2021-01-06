@@ -8,14 +8,14 @@ import java.util.List;
 
 @Data
 public class Cart {
-    //商品清单
+    // 商品清单
     private List<Item> items = new ArrayList<>();
-    //总优惠
+    // 总优惠
     private BigDecimal totalDiscount;
-    //商品总价
+    // 商品总价
     private BigDecimal totalItemPrice;
-    //总运费
+    // 总运费
     private BigDecimal totalDeliveryPrice;
-    //应付总价
+    // 应付总价
     private BigDecimal payPrice;
 }

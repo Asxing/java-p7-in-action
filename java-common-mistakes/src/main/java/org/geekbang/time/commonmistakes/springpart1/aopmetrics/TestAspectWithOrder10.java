@@ -16,17 +16,20 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TestAspectWithOrder10 {
 
-    @Before("execution(* org.geekbang.time.commonmistakes.springpart1.aopmetrics.TestController.*(..))")
+    @Before(
+            "execution(* org.geekbang.time.commonmistakes.springpart1.aopmetrics.TestController.*(..))")
     public void before(JoinPoint joinPoint) throws Throwable {
         log.info("TestAspectWithOrder10 @Before");
     }
 
-    @After("execution(* org.geekbang.time.commonmistakes.springpart1.aopmetrics.TestController.*(..))")
+    @After(
+            "execution(* org.geekbang.time.commonmistakes.springpart1.aopmetrics.TestController.*(..))")
     public void after(JoinPoint joinPoint) throws Throwable {
         log.info("TestAspectWithOrder10 @After");
     }
 
-    @Around("execution(* org.geekbang.time.commonmistakes.springpart1.aopmetrics.TestController.*(..))")
+    @Around(
+            "execution(* org.geekbang.time.commonmistakes.springpart1.aopmetrics.TestController.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         log.info("TestAspectWithOrder10 @Around before");
         Object o = pjp.proceed();
@@ -34,4 +37,3 @@ public class TestAspectWithOrder10 {
         return o;
     }
 }
-

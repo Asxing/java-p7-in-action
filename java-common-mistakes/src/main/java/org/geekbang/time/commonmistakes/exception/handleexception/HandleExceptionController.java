@@ -16,8 +16,7 @@ import java.nio.file.Paths;
 public class HandleExceptionController {
     @GetMapping("exception")
     public void exception(@RequestParam("business") boolean b) {
-        if (b)
-            throw new BusinessException("订单不存在", 2001);
+        if (b) throw new BusinessException("订单不存在", 2001);
         throw new RuntimeException("系统错误");
     }
 
@@ -68,7 +67,6 @@ public class HandleExceptionController {
             throw new RuntimeException("系统忙请稍后再试", e);
         }
     }
-
 
     private void readFile() throws IOException {
         Files.readAllLines(Paths.get("a_file"));

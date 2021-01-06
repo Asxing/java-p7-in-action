@@ -29,7 +29,6 @@ public class ReflectionController {
     public void wrong() throws IOException {
         BankService.createUser("zhuye", "xxxxxxxxxxxxxxxxxx", "13612345678", 36);
         BankService.pay(1234L, new BigDecimal("100.5"));
-
     }
 
     @GetMapping("right")

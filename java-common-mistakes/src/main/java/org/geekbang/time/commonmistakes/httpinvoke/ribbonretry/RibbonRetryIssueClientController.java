@@ -9,19 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-
 @RestController
 @RequestMapping("ribbonretryissueclient")
 @Slf4j
 public class RibbonRetryIssueClientController {
 
-    @Autowired
-    private SmsClient smsClient;
+    @Autowired private SmsClient smsClient;
 
     @GetMapping("wrong")
     public String wrong() {
         log.info("client is called");
-        try{
+        try {
             smsClient.sendSmsWrong("13600000000", UUID.randomUUID().toString());
         } catch (Exception ex) {
             log.error("send sms failed : {}", ex.getMessage());
@@ -31,12 +29,11 @@ public class RibbonRetryIssueClientController {
 
     @GetMapping("right")
     public String right() {
-        try{
+        try {
             smsClient.sendSmsRight("13600000000", UUID.randomUUID().toString());
         } catch (Exception ex) {
             log.error("send sms failed : {}", ex.getMessage());
         }
         return "done";
     }
-
 }

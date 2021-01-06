@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class MQListener {
     @RabbitListener(queues = Consts.QUEUE)
     public void handler(String data) {
-        //http://localhost:15672/#/
+        // http://localhost:15672/#/
         log.info("got message {}", data);
         throw new NullPointerException("error");
-        //throw new AmqpRejectAndDontRequeueException("error");
+        // throw new AmqpRejectAndDontRequeueException("error");
     }
 
     @RabbitListener(queues = Consts.DEAD_QUEUE)

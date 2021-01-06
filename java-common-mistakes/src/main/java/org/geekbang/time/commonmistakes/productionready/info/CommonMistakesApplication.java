@@ -20,4 +20,3 @@ public class CommonMistakesApplication {
         return new RestTemplate();
     }
 }
-

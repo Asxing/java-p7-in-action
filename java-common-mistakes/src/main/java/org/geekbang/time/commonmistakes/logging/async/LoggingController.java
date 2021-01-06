@@ -35,9 +35,11 @@ public class LoggingController {
     @GetMapping("performance")
     public void performance(@RequestParam(name = "count", defaultValue = "1000") int count) {
         long begin = System.currentTimeMillis();
-        String payload = IntStream.rangeClosed(1, 1000000)
-                .mapToObj(__ -> "a")
-                .collect(Collectors.joining("")) + UUID.randomUUID().toString();
+        String payload =
+                IntStream.rangeClosed(1, 1000000)
+                                .mapToObj(__ -> "a")
+                                .collect(Collectors.joining(""))
+                        + UUID.randomUUID().toString();
         IntStream.rangeClosed(1, count).forEach(i -> log.info("{} {}", i, payload));
         Marker timeMarker = MarkerFactory.getMarker("time");
         log.info(timeMarker, "took {} ms", System.currentTimeMillis() - begin);

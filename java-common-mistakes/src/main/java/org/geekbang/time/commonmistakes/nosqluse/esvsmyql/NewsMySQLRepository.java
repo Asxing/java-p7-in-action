@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NewsMySQLRepository extends JpaRepository<News, Long> {
-    long countByCateidAndContentContainingAndContentContaining(int cateid, String keyword1, String keyword2);
+    long countByCateidAndContentContainingAndContentContaining(
+            int cateid, String keyword1, String keyword2);
 }

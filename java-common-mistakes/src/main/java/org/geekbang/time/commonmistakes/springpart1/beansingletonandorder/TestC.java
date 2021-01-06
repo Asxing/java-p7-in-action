@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TestC {
-    @Getter
-    private TestD testD;
+    @Getter private TestD testD;
 
     @Autowired
     public TestC(@Lazy TestD testD) {

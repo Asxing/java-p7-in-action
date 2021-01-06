@@ -19,4 +19,3 @@ public class CommonMistakesApplication implements WebMvcConfigurer {
         resolvers.add(new LoginRequiredArgumentResolver());
     }
 }
-

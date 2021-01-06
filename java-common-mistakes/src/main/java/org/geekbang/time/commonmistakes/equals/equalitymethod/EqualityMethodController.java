@@ -20,7 +20,6 @@ public class EqualityMethodController {
         Point p3 = new Point(1, 2, "a");
         log.info("p1.equals(p2) ? {}", p1.equals(p2));
         log.info("p1.equals(p3) ? {}", p1.equals(p3));
-
     }
 
     @GetMapping("wrong2")
@@ -70,7 +69,6 @@ public class EqualityMethodController {
         points.add(p1);
         log.info("points.contains(p2) ? {}", points.contains(p2));
     }
-
 
     class Point {
         private final String desc;

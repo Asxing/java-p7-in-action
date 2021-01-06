@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface SmsClient {
 
     @GetMapping("/ribbonretryissueserver/sms")
-    void sendSmsWrong(@RequestParam("mobile") String mobile, @RequestParam("message") String message);
+    void sendSmsWrong(
+            @RequestParam("mobile") String mobile, @RequestParam("message") String message);
 
     @PostMapping("/ribbonretryissueserver/sms")
-    void sendSmsRight(@RequestParam("mobile") String mobile, @RequestParam("message") String message);
+    void sendSmsRight(
+            @RequestParam("mobile") String mobile, @RequestParam("message") String message);
 }

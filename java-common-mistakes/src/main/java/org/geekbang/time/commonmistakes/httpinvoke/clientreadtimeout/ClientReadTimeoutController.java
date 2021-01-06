@@ -27,7 +27,7 @@ public class ClientReadTimeoutController {
     @GetMapping("client")
     public String client() throws IOException {
         log.info("client1 called");
-        //服务端5s超时，客户端读取超时2秒
+        // 服务端5s超时，客户端读取超时2秒
         return getResponse("/server?timeout=5000", 1000, 2000);
     }
 

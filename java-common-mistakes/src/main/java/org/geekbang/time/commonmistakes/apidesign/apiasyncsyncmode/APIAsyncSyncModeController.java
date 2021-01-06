@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class APIAsyncSyncModeController {
 
-    @Autowired
-    private FileService fileService;
+    @Autowired private FileService fileService;
 
     @GetMapping("wrong")
     public UploadResponse upload() {
@@ -38,5 +37,4 @@ public class APIAsyncSyncModeController {
         SyncQueryUploadTaskRequest request = new SyncQueryUploadTaskRequest(taskId);
         return fileService.syncQueryUploadTask(request);
     }
-
 }

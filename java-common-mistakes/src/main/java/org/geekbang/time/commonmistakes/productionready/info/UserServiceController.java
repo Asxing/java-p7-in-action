@@ -15,19 +15,19 @@ import java.util.concurrent.TimeUnit;
 public class UserServiceController {
     @GetMapping
     public User getUser(@RequestParam("userId") long id) {
-        if (ThreadLocalRandom.current().nextInt() % 2 == 0)
-            return new User(id, "name" + id);
-        else
-            throw new RuntimeException("error");
+        if (ThreadLocalRandom.current().nextInt() % 2 == 0) return new User(id, "name" + id);
+        else throw new RuntimeException("error");
     }
 
     @GetMapping("slowTask")
     public void slowTask() {
-        ThreadPoolProvider.getDemoThreadPool().execute(() -> {
-            try {
-                TimeUnit.HOURS.sleep(1);
-            } catch (InterruptedException e) {
-            }
-        });
+        ThreadPoolProvider.getDemoThreadPool()
+                .execute(
+                        () -> {
+                            try {
+                                TimeUnit.HOURS.sleep(1);
+                            } catch (InterruptedException e) {
+                            }
+                        });
     }
 }

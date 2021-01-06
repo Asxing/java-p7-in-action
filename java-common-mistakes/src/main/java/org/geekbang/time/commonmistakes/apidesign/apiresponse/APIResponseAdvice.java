@@ -20,10 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 @Slf4j
 public class APIResponseAdvice implements ResponseBodyAdvice<Object> {
-    @Autowired
-    private ObjectMapper objectMapper;
+    @Autowired private ObjectMapper objectMapper;
 
-    //自动处理APIException，包装为APIResponse
+    // 自动处理APIException，包装为APIResponse
     @ExceptionHandler(APIException.class)
     public APIResponse handleApiException(HttpServletRequest request, APIException ex) {
         log.error("process url {} failed", request.getRequestURL().toString(), ex);
@@ -44,18 +43,27 @@ public class APIResponseAdvice implements ResponseBodyAdvice<Object> {
         return apiResponse;
     }
 
-    //仅当方法或类没有标记@NoAPIResponse才自动包装
+    // 仅当方法或类没有标记@NoAPIResponse才自动包装
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
         return returnType.getParameterType() != APIResponse.class
-                && AnnotationUtils.findAnnotation(returnType.getMethod(), NoAPIResponse.class) == null
-                && AnnotationUtils.findAnnotation(returnType.getDeclaringClass(), NoAPIResponse.class) == null;
+                && AnnotationUtils.findAnnotation(returnType.getMethod(), NoAPIResponse.class)
+                        == null
+                && AnnotationUtils.findAnnotation(
+                                returnType.getDeclaringClass(), NoAPIResponse.class)
+                        == null;
     }
 
-    //自动包装外层APIResposne响应
+    // 自动包装外层APIResposne响应
     @SneakyThrows
     @Override
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(
+            Object body,
+            MethodParameter returnType,
+            MediaType selectedContentType,
+            Class<? extends HttpMessageConverter<?>> selectedConverterType,
+            ServerHttpRequest request,
+            ServerHttpResponse response) {
         APIResponse apiResponse = new APIResponse();
         apiResponse.setSuccess(true);
         apiResponse.setMessage("OK");
@@ -67,6 +75,5 @@ public class APIResponseAdvice implements ResponseBodyAdvice<Object> {
         } else {
             return apiResponse;
         }
-
     }
 }

@@ -19,14 +19,15 @@ import org.springframework.retry.interceptor.RetryOperationsInterceptor;
 @Slf4j
 public class RabbitConfiguration {
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    @Autowired private RabbitTemplate rabbitTemplate;
 
     @Bean
     public Declarables declarables() {
         Queue queue = new Queue(Consts.QUEUE);
         DirectExchange directExchange = new DirectExchange(Consts.EXCHANGE);
-        return new Declarables(queue, directExchange,
+        return new Declarables(
+                queue,
+                directExchange,
                 BindingBuilder.bind(queue).to(directExchange).with(Consts.ROUTING_KEY));
     }
 
@@ -34,7 +35,9 @@ public class RabbitConfiguration {
     public Declarables declarablesForDead() {
         Queue queue = new Queue(Consts.DEAD_QUEUE);
         DirectExchange directExchange = new DirectExchange(Consts.DEAD_EXCHANGE);
-        return new Declarables(queue, directExchange,
+        return new Declarables(
+                queue,
+                directExchange,
                 BindingBuilder.bind(queue).to(directExchange).with(Consts.DEAD_ROUTING_KEY));
     }
 
@@ -43,12 +46,15 @@ public class RabbitConfiguration {
         return RetryInterceptorBuilder.stateless()
                 .maxAttempts(5)
                 .backOffOptions(1000, 2.0, 10000)
-                .recoverer(new RepublishMessageRecoverer(rabbitTemplate, Consts.DEAD_EXCHANGE, Consts.DEAD_ROUTING_KEY))
+                .recoverer(
+                        new RepublishMessageRecoverer(
+                                rabbitTemplate, Consts.DEAD_EXCHANGE, Consts.DEAD_ROUTING_KEY))
                 .build();
     }
 
     @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
+            ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setAdviceChain(interceptor());

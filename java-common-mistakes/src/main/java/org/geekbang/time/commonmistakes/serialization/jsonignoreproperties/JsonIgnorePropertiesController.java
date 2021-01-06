@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class JsonIgnorePropertiesController {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    @Autowired private ObjectMapper objectMapper;
 
     @GetMapping("test")
     public void test() throws JsonProcessingException {
@@ -30,6 +29,7 @@ public class JsonIgnorePropertiesController {
     }
 
     enum Color {
-        RED, BLUE
+        RED,
+        BLUE
     }
 }

@@ -4,7 +4,6 @@ import org.geekbang.time.commonmistakes.common.Utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 public class CommonMistakesApplicationBad {
     public static void main(String[] args) {
@@ -12,4 +11,3 @@ public class CommonMistakesApplicationBad {
         SpringApplication.run(CommonMistakesApplicationBad.class, args);
     }
 }
-

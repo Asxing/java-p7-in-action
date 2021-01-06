@@ -9,16 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @Slf4j
 @RestController
 @RequestMapping("beansingletonandorder")
 public class BeanSingletonAndOrderController {
 
-    @Autowired
-    List<SayService> sayServiceList;
-    @Autowired
-    private ApplicationContext applicationContext;
+    @Autowired List<SayService> sayServiceList;
+    @Autowired private ApplicationContext applicationContext;
 
     @GetMapping("test")
     public void test() {

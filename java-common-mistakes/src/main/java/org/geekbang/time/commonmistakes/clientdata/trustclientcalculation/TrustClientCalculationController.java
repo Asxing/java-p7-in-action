@@ -24,7 +24,8 @@ public class TrustClientCalculationController {
             throw new RuntimeException("您选购的商品价格有变化，请重新下单");
         }
         order.setItemPrice(item.getItemPrice());
-        BigDecimal totalPrice = item.getItemPrice().multiply(BigDecimal.valueOf(order.getQuantity()));
+        BigDecimal totalPrice =
+                item.getItemPrice().multiply(BigDecimal.valueOf(order.getQuantity()));
         if (order.getItemTotalPrice().compareTo(totalPrice) != 0) {
             throw new RuntimeException("您选购的商品总价有变化，请重新下单");
         }
@@ -37,12 +38,11 @@ public class TrustClientCalculationController {
         Item item = Db.getItem(createOrderRequest.getItemId());
         Order order = new Order();
         order.setItemPrice(item.getItemPrice());
-        order.setItemTotalPrice(item.getItemPrice().multiply(BigDecimal.valueOf(order.getQuantity())));
+        order.setItemTotalPrice(
+                item.getItemPrice().multiply(BigDecimal.valueOf(order.getQuantity())));
         createOrder(order);
         return order;
     }
 
-    private void createOrder(Order order) {
-
-    }
+    private void createOrder(Order order) {}
 }

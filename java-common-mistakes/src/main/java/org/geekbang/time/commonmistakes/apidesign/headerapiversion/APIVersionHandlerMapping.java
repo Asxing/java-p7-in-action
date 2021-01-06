@@ -27,6 +27,8 @@ public class APIVersionHandlerMapping extends RequestMappingHandlerMapping {
     }
 
     private RequestCondition<APIVersionCondition> createCondition(APIVersion apiVersion) {
-        return apiVersion == null ? null : new APIVersionCondition(apiVersion.value(), apiVersion.headerKey());
+        return apiVersion == null
+                ? null
+                : new APIVersionCondition(apiVersion.value(), apiVersion.headerKey());
     }
 }

@@ -31,7 +31,10 @@ public class TrustClientParameterController {
     @GetMapping("/")
     public String index(ModelMap modelMap) {
         List<Country> countries = new ArrayList<>();
-        countries.addAll(allCountries.values().stream().filter(country -> country.getId() < 4).collect(Collectors.toList()));
+        countries.addAll(
+                allCountries.values().stream()
+                        .filter(country -> country.getId() < 4)
+                        .collect(Collectors.toList()));
         modelMap.addAttribute("countries", countries);
         return "index";
     }
@@ -45,8 +48,7 @@ public class TrustClientParameterController {
     @PostMapping("/right")
     @ResponseBody
     public String right(@RequestParam("countryId") int countryId) {
-        if (countryId < 1 || countryId > 3)
-            throw new RuntimeException("非法参数");
+        if (countryId < 1 || countryId > 3) throw new RuntimeException("非法参数");
         return allCountries.get(countryId).getName();
     }
 
@@ -54,8 +56,9 @@ public class TrustClientParameterController {
     @ResponseBody
     public String better(
             @RequestParam("countryId")
-            @Min(value = 1, message = "非法参数")
-            @Max(value = 3, message = "非法参数") int countryId) {
+                    @Min(value = 1, message = "非法参数")
+                    @Max(value = 3, message = "非法参数")
+                    int countryId) {
         return allCountries.get(countryId).getName();
     }
 }

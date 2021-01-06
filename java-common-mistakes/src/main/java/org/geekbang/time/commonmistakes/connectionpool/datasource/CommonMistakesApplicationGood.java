@@ -13,4 +13,3 @@ public class CommonMistakesApplicationGood {
         SpringApplication.run(CommonMistakesApplicationGood.class, args);
     }
 }
-

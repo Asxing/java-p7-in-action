@@ -15,8 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class DeadLetterController {
 
     AtomicLong atomicLong = new AtomicLong();
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    @Autowired private RabbitTemplate rabbitTemplate;
 
     @GetMapping("sendMessage")
     public void sendMessage() {

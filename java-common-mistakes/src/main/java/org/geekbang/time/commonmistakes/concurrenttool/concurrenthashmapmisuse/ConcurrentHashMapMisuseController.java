@@ -25,8 +25,12 @@ public class ConcurrentHashMapMisuseController {
     private ConcurrentHashMap<String, Long> getData(int count) {
         return LongStream.rangeClosed(1, count)
                 .boxed()
-                .collect(Collectors.toConcurrentMap(i -> UUID.randomUUID().toString(), Function.identity(),
-                        (o1, o2) -> o1, ConcurrentHashMap::new));
+                .collect(
+                        Collectors.toConcurrentMap(
+                                i -> UUID.randomUUID().toString(),
+                                Function.identity(),
+                                (o1, o2) -> o1,
+                                ConcurrentHashMap::new));
     }
 
     @GetMapping("wrong")
@@ -35,11 +39,16 @@ public class ConcurrentHashMapMisuseController {
         log.info("init size:{}", concurrentHashMap.size());
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(THREAD_COUNT);
-        forkJoinPool.execute(() -> IntStream.rangeClosed(1, 10).parallel().forEach(i -> {
-            int gap = ITEM_COUNT - concurrentHashMap.size();
-            log.info("gap size:{}", gap);
-            concurrentHashMap.putAll(getData(gap));
-        }));
+        forkJoinPool.execute(
+                () ->
+                        IntStream.rangeClosed(1, 10)
+                                .parallel()
+                                .forEach(
+                                        i -> {
+                                            int gap = ITEM_COUNT - concurrentHashMap.size();
+                                            log.info("gap size:{}", gap);
+                                            concurrentHashMap.putAll(getData(gap));
+                                        }));
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1, TimeUnit.HOURS);
 
@@ -53,13 +62,18 @@ public class ConcurrentHashMapMisuseController {
         log.info("init size:{}", concurrentHashMap.size());
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(THREAD_COUNT);
-        forkJoinPool.execute(() -> IntStream.rangeClosed(1, 10).parallel().forEach(i -> {
-            synchronized (concurrentHashMap) {
-                int gap = ITEM_COUNT - concurrentHashMap.size();
-                log.info("gap size:{}", gap);
-                concurrentHashMap.putAll(getData(gap));
-            }
-        }));
+        forkJoinPool.execute(
+                () ->
+                        IntStream.rangeClosed(1, 10)
+                                .parallel()
+                                .forEach(
+                                        i -> {
+                                            synchronized (concurrentHashMap) {
+                                                int gap = ITEM_COUNT - concurrentHashMap.size();
+                                                log.info("gap size:{}", gap);
+                                                concurrentHashMap.putAll(getData(gap));
+                                            }
+                                        }));
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1, TimeUnit.HOURS);
 

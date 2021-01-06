@@ -18,11 +18,16 @@ public class RestControllerExceptionHandler {
     public APIResponse handle(HttpServletRequest req, HandlerMethod method, Exception ex) {
         if (ex instanceof BusinessException) {
             BusinessException exception = (BusinessException) ex;
-            log.warn(String.format("访问 %s -> %s 出现业务异常！", req.getRequestURI(), method.toString()), ex);
+            log.warn(
+                    String.format("访问 %s -> %s 出现业务异常！", req.getRequestURI(), method.toString()),
+                    ex);
             return new APIResponse(false, null, exception.getCode(), exception.getMessage());
         } else {
-            log.error(String.format("访问 %s -> %s 出现系统异常！", req.getRequestURI(), method.toString()), ex);
-            return new APIResponse(false, null, GENERIC_SERVER_ERROR_CODE, GENERIC_SERVER_ERROR_MESSAGE);
+            log.error(
+                    String.format("访问 %s -> %s 出现系统异常！", req.getRequestURI(), method.toString()),
+                    ex);
+            return new APIResponse(
+                    false, null, GENERIC_SERVER_ERROR_CODE, GENERIC_SERVER_ERROR_MESSAGE);
         }
     }
 }

@@ -3,7 +3,6 @@ package org.geekbang.time.commonmistakes.advancedfeatures.genericandinheritance;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 public class GenericAndInheritanceApplication {
 
     public static void main(String[] args) {
@@ -14,13 +13,14 @@ public class GenericAndInheritanceApplication {
         Child1 child1 = new Child1();
         Arrays.stream(child1.getClass().getMethods())
                 .filter(method -> method.getName().equals("setValue"))
-                .forEach(method -> {
-                    try {
-                        method.invoke(child1, "test");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                .forEach(
+                        method -> {
+                            try {
+                                method.invoke(child1, "test");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
         System.out.println(child1.toString());
     }
 
@@ -28,13 +28,14 @@ public class GenericAndInheritanceApplication {
         Child1 child1 = new Child1();
         Arrays.stream(child1.getClass().getDeclaredMethods())
                 .filter(method -> method.getName().equals("setValue"))
-                .forEach(method -> {
-                    try {
-                        method.invoke(child1, "test");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                .forEach(
+                        method -> {
+                            try {
+                                method.invoke(child1, "test");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
         System.out.println(child1.toString());
     }
 
@@ -42,13 +43,14 @@ public class GenericAndInheritanceApplication {
         Child2 child2 = new Child2();
         Arrays.stream(child2.getClass().getDeclaredMethods())
                 .filter(method -> method.getName().equals("setValue"))
-                .forEach(method -> {
-                    try {
-                        method.invoke(child2, "test");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                .forEach(
+                        method -> {
+                            try {
+                                method.invoke(child2, "test");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
         System.out.println(child2.toString());
     }
 
@@ -56,13 +58,15 @@ public class GenericAndInheritanceApplication {
         Child2 child2 = new Child2();
         Arrays.stream(child2.getClass().getDeclaredMethods())
                 .filter(method -> method.getName().equals("setValue") && !method.isBridge())
-                .findFirst().ifPresent(method -> {
-            try {
-                method.invoke(child2, "test");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+                .findFirst()
+                .ifPresent(
+                        method -> {
+                            try {
+                                method.invoke(child2, "test");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
         System.out.println(child2.toString());
     }
 }
@@ -87,13 +91,11 @@ class Parent<T> {
 
 class Child1 extends Parent {
 
-
     public void setValue(String value) {
         System.out.println("Child1.setValue called");
         super.setValue(value);
     }
 }
-
 
 class Child2 extends Parent<String> {
 

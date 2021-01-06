@@ -30,13 +30,13 @@ public class CommonMistakesApplication {
     }
 
     private static void wrong1fix() {
-        System.out.println(30 * 1000 * 60 * 60 * 24 + " " + (30L * 1000 * 60 * 60 * 24 > Integer.MAX_VALUE));
+        System.out.println(
+                30 * 1000 * 60 * 60 * 24 + " " + (30L * 1000 * 60 * 60 * 24 > Integer.MAX_VALUE));
         System.out.println("wrong1fix");
         Date today = new Date();
         Date nextMonth = new Date(today.getTime() + 30L * 1000 * 60 * 60 * 24);
         System.out.println(today);
         System.out.println(nextMonth);
-
     }
 
     private static void right() {
@@ -55,11 +55,12 @@ public class CommonMistakesApplication {
 
     private static void test() {
         System.out.println("//测试操作日期");
-        System.out.println(LocalDate.now()
-                .minus(Period.ofDays(1))
-                .plus(1, ChronoUnit.DAYS)
-                .minusMonths(1)
-                .plus(Period.ofMonths(1)));
+        System.out.println(
+                LocalDate.now()
+                        .minus(Period.ofDays(1))
+                        .plus(1, ChronoUnit.DAYS)
+                        .minusMonths(1)
+                        .plus(Period.ofMonths(1)));
 
         System.out.println("//计算日期差");
         LocalDate today = LocalDate.of(2019, 12, 12);
@@ -67,7 +68,6 @@ public class CommonMistakesApplication {
         System.out.println(Period.between(specifyDate, today).getDays());
         System.out.println(Period.between(specifyDate, today));
         System.out.println(ChronoUnit.DAYS.between(specifyDate, today));
-
 
         System.out.println("//本月的第一天");
         System.out.println(LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()));
@@ -82,24 +82,25 @@ public class CommonMistakesApplication {
         System.out.println(LocalDate.now().with(TemporalAdjusters.lastInMonth(DayOfWeek.FRIDAY)));
 
         System.out.println("//自定义逻辑");
-        System.out.println(LocalDate.now().with(temporal -> temporal.plus(ThreadLocalRandom.current().nextInt(100), ChronoUnit.DAYS)));
+        System.out.println(
+                LocalDate.now()
+                        .with(
+                                temporal ->
+                                        temporal.plus(
+                                                ThreadLocalRandom.current().nextInt(100),
+                                                ChronoUnit.DAYS)));
 
         System.out.println("//查询是否是今天要举办生日");
         System.out.println(LocalDate.now().query(CommonMistakesApplication::isFamilyBirthday));
-
     }
 
     public static Boolean isFamilyBirthday(TemporalAccessor date) {
         int month = date.get(MONTH_OF_YEAR);
         int day = date.get(DAY_OF_MONTH);
 
-        if (month == Month.FEBRUARY.getValue() && day == 17)
-            return Boolean.TRUE;
-        if (month == Month.SEPTEMBER.getValue() && day == 21)
-            return Boolean.TRUE;
-        if (month == Month.MAY.getValue() && day == 22)
-            return Boolean.TRUE;
+        if (month == Month.FEBRUARY.getValue() && day == 17) return Boolean.TRUE;
+        if (month == Month.SEPTEMBER.getValue() && day == 21) return Boolean.TRUE;
+        if (month == Month.MAY.getValue() && day == 22) return Boolean.TRUE;
         return Boolean.FALSE;
     }
 }
-

@@ -13,7 +13,6 @@ public class Product {
     private String name;
     private Double price;
 
-
     public static List<Product> getData() {
         return Arrays.asList(
                 new Product(1L, "苹果", 1.0),

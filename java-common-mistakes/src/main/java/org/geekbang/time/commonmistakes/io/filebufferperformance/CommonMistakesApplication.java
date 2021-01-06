@@ -45,16 +45,21 @@ public class CommonMistakesApplication {
 
     private static void init() throws IOException {
 
-        Files.write(Paths.get("src.txt"),
-                IntStream.rangeClosed(1, 1000000).mapToObj(i -> UUID.randomUUID().toString()).collect(Collectors.toList())
-                , UTF_8, CREATE, TRUNCATE_EXISTING);
+        Files.write(
+                Paths.get("src.txt"),
+                IntStream.rangeClosed(1, 1000000)
+                        .mapToObj(i -> UUID.randomUUID().toString())
+                        .collect(Collectors.toList()),
+                UTF_8,
+                CREATE,
+                TRUNCATE_EXISTING);
     }
 
     private static void perByteOperation() throws IOException {
         Files.deleteIfExists(Paths.get("dest.txt"));
 
         try (FileInputStream fileInputStream = new FileInputStream("src.txt");
-             FileOutputStream fileOutputStream = new FileOutputStream("dest.txt")) {
+                FileOutputStream fileOutputStream = new FileOutputStream("dest.txt")) {
             int i;
             while ((i = fileInputStream.read()) != -1) {
                 fileOutputStream.write(i);
@@ -66,7 +71,7 @@ public class CommonMistakesApplication {
         Files.deleteIfExists(Paths.get("dest.txt"));
 
         try (FileInputStream fileInputStream = new FileInputStream("src.txt");
-             FileOutputStream fileOutputStream = new FileOutputStream("dest.txt")) {
+                FileOutputStream fileOutputStream = new FileOutputStream("dest.txt")) {
             byte[] buffer = new byte[100];
             int len = 0;
             while ((len = fileInputStream.read(buffer)) != -1) {
@@ -79,7 +84,7 @@ public class CommonMistakesApplication {
         Files.deleteIfExists(Paths.get("dest.txt"));
 
         try (FileInputStream fileInputStream = new FileInputStream("src.txt");
-             FileOutputStream fileOutputStream = new FileOutputStream("dest.txt")) {
+                FileOutputStream fileOutputStream = new FileOutputStream("dest.txt")) {
             byte[] buffer = new byte[8192];
             int len = 0;
             while ((len = fileInputStream.read(buffer)) != -1) {
@@ -91,8 +96,10 @@ public class CommonMistakesApplication {
     private static void bufferedStreamBufferOperation() throws IOException {
         Files.deleteIfExists(Paths.get("dest.txt"));
 
-        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream("src.txt"));
-             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("dest.txt"))) {
+        try (BufferedInputStream bufferedInputStream =
+                        new BufferedInputStream(new FileInputStream("src.txt"));
+                BufferedOutputStream bufferedOutputStream =
+                        new BufferedOutputStream(new FileOutputStream("dest.txt"))) {
             byte[] buffer = new byte[8192];
             int len = 0;
             while ((len = bufferedInputStream.read(buffer)) != -1) {
@@ -104,15 +111,16 @@ public class CommonMistakesApplication {
     private static void bufferedStreamByteOperation() throws IOException {
         Files.deleteIfExists(Paths.get("dest.txt"));
 
-        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream("src.txt"));
-             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("dest.txt"))) {
+        try (BufferedInputStream bufferedInputStream =
+                        new BufferedInputStream(new FileInputStream("src.txt"));
+                BufferedOutputStream bufferedOutputStream =
+                        new BufferedOutputStream(new FileOutputStream("dest.txt"))) {
             int i;
             while ((i = bufferedInputStream.read()) != -1) {
                 bufferedOutputStream.write(i);
             }
         }
     }
-
 
     private static void fileChannelOperation() throws IOException {
         Files.deleteIfExists(Paths.get("dest.txt"));
@@ -122,4 +130,3 @@ public class CommonMistakesApplication {
         in.transferTo(0, in.size(), out);
     }
 }
-

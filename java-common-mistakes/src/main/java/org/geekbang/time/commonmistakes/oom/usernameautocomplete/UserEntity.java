@@ -8,17 +8,16 @@ import javax.persistence.Id;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-
 @Entity
 @Data
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     private String name;
 
-    public UserEntity() {
-    }
+    public UserEntity() {}
 
     public UserEntity(Long id, String name) {
         this.id = id;

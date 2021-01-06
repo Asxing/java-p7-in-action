@@ -16,11 +16,12 @@ public class APIVersionHandlerMapping extends RequestMappingHandlerMapping {
     }
 
     @Override
-    protected void registerHandlerMethod(Object handler, Method method, RequestMappingInfo mapping) {
+    protected void registerHandlerMethod(
+            Object handler, Method method, RequestMappingInfo mapping) {
         Class<?> controllerClass = method.getDeclaringClass();
         APIVersion apiVersion = AnnotationUtils.findAnnotation(controllerClass, APIVersion.class);
         APIVersion methodAnnotation = AnnotationUtils.findAnnotation(method, APIVersion.class);
-        //以方法上的注解优先
+        // 以方法上的注解优先
         if (methodAnnotation != null) {
             apiVersion = methodAnnotation;
         }
@@ -30,9 +31,16 @@ public class APIVersionHandlerMapping extends RequestMappingHandlerMapping {
         PatternsRequestCondition apiPattern = new PatternsRequestCondition(urlPatterns);
         PatternsRequestCondition oldPattern = mapping.getPatternsCondition();
         PatternsRequestCondition updatedFinalPattern = apiPattern.combine(oldPattern);
-        mapping = new RequestMappingInfo(mapping.getName(), updatedFinalPattern, mapping.getMethodsCondition(),
-                mapping.getParamsCondition(), mapping.getHeadersCondition(), mapping.getConsumesCondition(),
-                mapping.getProducesCondition(), mapping.getCustomCondition());
+        mapping =
+                new RequestMappingInfo(
+                        mapping.getName(),
+                        updatedFinalPattern,
+                        mapping.getMethodsCondition(),
+                        mapping.getParamsCondition(),
+                        mapping.getHeadersCondition(),
+                        mapping.getConsumesCondition(),
+                        mapping.getProducesCondition(),
+                        mapping.getCustomCondition());
         super.registerHandlerMethod(handler, method, mapping);
     }
 }

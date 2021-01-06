@@ -16,13 +16,16 @@ import org.springframework.messaging.handler.annotation.support.MessageHandlerMe
 @Slf4j
 public class RabbitConfiguration implements RabbitListenerConfigurer {
     @Override
-    public void configureRabbitListeners(RabbitListenerEndpointRegistrar rabbitListenerEndpointRegistrar) {
-        rabbitListenerEndpointRegistrar.setMessageHandlerMethodFactory(messageHandlerMethodFactory());
+    public void configureRabbitListeners(
+            RabbitListenerEndpointRegistrar rabbitListenerEndpointRegistrar) {
+        rabbitListenerEndpointRegistrar.setMessageHandlerMethodFactory(
+                messageHandlerMethodFactory());
     }
 
     @Bean
     public MessageHandlerMethodFactory messageHandlerMethodFactory() {
-        DefaultMessageHandlerMethodFactory messageHandlerMethodFactory = new DefaultMessageHandlerMethodFactory();
+        DefaultMessageHandlerMethodFactory messageHandlerMethodFactory =
+                new DefaultMessageHandlerMethodFactory();
         messageHandlerMethodFactory.setMessageConverter(consumerJackson2MessageConverter());
         return messageHandlerMethodFactory;
     }
@@ -41,19 +44,24 @@ public class RabbitConfiguration implements RabbitListenerConfigurer {
     public Declarables declarablesForWorker() {
         Queue queue = new Queue(Consts.QUEUE);
         DirectExchange directExchange = new DirectExchange(Consts.EXCHANGE);
-        return new Declarables(queue, directExchange,
+        return new Declarables(
+                queue,
+                directExchange,
                 BindingBuilder.bind(queue).to(directExchange).with(Consts.ROUTING_KEY));
     }
 
     @Bean
     public Declarables declarablesForBuffer() {
-        Queue queue = QueueBuilder.durable(Consts.BUFFER_QUEUE)
-                .withArgument("x-dead-letter-exchange", Consts.EXCHANGE)
-                .withArgument("x-dead-letter-routing-key", Consts.ROUTING_KEY)
-                .withArgument("x-message-ttl", Consts.RETRY_INTERNAL)
-                .build();
+        Queue queue =
+                QueueBuilder.durable(Consts.BUFFER_QUEUE)
+                        .withArgument("x-dead-letter-exchange", Consts.EXCHANGE)
+                        .withArgument("x-dead-letter-routing-key", Consts.ROUTING_KEY)
+                        .withArgument("x-message-ttl", Consts.RETRY_INTERNAL)
+                        .build();
         DirectExchange directExchange = new DirectExchange(Consts.BUFFER_EXCHANGE);
-        return new Declarables(queue, directExchange,
+        return new Declarables(
+                queue,
+                directExchange,
                 BindingBuilder.bind(queue).to(directExchange).with(Consts.BUFFER_ROUTING_KEY));
     }
 
@@ -61,7 +69,9 @@ public class RabbitConfiguration implements RabbitListenerConfigurer {
     public Declarables declarablesForDead() {
         Queue queue = new Queue(Consts.DEAD_QUEUE);
         DirectExchange directExchange = new DirectExchange(Consts.DEAD_EXCHANGE);
-        return new Declarables(queue, directExchange,
+        return new Declarables(
+                queue,
+                directExchange,
                 BindingBuilder.bind(queue).to(directExchange).with(Consts.DEAD_ROUTING_KEY));
     }
 }

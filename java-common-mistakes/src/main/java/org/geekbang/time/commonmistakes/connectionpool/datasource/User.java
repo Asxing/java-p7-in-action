@@ -14,5 +14,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
+
     private String name;
 }

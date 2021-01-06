@@ -17,4 +17,3 @@ public class CommonMistakesApplication implements WebMvcRegistrations {
         return new APIVersionHandlerMapping();
     }
 }
-

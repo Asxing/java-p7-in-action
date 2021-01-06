@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("deserializationconstructor")
 @Slf4j
 public class DeserializationConstructorController {
-    @Autowired
-    ObjectMapper objectMapper;
+    @Autowired ObjectMapper objectMapper;
 
     @GetMapping("wrong")
     public void wrong() throws JsonProcessingException {

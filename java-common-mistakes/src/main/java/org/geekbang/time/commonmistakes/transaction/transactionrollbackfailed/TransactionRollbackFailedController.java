@@ -1,6 +1,5 @@
 package org.geekbang.time.commonmistakes.transaction.transactionrollbackfailed;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TransactionRollbackFailedController {
 
-    @Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
     @GetMapping("wrong1")
     public int wrong1(@RequestParam("name") String name) {

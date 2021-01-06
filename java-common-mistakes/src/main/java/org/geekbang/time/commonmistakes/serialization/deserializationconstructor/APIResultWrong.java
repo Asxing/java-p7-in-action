@@ -7,8 +7,7 @@ public class APIResultWrong {
     private boolean success;
     private int code;
 
-    public APIResultWrong() {
-    }
+    public APIResultWrong() {}
 
     public APIResultWrong(int code) {
         this.code = code;

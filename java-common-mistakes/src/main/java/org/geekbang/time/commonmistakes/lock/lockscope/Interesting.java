@@ -23,7 +23,7 @@ public class Interesting {
         for (int i = 0; i < 1000000; i++) {
             if (a < b) {
                 log.info("a:{},b:{},{}", a, b, a > b);
-                //最后的a>b应该始终是false的吗？
+                // 最后的a>b应该始终是false的吗？
             }
         }
         log.info("compare done");

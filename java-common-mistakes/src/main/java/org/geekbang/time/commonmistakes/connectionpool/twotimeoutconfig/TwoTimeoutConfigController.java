@@ -27,20 +27,22 @@ public class TwoTimeoutConfigController {
 
     static {
         httpClient = HttpClients.createSystem();
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            try {
-                httpClient.close();
-            } catch (IOException ignored) {
-            }
-        }));
+        Runtime.getRuntime()
+                .addShutdownHook(
+                        new Thread(
+                                () -> {
+                                    try {
+                                        httpClient.close();
+                                    } catch (IOException ignored) {
+                                    }
+                                }));
     }
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    @Autowired private JdbcTemplate jdbcTemplate;
 
     @GetMapping("mysql")
     public String mysql() {
-        //调试StandardSocketFactory进行验证
+        // 调试StandardSocketFactory进行验证
         return jdbcTemplate.queryForObject("SELECT 'OK'", String.class);
     }
 
@@ -50,17 +52,18 @@ public class TwoTimeoutConfigController {
         config.setMaxTotal(1);
         config.setMaxWaitMillis(10000);
         try (JedisPool jedisPool = new JedisPool(config, "127.0.0.1", 6379, 5000);
-             Jedis jedis = jedisPool.getResource()) {
+                Jedis jedis = jedisPool.getResource()) {
             return jedis.set("test", "test");
         }
     }
 
     @GetMapping("http")
     public String http() {
-        RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(5000)
-                .setConnectionRequestTimeout(10000)
-                .build();
+        RequestConfig requestConfig =
+                RequestConfig.custom()
+                        .setConnectTimeout(5000)
+                        .setConnectionRequestTimeout(10000)
+                        .build();
         HttpGet httpGet = new HttpGet("http://127.0.0.1:45678/twotimeoutconfig/test");
         httpGet.setConfig(requestConfig);
         try (CloseableHttpResponse response = httpClient.execute(httpGet)) {

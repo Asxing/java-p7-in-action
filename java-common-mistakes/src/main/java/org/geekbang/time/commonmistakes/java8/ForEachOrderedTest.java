@@ -27,7 +27,8 @@ public class ForEachOrderedTest {
 
     @Test
     public void test() {
-        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", String.valueOf(10));
+        System.setProperty(
+                "java.util.concurrent.ForkJoinPool.common.parallelism", String.valueOf(10));
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("stream");
@@ -49,13 +50,15 @@ public class ForEachOrderedTest {
     }
 
     private void parallelStream() {
-        IntStream.rangeClosed(1, 10).parallel()
+        IntStream.rangeClosed(1, 10)
+                .parallel()
                 .filter(ForEachOrderedTest::filter)
                 .forEach(ForEachOrderedTest::consume);
     }
 
     private void parallelStreamForEachOrdered() {
-        IntStream.rangeClosed(1, 10).parallel()
+        IntStream.rangeClosed(1, 10)
+                .parallel()
                 .filter(ForEachOrderedTest::filter)
                 .forEachOrdered(ForEachOrderedTest::consume);
     }

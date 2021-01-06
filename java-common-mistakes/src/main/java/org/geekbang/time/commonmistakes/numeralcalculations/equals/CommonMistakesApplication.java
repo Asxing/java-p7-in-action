@@ -24,16 +24,15 @@ public class CommonMistakesApplication {
     private static void set() {
         Set<BigDecimal> hashSet1 = new HashSet<>();
         hashSet1.add(new BigDecimal("1.0"));
-        System.out.println(hashSet1.contains(new BigDecimal("1")));//返回false
+        System.out.println(hashSet1.contains(new BigDecimal("1"))); // 返回false
 
         Set<BigDecimal> hashSet2 = new HashSet<>();
         hashSet2.add(new BigDecimal("1.0").stripTrailingZeros());
-        System.out.println(hashSet2.contains(new BigDecimal("1.000").stripTrailingZeros()));//返回true
+        System.out.println(
+                hashSet2.contains(new BigDecimal("1.000").stripTrailingZeros())); // 返回true
 
         Set<BigDecimal> treeSet = new TreeSet<>();
         treeSet.add(new BigDecimal("1.0"));
-        System.out.println(treeSet.contains(new BigDecimal("1")));//返回true
+        System.out.println(treeSet.contains(new BigDecimal("1"))); // 返回true
     }
-
 }
-

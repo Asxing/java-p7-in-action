@@ -14,7 +14,9 @@ public class XssJsonSerializer extends JsonSerializer<String> {
     }
 
     @Override
-    public void serialize(String value, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(
+            String value, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
+            throws IOException {
         if (value != null) {
             jsonGenerator.writeString(HtmlUtils.htmlEscape(value));
         }

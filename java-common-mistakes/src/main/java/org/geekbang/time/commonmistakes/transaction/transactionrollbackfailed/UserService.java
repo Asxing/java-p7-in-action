@@ -13,8 +13,7 @@ import java.nio.file.Paths;
 @Service
 @Slf4j
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @Transactional
     public void createUserWrong1(String name) {
@@ -40,7 +39,6 @@ public class UserService {
         return userRepository.findByName(name).size();
     }
 
-
     @Transactional
     public void createUserRight1(String name) {
         try {
@@ -50,14 +48,13 @@ public class UserService {
             log.error("create user failed", ex);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
-        log.info("result {} ", userRepository.findByName(name).size());//为什么这里是1你能想明白吗？
+        log.info("result {} ", userRepository.findByName(name).size()); // 为什么这里是1你能想明白吗？
     }
 
-    //DefaultTransactionAttribute
+    // DefaultTransactionAttribute
     @Transactional(rollbackFor = Exception.class)
     public void createUserRight2(String name) throws IOException {
         userRepository.save(new UserEntity(name));
         otherTask();
     }
-
 }

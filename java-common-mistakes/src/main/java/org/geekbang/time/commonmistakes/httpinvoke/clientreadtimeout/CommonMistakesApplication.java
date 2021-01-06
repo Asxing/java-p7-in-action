@@ -3,7 +3,6 @@ package org.geekbang.time.commonmistakes.httpinvoke.clientreadtimeout;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
 public class CommonMistakesApplication {
 
@@ -11,4 +10,3 @@ public class CommonMistakesApplication {
         SpringApplication.run(CommonMistakesApplication.class, args);
     }
 }
-

@@ -29,34 +29,51 @@ public class RouteLimitController {
     static CloseableHttpClient httpClient2;
 
     static {
-        httpClient1 = HttpClients.custom().setConnectionManager(new PoolingHttpClientConnectionManager()).build();
+        httpClient1 =
+                HttpClients.custom()
+                        .setConnectionManager(new PoolingHttpClientConnectionManager())
+                        .build();
         httpClient2 = HttpClients.custom().setMaxConnPerRoute(10).setMaxConnTotal(20).build();
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            try {
-                httpClient1.close();
-            } catch (IOException ex) {
-            }
-            try {
-                httpClient2.close();
-            } catch (IOException ex) {
-            }
-        }));
+        Runtime.getRuntime()
+                .addShutdownHook(
+                        new Thread(
+                                () -> {
+                                    try {
+                                        httpClient1.close();
+                                    } catch (IOException ex) {
+                                    }
+                                    try {
+                                        httpClient2.close();
+                                    } catch (IOException ex) {
+                                    }
+                                }));
     }
 
-    private int sendRequest(int count, Supplier<CloseableHttpClient> client) throws InterruptedException {
+    private int sendRequest(int count, Supplier<CloseableHttpClient> client)
+            throws InterruptedException {
         AtomicInteger atomicInteger = new AtomicInteger();
         ExecutorService threadPool = Executors.newCachedThreadPool();
         long begin = System.currentTimeMillis();
-        IntStream.rangeClosed(1, count).forEach(i -> {
-            threadPool.execute(() -> {
-                try (CloseableHttpResponse response = client.get().execute(new HttpGet("http://127.0.0.1:45678/routelimit/server"))) {
-                    atomicInteger.addAndGet(Integer.parseInt(EntityUtils.toString(response.getEntity())));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            });
-        });
+        IntStream.rangeClosed(1, count)
+                .forEach(
+                        i -> {
+                            threadPool.execute(
+                                    () -> {
+                                        try (CloseableHttpResponse response =
+                                                client.get()
+                                                        .execute(
+                                                                new HttpGet(
+                                                                        "http://127.0.0.1:45678/routelimit/server"))) {
+                                            atomicInteger.addAndGet(
+                                                    Integer.parseInt(
+                                                            EntityUtils.toString(
+                                                                    response.getEntity())));
+                                        } catch (Exception ex) {
+                                            ex.printStackTrace();
+                                        }
+                                    });
+                        });
         threadPool.shutdown();
         threadPool.awaitTermination(1, TimeUnit.HOURS);
         log.info("发送 {} 次请求，耗时 {} ms", atomicInteger.get(), System.currentTimeMillis() - begin);
@@ -64,12 +81,14 @@ public class RouteLimitController {
     }
 
     @GetMapping("wrong")
-    public int wrong(@RequestParam(value = "count", defaultValue = "10") int count) throws InterruptedException {
+    public int wrong(@RequestParam(value = "count", defaultValue = "10") int count)
+            throws InterruptedException {
         return sendRequest(count, () -> httpClient1);
     }
 
     @GetMapping("right")
-    public int right(@RequestParam(value = "count", defaultValue = "10") int count) throws InterruptedException {
+    public int right(@RequestParam(value = "count", defaultValue = "10") int count)
+            throws InterruptedException {
         return sendRequest(count, () -> httpClient2);
     }
 

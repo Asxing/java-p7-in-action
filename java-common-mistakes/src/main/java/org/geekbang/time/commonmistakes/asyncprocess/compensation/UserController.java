@@ -14,19 +14,22 @@ import java.util.stream.IntStream;
 @Slf4j
 @RequestMapping("user")
 public class UserController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    @Autowired private UserService userService;
+    @Autowired private RabbitTemplate rabbitTemplate;
 
     @GetMapping("register")
     public void register() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
-            User user = userService.register();
-            if (ThreadLocalRandom.current().nextInt(10) % 2 == 0) {
-                rabbitTemplate.convertAndSend(RabbitConfiguration.EXCHANGE, RabbitConfiguration.ROUTING_KEY, user);
-                log.info("sent mq user {}", user.getId());
-            }
-        });
+        IntStream.rangeClosed(1, 10)
+                .forEach(
+                        i -> {
+                            User user = userService.register();
+                            if (ThreadLocalRandom.current().nextInt(10) % 2 == 0) {
+                                rabbitTemplate.convertAndSend(
+                                        RabbitConfiguration.EXCHANGE,
+                                        RabbitConfiguration.ROUTING_KEY,
+                                        user);
+                                log.info("sent mq user {}", user.getId());
+                            }
+                        });
     }
 }

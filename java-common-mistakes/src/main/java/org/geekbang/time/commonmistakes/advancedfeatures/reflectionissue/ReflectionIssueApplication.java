@@ -10,7 +10,6 @@ public class ReflectionIssueApplication {
         ReflectionIssueApplication application = new ReflectionIssueApplication();
         application.wrong();
         application.right();
-
     }
 
     private void age(int age) {

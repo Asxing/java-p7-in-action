@@ -22,10 +22,11 @@ public class CommonMistakesApplication {
     private static void test() {
         System.out.println("test");
         System.out.println(new Date(0));
-        //System.out.println(TimeZone.getDefault().getID() + ":" + TimeZone.getDefault().getRawOffset()/3600/1000);
-        //ZoneId.getAvailableZoneIds().forEach(id -> System.out.println(String.format("%s:%s", id, ZonedDateTime.now(ZoneId.of(id)))));
+        // System.out.println(TimeZone.getDefault().getID() + ":" +
+        // TimeZone.getDefault().getRawOffset()/3600/1000);
+        // ZoneId.getAvailableZoneIds().forEach(id -> System.out.println(String.format("%s:%s", id,
+        // ZonedDateTime.now(ZoneId.of(id)))));
     }
-
 
     private static void wrong1() throws ParseException {
         System.out.println("wrong1");
@@ -57,13 +58,12 @@ public class CommonMistakesApplication {
         ZoneId timeZoneJST = ZoneOffset.ofHours(9);
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        ZonedDateTime date = ZonedDateTime.of(LocalDateTime.parse(stringDate, dateTimeFormatter), timeZoneJST);
+        ZonedDateTime date =
+                ZonedDateTime.of(LocalDateTime.parse(stringDate, dateTimeFormatter), timeZoneJST);
 
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
         System.out.println(timeZoneSH.getId() + outputFormat.withZone(timeZoneSH).format(date));
         System.out.println(timeZoneNY.getId() + outputFormat.withZone(timeZoneNY).format(date));
         System.out.println(timeZoneJST.getId() + outputFormat.withZone(timeZoneJST).format(date));
     }
-
 }
-

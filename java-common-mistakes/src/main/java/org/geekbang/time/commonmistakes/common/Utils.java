@@ -7,14 +7,15 @@ import java.util.Properties;
 @Slf4j
 public class Utils {
 
-    public static void loadPropertySource(Class clazz,String fileName){
+    public static void loadPropertySource(Class clazz, String fileName) {
         try {
-            Properties p=new Properties();
+            Properties p = new Properties();
             p.load(clazz.getResourceAsStream(fileName));
-            p.forEach((k,v)->{
-                log.info("{}={}",k,v);
-                System.setProperty(k.toString(),v.toString());
-            });
+            p.forEach(
+                    (k, v) -> {
+                        log.info("{}={}", k, v);
+                        System.setProperty(k.toString(), v.toString());
+                    });
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

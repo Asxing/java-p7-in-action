@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.UUID;
 
 @Slf4j
-//@Configuration
-//@RestController
+// @Configuration
+// @RestController
 @RequestMapping("fanoutwrong")
 public class FanoutQueueWrong {
     private static final String QUEUE = "newuser";
     private static final String EXCHANGE = "newuser";
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    @Autowired private RabbitTemplate rabbitTemplate;
 
     @GetMapping
     public void sendMessage() {
@@ -33,20 +32,17 @@ public class FanoutQueueWrong {
     public Declarables declarables() {
         Queue queue = new Queue(QUEUE);
         FanoutExchange exchange = new FanoutExchange(EXCHANGE);
-        return new Declarables(queue, exchange,
-                BindingBuilder.bind(queue).to(exchange));
+        return new Declarables(queue, exchange, BindingBuilder.bind(queue).to(exchange));
     }
 
     @RabbitListener(queues = QUEUE)
     public void memberService1(String userName) {
         log.info("memberService1: welcome message sent to new user {}", userName);
-
     }
 
     @RabbitListener(queues = QUEUE)
     public void memberService2(String userName) {
         log.info("memberService2: welcome message sent to new user {}", userName);
-
     }
 
     @RabbitListener(queues = QUEUE)

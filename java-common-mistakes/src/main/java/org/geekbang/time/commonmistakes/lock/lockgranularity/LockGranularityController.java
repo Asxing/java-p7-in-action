@@ -27,12 +27,15 @@ public class LockGranularityController {
     @GetMapping("wrong")
     public int wrong() {
         long begin = System.currentTimeMillis();
-        IntStream.rangeClosed(1, 1000).parallel().forEach(i -> {
-            synchronized (this) {
-                slow();
-                data.add(i);
-            }
-        });
+        IntStream.rangeClosed(1, 1000)
+                .parallel()
+                .forEach(
+                        i -> {
+                            synchronized (this) {
+                                slow();
+                                data.add(i);
+                            }
+                        });
         log.info("took:{}", System.currentTimeMillis() - begin);
         return data.size();
     }
@@ -40,14 +43,16 @@ public class LockGranularityController {
     @GetMapping("right")
     public int right() {
         long begin = System.currentTimeMillis();
-        IntStream.rangeClosed(1, 1000).parallel().forEach(i -> {
-            slow();
-            synchronized (data) {
-                data.add(i);
-            }
-        });
+        IntStream.rangeClosed(1, 1000)
+                .parallel()
+                .forEach(
+                        i -> {
+                            slow();
+                            synchronized (data) {
+                                data.add(i);
+                            }
+                        });
         log.info("took:{}", System.currentTimeMillis() - begin);
         return data.size();
     }
-
 }

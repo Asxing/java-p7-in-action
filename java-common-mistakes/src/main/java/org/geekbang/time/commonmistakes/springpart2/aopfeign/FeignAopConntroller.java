@@ -14,14 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FeignAopConntroller {
 
-    @Autowired
-    private Client client;
+    @Autowired private Client client;
 
-    @Autowired
-    private ClientWithUrl clientWithUrl;
+    @Autowired private ClientWithUrl clientWithUrl;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    @Autowired private ApplicationContext applicationContext;
 
     @GetMapping("client")
     public String client() {

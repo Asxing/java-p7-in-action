@@ -29,8 +29,9 @@ public class CommonMistakesApplication {
         log.info("putIfAbsent non-null value : {}", map.putIfAbsent("test3", "test3"));
         log.info("computeIfAbsent non-null value : {}", map.computeIfAbsent("test4", k -> "test4"));
         log.info("putIfAbsent expensive value : {}", map.putIfAbsent("test4", getValue()));
-        log.info("computeIfAbsent expensive value : {}", map.computeIfAbsent("test4", k -> getValue()));
-
+        log.info(
+                "computeIfAbsent expensive value : {}",
+                map.computeIfAbsent("test4", k -> getValue()));
     }
 
     private static String getValue() {
@@ -42,4 +43,3 @@ public class CommonMistakesApplication {
         return UUID.randomUUID().toString();
     }
 }
-

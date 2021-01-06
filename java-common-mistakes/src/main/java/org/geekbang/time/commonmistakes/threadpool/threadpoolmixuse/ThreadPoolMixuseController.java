@@ -25,30 +25,44 @@ import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 @Slf4j
 public class ThreadPoolMixuseController {
 
-    private static ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
-            2, 2,
-            1, TimeUnit.HOURS,
-            new ArrayBlockingQueue<>(100),
-            new ThreadFactoryBuilder().setNameFormat("batchfileprocess-threadpool-%d").get(),
-            new ThreadPoolExecutor.CallerRunsPolicy());
+    private static ThreadPoolExecutor threadPool =
+            new ThreadPoolExecutor(
+                    2,
+                    2,
+                    1,
+                    TimeUnit.HOURS,
+                    new ArrayBlockingQueue<>(100),
+                    new ThreadFactoryBuilder()
+                            .setNameFormat("batchfileprocess-threadpool-%d")
+                            .get(),
+                    new ThreadPoolExecutor.CallerRunsPolicy());
 
-
-    private static ThreadPoolExecutor asyncCalcThreadPool = new ThreadPoolExecutor(
-            200, 200,
-            1, TimeUnit.HOURS,
-            new ArrayBlockingQueue<>(1000),
-            new ThreadFactoryBuilder().setNameFormat("asynccalc-threadpool-%d").get());
+    private static ThreadPoolExecutor asyncCalcThreadPool =
+            new ThreadPoolExecutor(
+                    200,
+                    200,
+                    1,
+                    TimeUnit.HOURS,
+                    new ArrayBlockingQueue<>(1000),
+                    new ThreadFactoryBuilder().setNameFormat("asynccalc-threadpool-%d").get());
 
     private void printStats(ThreadPoolExecutor threadPool) {
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            log.info("=========================");
-            log.info("Pool Size: {}", threadPool.getPoolSize());
-            log.info("Active Threads: {}", threadPool.getActiveCount());
-            log.info("Number of Tasks Completed: {}", threadPool.getCompletedTaskCount());
-            log.info("Number of Tasks in Queue: {}", threadPool.getQueue().size());
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            log.info("=========================");
+                            log.info("Pool Size: {}", threadPool.getPoolSize());
+                            log.info("Active Threads: {}", threadPool.getActiveCount());
+                            log.info(
+                                    "Number of Tasks Completed: {}",
+                                    threadPool.getCompletedTaskCount());
+                            log.info("Number of Tasks in Queue: {}", threadPool.getQueue().size());
 
-            log.info("=========================");
-        }, 0, 1, TimeUnit.SECONDS);
+                            log.info("=========================");
+                        },
+                        0,
+                        1,
+                        TimeUnit.SECONDS);
     }
 
     private Callable<Integer> calcTask() {
@@ -72,21 +86,32 @@ public class ThreadPoolMixuseController {
     public void init() {
         printStats(threadPool);
 
-        new Thread(() -> {
-            String payload = IntStream.rangeClosed(1, 1_000_000)
-                    .mapToObj(__ -> "a")
-                    .collect(Collectors.joining(""));
-            while (true) {
-                threadPool.execute(() -> {
-                    try {
-                        Files.write(Paths.get("demo.txt"), Collections.singletonList(LocalTime.now().toString() + ":" + payload), UTF_8, CREATE, TRUNCATE_EXISTING);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    log.info("batch file processing done");
-                });
-            }
-        }).start();
+        new Thread(
+                        () -> {
+                            String payload =
+                                    IntStream.rangeClosed(1, 1_000_000)
+                                            .mapToObj(__ -> "a")
+                                            .collect(Collectors.joining(""));
+                            while (true) {
+                                threadPool.execute(
+                                        () -> {
+                                            try {
+                                                Files.write(
+                                                        Paths.get("demo.txt"),
+                                                        Collections.singletonList(
+                                                                LocalTime.now().toString()
+                                                                        + ":"
+                                                                        + payload),
+                                                        UTF_8,
+                                                        CREATE,
+                                                        TRUNCATE_EXISTING);
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                            log.info("batch file processing done");
+                                        });
+                            }
+                        })
+                .start();
     }
-
 }

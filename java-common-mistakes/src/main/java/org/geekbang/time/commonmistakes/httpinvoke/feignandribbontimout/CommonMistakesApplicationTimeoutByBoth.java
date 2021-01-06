@@ -14,4 +14,3 @@ public class CommonMistakesApplicationTimeoutByBoth {
         SpringApplication.run(CommonMistakesApplicationTimeoutByBoth.class, args);
     }
 }
-

@@ -22,27 +22,35 @@ public class ThreadPoolReuseController {
     @GetMapping("wrong")
     public String wrong() throws InterruptedException {
         ThreadPoolExecutor threadPool = ThreadPoolHelper.getThreadPool();
-        IntStream.rangeClosed(1, 10).forEach(i -> {
-            threadPool.execute(() -> {
-                String payload = IntStream.rangeClosed(1, 1000000)
-                        .mapToObj(__ -> "a")
-                        .collect(Collectors.joining("")) + UUID.randomUUID().toString();
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                }
-                log.debug(payload);
-            });
-        });
+        IntStream.rangeClosed(1, 10)
+                .forEach(
+                        i -> {
+                            threadPool.execute(
+                                    () -> {
+                                        String payload =
+                                                IntStream.rangeClosed(1, 1000000)
+                                                                .mapToObj(__ -> "a")
+                                                                .collect(Collectors.joining(""))
+                                                        + UUID.randomUUID().toString();
+                                        try {
+                                            TimeUnit.SECONDS.sleep(1);
+                                        } catch (InterruptedException e) {
+                                        }
+                                        log.debug(payload);
+                                    });
+                        });
         return "OK";
     }
 
     static class ThreadPoolHelper {
-        private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-                10, 50,
-                2, TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(1000),
-                new ThreadFactoryBuilder().setNameFormat("demo-threadpool-%d").get());
+        private static ThreadPoolExecutor threadPoolExecutor =
+                new ThreadPoolExecutor(
+                        10,
+                        50,
+                        2,
+                        TimeUnit.SECONDS,
+                        new ArrayBlockingQueue<>(1000),
+                        new ThreadFactoryBuilder().setNameFormat("demo-threadpool-%d").get());
 
         public static ThreadPoolExecutor getThreadPool() {
             return (ThreadPoolExecutor) Executors.newCachedThreadPool();
@@ -52,5 +60,4 @@ public class ThreadPoolReuseController {
             return threadPoolExecutor;
         }
     }
-
 }

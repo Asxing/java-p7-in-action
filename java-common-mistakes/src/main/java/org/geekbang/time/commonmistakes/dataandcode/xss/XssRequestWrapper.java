@@ -15,7 +15,9 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public String[] getParameterValues(String parameter) {
-        return Arrays.stream(super.getParameterValues(parameter)).map(this::clean).toArray(String[]::new);
+        return Arrays.stream(super.getParameterValues(parameter))
+                .map(this::clean)
+                .toArray(String[]::new);
     }
 
     @Override

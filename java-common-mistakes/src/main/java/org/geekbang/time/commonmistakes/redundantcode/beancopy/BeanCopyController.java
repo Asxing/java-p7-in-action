@@ -23,8 +23,8 @@ public class BeanCopyController {
         orderDO.setAddress(orderDTO.getAddress());
         orderDO.setAddressId(orderDTO.getAddressId());
         orderDO.setCancelable(orderDTO.isCancelable());
-        orderDO.setCommentable(orderDTO.isComplainable()); //属性错误
-        orderDO.setComplainable(orderDTO.isCommentable()); //属性错误
+        orderDO.setCommentable(orderDTO.isComplainable()); // 属性错误
+        orderDO.setComplainable(orderDTO.isCommentable()); // 属性错误
         orderDO.setCancelable(orderDTO.isCancelable());
         orderDO.setCouponAmount(orderDTO.getCouponAmount());
         orderDO.setCouponId(orderDTO.getCouponId());
@@ -36,7 +36,7 @@ public class BeanCopyController {
         orderDO.setDeliverMethod(orderDTO.getDeliverMethod());
         orderDO.setDeliverPrice(orderDTO.getDeliverPrice());
         orderDO.setDeliveryManId(orderDTO.getDeliveryManId());
-        orderDO.setDeliveryManMobile(orderDO.getDeliveryManMobile()); //对象错误
+        orderDO.setDeliveryManMobile(orderDO.getDeliveryManMobile()); // 对象错误
         orderDO.setDeliveryManName(orderDTO.getDeliveryManName());
         orderDO.setDistance(orderDTO.getDistance());
         orderDO.setExpectDate(orderDTO.getExpectDate());
@@ -44,7 +44,7 @@ public class BeanCopyController {
         orderDO.setHasPaid(orderDTO.isHasPaid());
         orderDO.setHeadPic(orderDTO.getHeadPic());
         orderDO.setLongitude(orderDTO.getLongitude());
-        orderDO.setLatitude(orderDTO.getLongitude()); //属性赋值错误
+        orderDO.setLatitude(orderDTO.getLongitude()); // 属性赋值错误
         orderDO.setMerchantAddress(orderDTO.getMerchantAddress());
         orderDO.setMerchantHeadPic(orderDTO.getMerchantHeadPic());
         orderDO.setMerchantId(orderDTO.getMerchantId());

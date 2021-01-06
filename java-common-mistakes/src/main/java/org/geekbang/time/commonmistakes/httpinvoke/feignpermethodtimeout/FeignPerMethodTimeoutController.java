@@ -15,8 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class FeignPerMethodTimeoutController {
 
-    @Autowired
-    private Client client;
+    @Autowired private Client client;
 
     @GetMapping("test")
     public void test() {

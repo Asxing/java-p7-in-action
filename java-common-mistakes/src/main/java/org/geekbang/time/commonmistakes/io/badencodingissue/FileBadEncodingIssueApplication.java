@@ -25,7 +25,9 @@ public class FileBadEncodingIssueApplication {
     private static void init() throws IOException {
         Files.deleteIfExists(Paths.get("hello.txt"));
         Files.write(Paths.get("hello.txt"), "你好hi".getBytes(Charset.forName("GBK")));
-        log.info("bytes:{}", Hex.encodeHexString(Files.readAllBytes(Paths.get("hello.txt"))).toUpperCase());
+        log.info(
+                "bytes:{}",
+                Hex.encodeHexString(Files.readAllBytes(Paths.get("hello.txt"))).toUpperCase());
     }
 
     private static void wrong() throws IOException {
@@ -42,18 +44,18 @@ public class FileBadEncodingIssueApplication {
         log.info("result:{}", content);
 
         Files.write(Paths.get("hello2.txt"), "你好hi".getBytes(Charsets.UTF_8));
-        log.info("bytes:{}", Hex.encodeHexString(Files.readAllBytes(Paths.get("hello2.txt"))).toUpperCase());
-
+        log.info(
+                "bytes:{}",
+                Hex.encodeHexString(Files.readAllBytes(Paths.get("hello2.txt"))).toUpperCase());
     }
-
-
 
     private static void right1() throws IOException {
 
         char[] chars = new char[10];
         String content = "";
         try (FileInputStream fileInputStream = new FileInputStream("hello.txt");
-             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, Charset.forName("GBK"))) {
+                InputStreamReader inputStreamReader =
+                        new InputStreamReader(fileInputStream, Charset.forName("GBK"))) {
             int count;
             while ((count = inputStreamReader.read(chars)) != -1) {
                 content += new String(chars, 0, count);
@@ -64,9 +66,10 @@ public class FileBadEncodingIssueApplication {
     }
 
     private static void right2() throws IOException {
-        log.info("result: {}", Files.readAllLines(Paths.get("hello.txt"), Charset.forName("GBK")).stream().findFirst().orElse(""));
+        log.info(
+                "result: {}",
+                Files.readAllLines(Paths.get("hello.txt"), Charset.forName("GBK")).stream()
+                        .findFirst()
+                        .orElse(""));
     }
-
 }
-
-

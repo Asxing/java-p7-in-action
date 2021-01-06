@@ -18,7 +18,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
 @RestController
 @RequestMapping("deadlock")
 @Slf4j
@@ -55,42 +54,58 @@ public class DeadLockController {
     private List<Item> createCart() {
         return IntStream.rangeClosed(1, 3)
                 .mapToObj(i -> "item" + ThreadLocalRandom.current().nextInt(items.size()))
-                .map(name -> items.get(name)).collect(Collectors.toList());
+                .map(name -> items.get(name))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("wrong")
     public long wrong() {
         long begin = System.currentTimeMillis();
-        long success = IntStream.rangeClosed(1, 100).parallel()
-                .mapToObj(i -> {
-                    List<Item> cart = createCart();
-                    return createOrder(cart);
-                })
-                .filter(result -> result)
-                .count();
-        log.info("success:{} totalRemaining:{} took:{}ms items:{}",
+        long success =
+                IntStream.rangeClosed(1, 100)
+                        .parallel()
+                        .mapToObj(
+                                i -> {
+                                    List<Item> cart = createCart();
+                                    return createOrder(cart);
+                                })
+                        .filter(result -> result)
+                        .count();
+        log.info(
+                "success:{} totalRemaining:{} took:{}ms items:{}",
                 success,
-                items.entrySet().stream().map(item -> item.getValue().remaining).reduce(0, Integer::sum),
-                System.currentTimeMillis() - begin, items);
+                items.entrySet().stream()
+                        .map(item -> item.getValue().remaining)
+                        .reduce(0, Integer::sum),
+                System.currentTimeMillis() - begin,
+                items);
         return success;
     }
 
     @GetMapping("right")
     public long right() {
         long begin = System.currentTimeMillis();
-        long success = IntStream.rangeClosed(1, 100).parallel()
-                .mapToObj(i -> {
-                    List<Item> cart = createCart().stream()
-                            .sorted(Comparator.comparing(Item::getName))
-                            .collect(Collectors.toList());
-                    return createOrder(cart);
-                })
-                .filter(result -> result)
-                .count();
-        log.info("success:{} totalRemaining:{} took:{}ms items:{}",
+        long success =
+                IntStream.rangeClosed(1, 100)
+                        .parallel()
+                        .mapToObj(
+                                i -> {
+                                    List<Item> cart =
+                                            createCart().stream()
+                                                    .sorted(Comparator.comparing(Item::getName))
+                                                    .collect(Collectors.toList());
+                                    return createOrder(cart);
+                                })
+                        .filter(result -> result)
+                        .count();
+        log.info(
+                "success:{} totalRemaining:{} took:{}ms items:{}",
                 success,
-                items.entrySet().stream().map(item -> item.getValue().remaining).reduce(0, Integer::sum),
-                System.currentTimeMillis() - begin, items);
+                items.entrySet().stream()
+                        .map(item -> item.getValue().remaining)
+                        .reduce(0, Integer::sum),
+                System.currentTimeMillis() - begin,
+                items);
         return success;
     }
 
@@ -99,7 +114,6 @@ public class DeadLockController {
     static class Item {
         final String name;
         int remaining = 1000;
-        @ToString.Exclude
-        ReentrantLock lock = new ReentrantLock();
+        @ToString.Exclude ReentrantLock lock = new ReentrantLock();
     }
 }

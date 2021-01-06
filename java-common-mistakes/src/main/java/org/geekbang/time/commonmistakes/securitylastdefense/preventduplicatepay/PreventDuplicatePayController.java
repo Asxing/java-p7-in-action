@@ -19,7 +19,6 @@ public class PreventDuplicatePayController {
         PayChannel.pay(UUID.randomUUID().toString(), "123", new BigDecimal("100"));
     }
 
-
     @GetMapping("right")
     public void right(@RequestParam("orderId") String orderId) {
         PayChannel.pay(orderId, "123", new BigDecimal("100"));

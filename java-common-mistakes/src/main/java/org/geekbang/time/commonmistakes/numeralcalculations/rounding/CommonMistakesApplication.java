@@ -23,7 +23,7 @@ public class CommonMistakesApplication {
 
         double num1 = 3.35;
         float num2 = 3.35f;
-        System.out.println(String.format("%.1f", num1));//四舍五入
+        System.out.println(String.format("%.1f", num1)); // 四舍五入
         System.out.println(String.format("%.1f", num2));
     }
 
@@ -45,4 +45,3 @@ public class CommonMistakesApplication {
         System.out.println(num3);
     }
 }
-

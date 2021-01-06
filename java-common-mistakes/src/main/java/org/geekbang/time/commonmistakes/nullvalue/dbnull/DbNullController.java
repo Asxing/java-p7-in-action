@@ -13,8 +13,7 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class DbNullController {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @PostConstruct
     public void init() {
@@ -23,11 +22,19 @@ public class DbNullController {
 
     @GetMapping("wrong")
     public void wrong() {
-        log.info("result: {} {} {} ", userRepository.wrong1(), userRepository.wrong2(), userRepository.wrong3());
+        log.info(
+                "result: {} {} {} ",
+                userRepository.wrong1(),
+                userRepository.wrong2(),
+                userRepository.wrong3());
     }
 
     @GetMapping("right")
     public void right() {
-        log.info("result: {} {} {} ", userRepository.right1(), userRepository.right2(), userRepository.right3());
+        log.info(
+                "result: {} {} {} ",
+                userRepository.right1(),
+                userRepository.right2(),
+                userRepository.right3());
     }
 }

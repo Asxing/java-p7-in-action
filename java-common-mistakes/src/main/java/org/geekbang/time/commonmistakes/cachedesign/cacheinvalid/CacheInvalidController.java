@@ -21,49 +21,86 @@ import java.util.stream.IntStream;
 @RestController
 public class CacheInvalidController {
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    @Autowired private StringRedisTemplate stringRedisTemplate;
     private AtomicInteger atomicInteger = new AtomicInteger();
 
-    //@PostConstruct
+    // @PostConstruct
     public void wrongInit() {
-        IntStream.rangeClosed(1, 1000).forEach(i -> stringRedisTemplate.opsForValue().set("city" + i, getCityFromDb(i), 30, TimeUnit.SECONDS));
+        IntStream.rangeClosed(1, 1000)
+                .forEach(
+                        i ->
+                                stringRedisTemplate
+                                        .opsForValue()
+                                        .set("city" + i, getCityFromDb(i), 30, TimeUnit.SECONDS));
         log.info("Cache init finished");
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
-        }, 0, 1, TimeUnit.SECONDS);
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
+                        },
+                        0,
+                        1,
+                        TimeUnit.SECONDS);
     }
 
-    //@PostConstruct
+    // @PostConstruct
     public void rightInit1() {
-        IntStream.rangeClosed(1, 1000).forEach(i -> stringRedisTemplate.opsForValue().set("city" + i, getCityFromDb(i), 30 + ThreadLocalRandom.current().nextInt(10), TimeUnit.SECONDS));
+        IntStream.rangeClosed(1, 1000)
+                .forEach(
+                        i ->
+                                stringRedisTemplate
+                                        .opsForValue()
+                                        .set(
+                                                "city" + i,
+                                                getCityFromDb(i),
+                                                30 + ThreadLocalRandom.current().nextInt(10),
+                                                TimeUnit.SECONDS));
         log.info("Cache init finished");
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
-        }, 0, 1, TimeUnit.SECONDS);
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
+                        },
+                        0,
+                        1,
+                        TimeUnit.SECONDS);
     }
 
     @PostConstruct
     public void rightInit2() throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            IntStream.rangeClosed(1, 1000).forEach(i -> {
-                String data = getCityFromDb(i);
-                try {
-                    TimeUnit.MILLISECONDS.sleep(20);
-                } catch (InterruptedException e) {
-                }
-                if (!StringUtils.isEmpty(data)) {
-                    stringRedisTemplate.opsForValue().set("city" + i, data);
-                }
-            });
-            log.info("Cache update finished");
-            countDownLatch.countDown();
-        }, 0, 30, TimeUnit.SECONDS);
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            IntStream.rangeClosed(1, 1000)
+                                    .forEach(
+                                            i -> {
+                                                String data = getCityFromDb(i);
+                                                try {
+                                                    TimeUnit.MILLISECONDS.sleep(20);
+                                                } catch (InterruptedException e) {
+                                                }
+                                                if (!StringUtils.isEmpty(data)) {
+                                                    stringRedisTemplate
+                                                            .opsForValue()
+                                                            .set("city" + i, data);
+                                                }
+                                            });
+                            log.info("Cache update finished");
+                            countDownLatch.countDown();
+                        },
+                        0,
+                        30,
+                        TimeUnit.SECONDS);
 
-        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
-            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
-        }, 0, 1, TimeUnit.SECONDS);
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(
+                        () -> {
+                            log.info("DB QPS : {}", atomicInteger.getAndSet(0));
+                        },
+                        0,
+                        1,
+                        TimeUnit.SECONDS);
 
         countDownLatch.await();
     }
@@ -80,7 +117,6 @@ public class CacheInvalidController {
         }
         return data;
     }
-
 
     private String getCityFromDb(int cityId) {
         atomicInteger.incrementAndGet();

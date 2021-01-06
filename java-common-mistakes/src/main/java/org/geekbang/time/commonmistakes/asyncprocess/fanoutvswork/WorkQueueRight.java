@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.UUID;
 
 @Slf4j
-//@Configuration
-//@RestController
+// @Configuration
+// @RestController
 @RequestMapping("workqueueright")
 public class WorkQueueRight {
 
     private static final String EXCHANGE = "newuserExchange";
     private static final String QUEUE = "newuserQueue";
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    @Autowired private RabbitTemplate rabbitTemplate;
 
     @GetMapping
     public void sendMessage() {
@@ -38,14 +37,12 @@ public class WorkQueueRight {
     @Bean
     public Declarables declarables() {
         DirectExchange exchange = new DirectExchange(EXCHANGE);
-        return new Declarables(queue(), exchange,
-                BindingBuilder.bind(queue()).to(exchange).with("test"));
-
+        return new Declarables(
+                queue(), exchange, BindingBuilder.bind(queue()).to(exchange).with("test"));
     }
 
     @RabbitListener(queues = "#{queue.name}")
     public void memberService(String userName) {
         log.info("memberService: welcome message sent to new user {}", userName);
-
     }
 }

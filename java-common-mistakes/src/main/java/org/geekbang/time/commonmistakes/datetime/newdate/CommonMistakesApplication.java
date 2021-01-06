@@ -36,15 +36,14 @@ public class CommonMistakesApplication {
         Calendar calendar2 = Calendar.getInstance(TimeZone.getTimeZone("America/New_York"));
         calendar2.set(2019, Calendar.DECEMBER, 31, 11, 12, 13);
         System.out.println(calendar2.getTime());
-
     }
 
     private static void better() {
         System.out.println("better");
         LocalDateTime localDateTime = LocalDateTime.of(2019, Month.DECEMBER, 31, 11, 12, 13);
         System.out.println(localDateTime);
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("America/New_York"));
+        ZonedDateTime zonedDateTime =
+                ZonedDateTime.of(localDateTime, ZoneId.of("America/New_York"));
         System.out.println(zonedDateTime);
     }
 }
-

@@ -8,7 +8,6 @@ public class InnerClassApplication {
 
         InnerClassApplication application = new InnerClassApplication();
         application.test();
-
     }
 
     private void test() {

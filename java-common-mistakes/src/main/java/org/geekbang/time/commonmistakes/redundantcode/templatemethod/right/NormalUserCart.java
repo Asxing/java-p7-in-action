@@ -15,8 +15,9 @@ public class NormalUserCart extends AbstractCart {
 
     @Override
     protected void processDeliveryPrice(long userId, Item item) {
-        item.setDeliveryPrice(item.getPrice()
-                .multiply(BigDecimal.valueOf(item.getQuantity()))
-                .multiply(new BigDecimal("0.1")));
+        item.setDeliveryPrice(
+                item.getPrice()
+                        .multiply(BigDecimal.valueOf(item.getQuantity()))
+                        .multiply(new BigDecimal("0.1")));
     }
 }

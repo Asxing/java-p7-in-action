@@ -17,8 +17,7 @@ import java.util.Map;
 @Component
 @Slf4j
 public class MQListener {
-    @Autowired
-    private MessagePropertiesConverter messagePropertiesConverter;
+    @Autowired private MessagePropertiesConverter messagePropertiesConverter;
 
     @RabbitListener(queues = Consts.QUEUE)
     public void handler(@Payload Message message, Channel channel) throws IOException {
@@ -33,12 +32,18 @@ public class MQListener {
                 log.info("Handler 消费消息：{} 异常，准备重试第{}次", m, ++retryCount);
 
                 AMQP.BasicProperties rabbitMQProperties =
-                        messagePropertiesConverter.fromMessageProperties(message.getMessageProperties(), "UTF-8");
+                        messagePropertiesConverter.fromMessageProperties(
+                                message.getMessageProperties(), "UTF-8");
                 rabbitMQProperties.builder().headers(headers);
-                channel.basicPublish(Consts.BUFFER_EXCHANGE, Consts.BUFFER_ROUTING_KEY, rabbitMQProperties, message.getBody());
+                channel.basicPublish(
+                        Consts.BUFFER_EXCHANGE,
+                        Consts.BUFFER_ROUTING_KEY,
+                        rabbitMQProperties,
+                        message.getBody());
             } else {
                 log.info("Handler 消费消息：{} 异常，已重试 {} 次，发送到死信队列处理！", m, Consts.RETRY_COUNT);
-                channel.basicPublish(Consts.DEAD_EXCHANGE, Consts.DEAD_ROUTING_KEY, null, message.getBody());
+                channel.basicPublish(
+                        Consts.DEAD_EXCHANGE, Consts.DEAD_ROUTING_KEY, null, message.getBody());
             }
         }
     }
@@ -47,7 +52,8 @@ public class MQListener {
         long retryCount = 0;
         if (null != headers) {
             if (headers.containsKey("x-death")) {
-                List<Map<String, Object>> deathList = (List<Map<String, Object>>) headers.get("x-death");
+                List<Map<String, Object>> deathList =
+                        (List<Map<String, Object>>) headers.get("x-death");
                 if (!deathList.isEmpty()) {
                     Map<String, Object> deathEntry = deathList.get(0);
                     retryCount = (Long) deathEntry.get("count");

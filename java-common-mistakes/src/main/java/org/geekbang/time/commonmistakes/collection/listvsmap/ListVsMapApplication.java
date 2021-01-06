@@ -35,22 +35,36 @@ public class ListVsMapApplication {
     }
 
     private static Object listSearch(int elementCount, int loopCount) {
-        List<Order> list = IntStream.rangeClosed(1, elementCount).mapToObj(i -> new Order(i)).collect(Collectors.toList());
-        IntStream.rangeClosed(1, loopCount).forEach(i -> {
-            int search = ThreadLocalRandom.current().nextInt(elementCount);
-            Order result = list.stream().filter(order -> order.getOrderId() == search).findFirst().orElse(null);
-            Assert.assertTrue(result != null && result.getOrderId() == search);
-        });
+        List<Order> list =
+                IntStream.rangeClosed(1, elementCount)
+                        .mapToObj(i -> new Order(i))
+                        .collect(Collectors.toList());
+        IntStream.rangeClosed(1, loopCount)
+                .forEach(
+                        i -> {
+                            int search = ThreadLocalRandom.current().nextInt(elementCount);
+                            Order result =
+                                    list.stream()
+                                            .filter(order -> order.getOrderId() == search)
+                                            .findFirst()
+                                            .orElse(null);
+                            Assert.assertTrue(result != null && result.getOrderId() == search);
+                        });
         return list;
     }
 
     private static Object mapSearch(int elementCount, int loopCount) {
-        Map<Integer, Order> map = IntStream.rangeClosed(1, elementCount).boxed().collect(Collectors.toMap(Function.identity(), i -> new Order(i)));
-        IntStream.rangeClosed(1, loopCount).forEach(i -> {
-            int search = ThreadLocalRandom.current().nextInt(elementCount);
-            Order result = map.get(search);
-            Assert.assertTrue(result != null && result.getOrderId() == search);
-        });
+        Map<Integer, Order> map =
+                IntStream.rangeClosed(1, elementCount)
+                        .boxed()
+                        .collect(Collectors.toMap(Function.identity(), i -> new Order(i)));
+        IntStream.rangeClosed(1, loopCount)
+                .forEach(
+                        i -> {
+                            int search = ThreadLocalRandom.current().nextInt(elementCount);
+                            Order result = map.get(search);
+                            Assert.assertTrue(result != null && result.getOrderId() == search);
+                        });
         return map;
     }
 
@@ -61,4 +75,3 @@ public class ListVsMapApplication {
         private int orderId;
     }
 }
-

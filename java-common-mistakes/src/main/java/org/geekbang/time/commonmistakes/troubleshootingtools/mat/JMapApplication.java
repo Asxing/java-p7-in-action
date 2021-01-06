@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 @Slf4j
 public class JMapApplication implements CommandLineRunner {
 
-    //-Xmx512m -Xms512m
+    // -Xmx512m -Xms512m
     public static void main(String[] args) {
         SpringApplication.run(JMapApplication.class, args);
     }
@@ -22,9 +22,11 @@ public class JMapApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         while (true) {
-            String payload = IntStream.rangeClosed(1, 1000000)
-                    .mapToObj(__ -> "a")
-                    .collect(Collectors.joining("")) + UUID.randomUUID().toString();
+            String payload =
+                    IntStream.rangeClosed(1, 1000000)
+                                    .mapToObj(__ -> "a")
+                                    .collect(Collectors.joining(""))
+                            + UUID.randomUUID().toString();
             log.debug(payload);
             TimeUnit.MILLISECONDS.sleep(1);
         }

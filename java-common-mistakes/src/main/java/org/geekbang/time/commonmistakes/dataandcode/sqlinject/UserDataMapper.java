@@ -1,6 +1,5 @@
 package org.geekbang.time.commonmistakes.dataandcode.sqlinject;
 
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -18,5 +17,4 @@ public interface UserDataMapper {
     List<UserData> findByNameRight(@Param("name") String name);
 
     List<UserData> findByNamesRight(@Param("names") List<String> names);
-
 }

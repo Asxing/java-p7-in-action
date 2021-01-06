@@ -22,7 +22,8 @@ public class ThreadPoolInfoContributor implements InfoContributor {
 
     @Override
     public void contribute(Info.Builder builder) {
-        builder.withDetail("demoThreadPool", threadPoolInfo(ThreadPoolProvider.getDemoThreadPool()));
+        builder.withDetail(
+                "demoThreadPool", threadPoolInfo(ThreadPoolProvider.getDemoThreadPool()));
         builder.withDetail("ioThreadPool", threadPoolInfo(ThreadPoolProvider.getIOThreadPool()));
     }
 }

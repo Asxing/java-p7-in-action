@@ -13,4 +13,3 @@ public class CommonMistakesApplicationTimeoutByRibbon {
         SpringApplication.run(CommonMistakesApplicationTimeoutByRibbon.class, args);
     }
 }
-

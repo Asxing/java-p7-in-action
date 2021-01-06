@@ -24,10 +24,18 @@ public class CopyOnWriteListMisuseController {
         StopWatch stopWatch = new StopWatch();
         int loopCount = 100000;
         stopWatch.start("Write:copyOnWriteArrayList");
-        IntStream.rangeClosed(1, loopCount).parallel().forEach(__ -> copyOnWriteArrayList.add(ThreadLocalRandom.current().nextInt(loopCount)));
+        IntStream.rangeClosed(1, loopCount)
+                .parallel()
+                .forEach(
+                        __ ->
+                                copyOnWriteArrayList.add(
+                                        ThreadLocalRandom.current().nextInt(loopCount)));
         stopWatch.stop();
         stopWatch.start("Write:synchronizedList");
-        IntStream.rangeClosed(1, loopCount).parallel().forEach(__ -> synchronizedList.add(ThreadLocalRandom.current().nextInt(loopCount)));
+        IntStream.rangeClosed(1, loopCount)
+                .parallel()
+                .forEach(
+                        __ -> synchronizedList.add(ThreadLocalRandom.current().nextInt(loopCount)));
         stopWatch.stop();
         log.info(stopWatch.prettyPrint());
         Map result = new HashMap();
@@ -50,10 +58,15 @@ public class CopyOnWriteListMisuseController {
         int loopCount = 1000000;
         int count = copyOnWriteArrayList.size();
         stopWatch.start("Read:copyOnWriteArrayList");
-        IntStream.rangeClosed(1, loopCount).parallel().forEach(__ -> copyOnWriteArrayList.get(ThreadLocalRandom.current().nextInt(count)));
+        IntStream.rangeClosed(1, loopCount)
+                .parallel()
+                .forEach(
+                        __ -> copyOnWriteArrayList.get(ThreadLocalRandom.current().nextInt(count)));
         stopWatch.stop();
         stopWatch.start("Read:synchronizedList");
-        IntStream.range(0, loopCount).parallel().forEach(__ -> synchronizedList.get(ThreadLocalRandom.current().nextInt(count)));
+        IntStream.range(0, loopCount)
+                .parallel()
+                .forEach(__ -> synchronizedList.get(ThreadLocalRandom.current().nextInt(count)));
         stopWatch.stop();
         log.info(stopWatch.prettyPrint());
         Map result = new HashMap();

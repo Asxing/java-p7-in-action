@@ -11,7 +11,8 @@ public class FileService {
 
     private ExecutorService threadPool = Executors.newFixedThreadPool(2);
     private AtomicInteger atomicInteger = new AtomicInteger(0);
-    private ConcurrentHashMap<String, SyncQueryUploadTaskResponse> downloadUrl = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, SyncQueryUploadTaskResponse> downloadUrl =
+            new ConcurrentHashMap<>();
 
     private String uploadFile(byte[] data) {
         try {
@@ -34,7 +35,8 @@ public class FileService {
     public UploadResponse upload(UploadRequest request) {
         UploadResponse response = new UploadResponse();
         Future<String> uploadFile = threadPool.submit(() -> uploadFile(request.getFile()));
-        Future<String> uploadThumbnailFile = threadPool.submit(() -> uploadThumbnailFile(request.getFile()));
+        Future<String> uploadThumbnailFile =
+                threadPool.submit(() -> uploadThumbnailFile(request.getFile()));
         try {
             response.setDownloadUrl(uploadFile.get(1, TimeUnit.SECONDS));
         } catch (Exception e) {
@@ -59,21 +61,29 @@ public class FileService {
         AsyncUploadResponse response = new AsyncUploadResponse();
         String taskId = "upload" + atomicInteger.incrementAndGet();
         response.setTaskId(taskId);
-        threadPool.execute(() -> {
-            String url = uploadFile(request.getFile());
-            downloadUrl.computeIfAbsent(taskId, id -> new SyncQueryUploadTaskResponse(id)).setDownloadUrl(url);
-        });
-        threadPool.execute(() -> {
-            String url = uploadThumbnailFile(request.getFile());
-            downloadUrl.computeIfAbsent(taskId, id -> new SyncQueryUploadTaskResponse(id)).setThumbnailDownloadUrl(url);
-        });
+        threadPool.execute(
+                () -> {
+                    String url = uploadFile(request.getFile());
+                    downloadUrl
+                            .computeIfAbsent(taskId, id -> new SyncQueryUploadTaskResponse(id))
+                            .setDownloadUrl(url);
+                });
+        threadPool.execute(
+                () -> {
+                    String url = uploadThumbnailFile(request.getFile());
+                    downloadUrl
+                            .computeIfAbsent(taskId, id -> new SyncQueryUploadTaskResponse(id))
+                            .setThumbnailDownloadUrl(url);
+                });
         return response;
     }
 
     public SyncQueryUploadTaskResponse syncQueryUploadTask(SyncQueryUploadTaskRequest request) {
         SyncQueryUploadTaskResponse response = new SyncQueryUploadTaskResponse(request.getTaskId());
-        response.setDownloadUrl(downloadUrl.getOrDefault(request.getTaskId(), response).getDownloadUrl());
-        response.setThumbnailDownloadUrl(downloadUrl.getOrDefault(request.getTaskId(), response).getThumbnailDownloadUrl());
+        response.setDownloadUrl(
+                downloadUrl.getOrDefault(request.getTaskId(), response).getDownloadUrl());
+        response.setThumbnailDownloadUrl(
+                downloadUrl.getOrDefault(request.getTaskId(), response).getThumbnailDownloadUrl());
         return response;
     }
 }
