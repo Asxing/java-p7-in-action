@@ -1,0 +1,183 @@
+# Redis 基础玩法
+
+# 单例
+
+很简单，下载安装直接 redis-server xxx.conf
+
+# 主从节点配置
+
+## 1. 修改配置文件
+
+1.1 使用的 redis 官网标准配置文件：<https://github.com/redis/redis/blob/6.0/redis.conf>
+
+1.2 分别修改 master_6380 和 slave_6381 文件下的配置文件
+
+主要包括修改文件启动句柄，修改端口号
+
+redis_6380.conf
+> port 6380
+> pidfile /Users/zeyangg/SynologyDrive/ee/redis/master-slave-redis/master_6380/redis_6380.pid
+
+redis_6381.cnf
+
+> port 6381
+> pidfile /Users/zeyangg/SynologyDrive/ee/redis/master-slave-redis/slave_6381/redis_6381.pid
+
+## 分别启动两个实例
+
+启动 6380
+
+```
+xxx/redis/master-slave-redis/master_6380> redis-server redis_6380.conf
+```
+
+![image-20210106111100477](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106111101.png)
+
+6380 对应命令行
+
+![image-20210106111148946](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106111148.png)
+
+启动 6381
+
+```
+sss/redis/master-slave-redis/slave_6381> redis-server redis_6381.conf
+```
+
+![image-20210106111213015](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106111213.png)
+
+执行命令行
+
+![image-20210106111250313](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106111250.png)
+
+## 主从之间建立关系
+
+登录 6381 执行命令
+
+```shell
+redis-cli -h 127.0.0.1 -p 6381
+
+slaveof 127.0.0.1 6380
+```
+
+
+# redis 哨兵集群搭建
+
+## 整体思路
+
+- 首先搭建一个简单哨兵集群，一个哨兵实例，一个主节点，两个从节点，查看 info，以及各节点操作。
+- 然后把主节点shutdown，之后观察哨兵行为，查看选举过程，之后再新的master节点上操作。
+- 最后把最开始的那个 master 节点拉起来，观察数据日志同步。
+
+## 搭建流程
+
+修改每个文件的 port 和 pidfile 字段，分别启动的每个实例。
+
+### Master  执行对应命令如下图所示
+
+![image-20210106124015567](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124015.png)
+
+对应命令如下：
+
+![image-20210106124117794](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124117.png)
+
+
+
+### 哨兵实例
+
+![image-20210106124206555](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124206.png)
+
+对应命令行为
+
+![image-20210106124348181](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124348.png)
+
+### 两个从节点
+
+![image-20210106124423598](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124423.png)
+
+命令行如下
+
+![image-20210106124453214](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124453.png)
+
+### 另一个从节点
+
+![image-20210106124533813](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124533.png)
+
+对应命令行
+
+![image-20210106124559375](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106124559.png)
+
+# Redis Cluster 集群搭建
+
+## 思路
+
+- 一共启动 6 个实例，三个 master，三个从节点；
+- 断掉其中一个 master 实例，查看从节点情况；
+
+## 配置
+
+```yml
+# 修改端口
+port xxx
+pidfile xxx
+cluster-enable yes
+cluster-config-file nodes-xxx.conf
+cluster-node-timeout 15000
+```
+
+## 节点日志
+
+### Redis-6400
+
+![image-20210106133556240](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106133556.png)
+
+命令执行情况
+
+![image-20210106134049804](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134049.png)
+
+### Redis-6401
+
+![image-20210106134117755](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134117.png)
+
+### Redis-6402
+
+![image-20210106134314480](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134314.png)
+
+命令执行
+
+![image-20210106134338717](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134338.png)
+
+### Redis-6403
+
+![image-20210106134359547](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134359.png)
+
+### Redis-6404
+
+![image-20210106134417016](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134417.png)
+
+### Redis-6405
+
+![image-20210106134439483](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134439.png)
+
+## 构建集群
+
+![image-20210106134647030](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134647.png)
+
+### 查看集群状况
+
+![image-20210106134747377](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134747.png)
+
+## 添加从节点（非集群从节点）
+
+![image-20210106134859788](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134859.png)
+
+命令行
+
+![image-20210106134931875](https://cdn.jsdelivr.net/gh/HoldDie/img/20210106134931.png)
+
+## 总结
+
+1. 构建 Redis-Cluster 的所有节点都必须启动集群配置，设置自己node.conf 路径；
+2. Cluster 集群是通过命令行的形式构建，构建成功之后我们可以使用 cluster nodes 查看节点情况；
+3. 对于集群中被设置为集群从节点，是不能从中读取数据的，好的办法就是再启动一个无关的 redis 实例去做备份，然后可以读取数据；
+4. 即使我们可以读取数据，我们只能读取到对应 solt 的节点的数据，其他主节点的数据我们还是读取不到，此时我们可以每个主节点下边再挂一层从节点，对数据可以做聚合操作；
+
