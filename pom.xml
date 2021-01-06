@@ -23,6 +23,7 @@
         <module>design-principle</module>
         <module>design-pattern</module>
         <module>redis-lock</module>
+        <module>java-common-mistakes</module>
     </modules>
     <packaging>pom</packaging>
 
