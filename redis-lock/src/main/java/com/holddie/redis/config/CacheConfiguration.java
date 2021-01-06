@@ -1,6 +1,5 @@
 package com.holddie.redis.config;
 
-
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
