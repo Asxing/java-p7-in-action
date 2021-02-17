@@ -24,7 +24,10 @@
         <module>design-pattern</module>
         <module>redis-lock</module>
         <module>java-common-mistakes</module>
-    </modules>
+        <module>activemq-order</module>
+        <module>activemq-chat</module>
+		<module>java-base</module>
+	</modules>
     <packaging>pom</packaging>
 
     <properties>
