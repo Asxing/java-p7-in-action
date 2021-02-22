@@ -27,7 +27,8 @@
         <module>activemq-order</module>
         <module>activemq-chat</module>
 		<module>java-base</module>
-	</modules>
+        <module>jvm-base</module>
+    </modules>
     <packaging>pom</packaging>
 
     <properties>
