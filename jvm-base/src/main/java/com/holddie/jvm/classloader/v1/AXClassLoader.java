@@ -28,7 +28,9 @@ public class AXClassLoader extends ClassLoader {
         if (index == -1) {
             return ClassLoader.getSystemResource("").getPath() + name + ".xlass";
         } else {
-            return ClassLoader.getSystemResource("").getPath() + name.substring(index + 1) + ".xlass";
+            return ClassLoader.getSystemResource("").getPath()
+                    + name.substring(index + 1)
+                    + ".xlass";
         }
     }
 
@@ -42,8 +44,8 @@ public class AXClassLoader extends ClassLoader {
 
     private static void axloadClass() {
         /*
-          自定义加载器加载
-         */
+         自定义加载器加载
+        */
         AXClassLoader axClassLoader = new AXClassLoader();
         try {
             Class<?> hello = axClassLoader.loadClass("Hello");
@@ -52,55 +54,67 @@ public class AXClassLoader extends ClassLoader {
                 Method method = hello.getDeclaredMethod("hello");
                 method.invoke(obj);
             }
-        } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | InvocationTargetException
+                | InstantiationException
+                | NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
 
     private static void printResourcePath() {
-        System.out.println("AXClassLoader.class.getResource(\"\")):\n" + AXClassLoader.class.getResource(""));
-        System.out.println("AXClassLoader.class.getResource(\"/\")):\n" + AXClassLoader.class.getResource("/"));
-        System.out.println("AXClassLoader.class.getClassLoader().getResource(\"\")):\n" + AXClassLoader.class.getClassLoader().getResource(""));
-        System.out.println("ClassLoader.getSystemResource(\"))\n" + ClassLoader.getSystemResource(""));
-        System.out.println("Thread.currentThread().getContextClassLoader().getResource(\"\")\n" + Thread.currentThread().getContextClassLoader().getResource(""));
+        System.out.println(
+                "AXClassLoader.class.getResource(\"\")):\n" + AXClassLoader.class.getResource(""));
+        System.out.println(
+                "AXClassLoader.class.getResource(\"/\")):\n"
+                        + AXClassLoader.class.getResource("/"));
+        System.out.println(
+                "AXClassLoader.class.getClassLoader().getResource(\"\")):\n"
+                        + AXClassLoader.class.getClassLoader().getResource(""));
+        System.out.println(
+                "ClassLoader.getSystemResource(\"))\n" + ClassLoader.getSystemResource(""));
+        System.out.println(
+                "Thread.currentThread().getContextClassLoader().getResource(\"\")\n"
+                        + Thread.currentThread().getContextClassLoader().getResource(""));
     }
 
     private static void printClassLoader() {
-    /*
-      查看启动类加载器
-     
-      xxx/jre/lib/resources.jar: 
-      xxx/jre/lib/rt.jar: 
-      xxx/jre/lib/sunrsasign.jar: 
-      xxx/jre/lib/jsse.jar: 
-      xxx/jre/lib/jce.jar: 
-      xxx/jre/lib/charsets.jar: 
-      xxx/jre/lib/jfr.jar: 
-      xxx/jre/classes
-     */
+        /*
+         查看启动类加载器
+
+         xxx/jre/lib/resources.jar:
+         xxx/jre/lib/rt.jar:
+         xxx/jre/lib/sunrsasign.jar:
+         xxx/jre/lib/jsse.jar:
+         xxx/jre/lib/jce.jar:
+         xxx/jre/lib/charsets.jar:
+         xxx/jre/lib/jfr.jar:
+         xxx/jre/classes
+        */
         System.out.println("BootStrap类加载器加载路径：");
         System.out.println(System.getProperty("sun.boot.class.path"));
         System.out.println("----------------------------------------");
 
         /*
-          查看扩展类加载器
-         
-          /Users/zeyangg/Library/Java/Extensions:
-          xxx/jre/lib/ext:
-          /Library/Java/Extensions:
-          /Network/Library/Java/Extensions:
-          /System/Library/Java/Extensions:
-          j/usr/lib/java
-         */
+         查看扩展类加载器
+
+         /Users/zeyangg/Library/Java/Extensions:
+         xxx/jre/lib/ext:
+         /Library/Java/Extensions:
+         /Network/Library/Java/Extensions:
+         /System/Library/Java/Extensions:
+         j/usr/lib/java
+        */
         System.out.println("ExtClassloader 加载路径");
         System.out.println(System.getProperty("java.ext.dirs"));
         System.out.println("----------------------------------------");
 
         /*
-          查看应用类加载器
-         
-          sun.misc.Launcher$AppClassLoader@18b4aac2
-         */
+         查看应用类加载器
+
+         sun.misc.Launcher$AppClassLoader@18b4aac2
+        */
         System.out.println("自定义类加载路径：");
         System.out.println(AXClassLoader.class.getClassLoader());
         System.out.println("对应Parent ClassLoader：");

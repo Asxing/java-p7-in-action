@@ -64,8 +64,8 @@ public class AXClassLoader extends ClassLoader {
 
     private static void axloadHelloXar() {
         /*
-          自定义加载器加载
-         */
+         自定义加载器加载
+        */
         AXClassLoader axClassLoader = new AXClassLoader();
         try {
             Class<?> hello = axClassLoader.loadClass(XAR_FILE_NAME);
@@ -74,7 +74,11 @@ public class AXClassLoader extends ClassLoader {
                 Method method = hello.getDeclaredMethod(METHOD_NAME);
                 method.invoke(obj);
             }
-        } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | InvocationTargetException
+                | InstantiationException
+                | NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
