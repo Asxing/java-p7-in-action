@@ -6,12 +6,8 @@ import com.holddie.jvm.classloader.v4.Worker;
 
 public class ReadyForUpdateCmd implements MethodRequest {
 
-    public ReadyForUpdateCmd(UpgradeController ugc, Worker worker) {
-
-    }
+    public ReadyForUpdateCmd(UpgradeController ugc, Worker worker) {}
 
     @Override
-    public void call() {
-
-    }
+    public void call() {}
 }

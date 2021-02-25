@@ -21,8 +21,7 @@ public class UpgradeController extends ActiveObject {
         nready++;
         if (nready == workers.length) {
             for (int i = 0; i < workers.length; i++) {
-                workers[i].getControlQueue().enqueue(new
-                        StartUpgradeCmd(workers[i]));
+                workers[i].getControlQueue().enqueue(new StartUpgradeCmd(workers[i]));
             }
         }
     }
@@ -32,8 +31,7 @@ public class UpgradeController extends ActiveObject {
         nfinished++;
         if (nfinished == workers.length) {
             for (int i = 0; i < workers.length; i++) {
-                workers[i].getControlQueue().enqueue(new
-                        ContineWorkCmd(workers[i]));
+                workers[i].getControlQueue().enqueue(new ContineWorkCmd(workers[i]));
             }
         }
     }

@@ -12,13 +12,9 @@ import java.util.TimerTask;
 public class AXClassLoader extends ClassLoader {
     // 基础包路径
     private String basePackagePath;
-    /**
-     * 需要该类加载器直接加载的类文件的基目录
-     */
+    /** 需要该类加载器直接加载的类文件的基目录 */
     private String basedir;
-    /**
-     * 需要由该类加载器直接加载的类名
-     */
+    /** 需要由该类加载器直接加载的类名 */
     private HashSet<Object> dynaclazns;
 
     public AXClassLoader(String basedir, String[] clazns, String packagePath) {
@@ -50,8 +46,7 @@ public class AXClassLoader extends ClassLoader {
     }
 
     @Override
-    protected Class loadClass(String name, boolean resolve)
-            throws ClassNotFoundException {
+    protected Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
         Class cls = findLoadedClass(name);
         if (!this.dynaclazns.contains(name) && cls == null) {
             cls = getSystemClassLoader().loadClass(name);
@@ -67,27 +62,36 @@ public class AXClassLoader extends ClassLoader {
 
     public static void main(String[] args) {
         String packagePath = "com.holddie.jvm.classloader.v3";
-        new Timer("timer - 1").schedule(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    // 每次都创建出一个新的类加载器
-                    AXClassLoader cl = new AXClassLoader(ClassLoader.getSystemResource("").getPath() + "v3/", new String[]{"Foo"}, packagePath);
-                    Class cls = cl.loadClass(packagePath + ".Foo");
-                    Object foo = cls.newInstance();
+        new Timer("timer - 1")
+                .schedule(
+                        new TimerTask() {
+                            @Override
+                            public void run() {
+                                try {
+                                    // 每次都创建出一个新的类加载器
+                                    AXClassLoader cl =
+                                            new AXClassLoader(
+                                                    ClassLoader.getSystemResource("").getPath()
+                                                            + "v3/",
+                                                    new String[] {"Foo"},
+                                                    packagePath);
+                                    Class cls = cl.loadClass(packagePath + ".Foo");
+                                    Object foo = cls.newInstance();
 
-                    Method m = foo.getClass().getMethod("sayHello", new Class[]{});
-                    m.invoke(foo, new Object[]{});
-                    
-                    foo = null;
-                    cls = null;
-                    cl = null;
-                    System.gc();
-                    System.out.println("GC over");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }, 2000, 3000);
+                                    Method m = foo.getClass().getMethod("sayHello", new Class[] {});
+                                    m.invoke(foo, new Object[] {});
+
+                                    foo = null;
+                                    cls = null;
+                                    cl = null;
+                                    System.gc();
+                                    System.out.println("GC over");
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        },
+                        2000,
+                        3000);
     }
 }

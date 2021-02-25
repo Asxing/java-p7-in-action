@@ -1,6 +1,6 @@
 package com.holddie.jvm.classloader.v4;
 
-//ActiveObject的定义
+// ActiveObject的定义
 public class ActiveObject extends Thread {
     private ActiveQueue _queue;
 

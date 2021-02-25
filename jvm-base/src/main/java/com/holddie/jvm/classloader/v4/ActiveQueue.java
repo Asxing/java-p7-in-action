@@ -2,11 +2,11 @@ package com.holddie.jvm.classloader.v4;
 
 import java.util.Stack;
 
-//ActiveQueue定义，其实就是一个producer/consumer队列
+// ActiveQueue定义，其实就是一个producer/consumer队列
 public class ActiveQueue {
     private Stack _queue;
-    private final static int QUEUE_SIZE = 20;
-    
+    private static final int QUEUE_SIZE = 20;
+
     public ActiveQueue() {
         _queue = new Stack();
     }
@@ -38,6 +38,4 @@ public class ActiveQueue {
         notifyAll();
         return mr;
     }
-
-
 }

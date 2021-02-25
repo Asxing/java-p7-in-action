@@ -19,9 +19,7 @@ public class Worker extends ActiveObject {
         ugc.getMsgQueue().enqueue(new ReadyForUpdateCmd(ugc, this));
     }
 
-    private void switchToControlQueue() {
-
-    }
+    private void switchToControlQueue() {}
 
     // 收到升级控制实体的开始升级命令消息时，会触发该方法被调用
     public void startUpgrade(String worker_name) {
@@ -34,9 +32,7 @@ public class Worker extends ActiveObject {
         switchToTaskQueue();
     }
 
-    private void switchToTaskQueue() {
-
-    }
+    private void switchToTaskQueue() {}
 
     // 收到定时命令消息时，会触发该方法被调用
     public void doWork() {
@@ -46,7 +42,11 @@ public class Worker extends ActiveObject {
     // 实际升级动作
     @SneakyThrows
     private void doUpgrade() {
-        AXClassLoader cl = new AXClassLoader(ClassLoader.getSystemResource("").getPath() + "v3/", new String[]{"Foo"}, packagePath);
+        AXClassLoader cl =
+                new AXClassLoader(
+                        ClassLoader.getSystemResource("").getPath() + "v3/",
+                        new String[] {"Foo"},
+                        packagePath);
         Class cls = cl.loadClass(packagePath + ".Foo");
         foo = (IFoo) cls.newInstance();
         foo.SetState(state);
