@@ -104,7 +104,7 @@ public class AXClassLoader extends ClassLoader {
          /Library/Java/Extensions:
          /Network/Library/Java/Extensions:
          /System/Library/Java/Extensions:
-         j/usr/lib/java
+         /usr/lib/java
         */
         System.out.println("ExtClassloader 加载路径");
         System.out.println(System.getProperty("java.ext.dirs"));
