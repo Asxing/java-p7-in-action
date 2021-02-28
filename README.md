@@ -1,11 +1,11 @@
 # java-p7-in-action
 
-### 设计原则
+## 设计原则
 
 - [SOLID 设计原则](https://github.com/HoldDie/java-p7-in-action/tree/master/design-principle)
 - [23 种设计模式](https://github.com/HoldDie/java-p7-in-action/tree/master/design-pattern)
 
-### Netty 模块
+## Netty 模块
 
 - [Java BIO/NIO/AIO 基本操作](https://github.com/HoldDie/java-p7-in-action/tree/master/netty-io)
 - [Netty 实现一个简易 Tomcat](https://github.com/HoldDie/java-p7-in-action/tree/master/netty-tomcat)
@@ -13,17 +13,17 @@
 - [Netty 实现一个 IM 聊天室](https://github.com/HoldDie/java-p7-in-action/tree/master/netty-chat)
 - [Netty 实现一个完整的业务流程](https://github.com/HoldDie/java-p7-in-action/tree/master/netty-order)
 
-### 1. JVM
+## 1. JVM
 
 从Classloader到模块化，动态加载的插件机制。[文章阅读](https://91p7.com/81/)
 
-1. 10-使用自定义Classloader机制，实现xlass的加载：xlass是作业材料。[代码实现](./jvm-base/classloader-base/src/main/java/com/holddie/jvm/classloader/v1/AXClassLoader.java)
-2. 20-实现xlass打包的xar（类似class文件打包的jar）的加载：xar里是xlass。[代码实现](./jvm-base/classloader-base/src/main/java/com/holddie/jvm/classloader/v2/AXClassLoader.java)
-3. 30-基于自定义Classloader实现类的动态加载和卸载：需要设计加载和卸载。[代码实现](./jvm-base/classloader-base/src/main/java/com/holddie/jvm/classloader/v3/AXClassLoader.java)
-4. 30-基于自定义Classloader实现模块化机制：需要设计模块化机制。[代码实现](./jvm-base/modularization)
-5. 30-使用xar作为模块，实现xar动态加载和卸载：综合应用前面的内容。[代码实现](./jvm-base/modularization/multi-server)
+1. 10-使用自定义Classloader机制，实现xlass的加载：xlass是作业材料。[代码实现](https://github.com/HoldDie/java-p7-in-action/tree/master/jvm-base/classloader-base/src/main/java/com/holddie/jvm/classloader/v1/AXClassLoader.java)
+2. 20-实现xlass打包的xar（类似class文件打包的jar）的加载：xar里是xlass。[代码实现](https://github.com/HoldDie/java-p7-in-action/tree/master/jvm-base/classloader-base/src/main/java/com/holddie/jvm/classloader/v2/AXClassLoader.java)
+3. 30-基于自定义Classloader实现类的动态加载和卸载：需要设计加载和卸载。[代码实现](https://github.com/HoldDie/java-p7-in-action/tree/master/jvm-base/classloader-base/src/main/java/com/holddie/jvm/classloader/v3/AXClassLoader.java)
+4. 30-基于自定义Classloader实现模块化机制：需要设计模块化机制。[代码实现](https://github.com/HoldDie/java-p7-in-action/tree/master/jvm-base/modularization)
+5. 30-使用xar作为模块，实现xar动态加载和卸载：综合应用前面的内容。[代码实现](https://github.com/HoldDie/java-p7-in-action/tree/master/jvm-base/modularization/multi-server)
 
-### 2. NIO
+## 2. NIO
 
 实现一个http 文件服务器和一个ftp文件服务器。
 1. 10-实现文件列表展示：http直接网页展示列表即可。ftp支持cd、ls命令。
@@ -32,9 +32,9 @@
 4. 30-实现多线程文件上传下载：基于断点续传，需考虑客户端分片方式，多线程调度。
 5. 30-实现爬虫爬取前面实现的服务器上所有文件：需要考虑html解析，记录多个文件的传输进度，位置等。
 
-### 3. 并发
+## 3. 并发
 
-#### 3.1-侧重集合：
+### 3.1-侧重集合：
 
 1. 10-基于基本类型和数组，实现ArrayList/LinkedList，支持自动扩容和迭代器
 2. 20-基于基本类型和数组和List，HashMap/LinkedHashMap功能，处理hash冲突和扩容
@@ -42,7 +42,7 @@
 4. 30-考虑List和Map的并发安全问题，基于AQS改进安全问题
 5. 30-编写测试代码比较它们与java-util/JUC集合类的性能和并发安全性
 
-#### 3.2-侧重应用：
+### 3.2-侧重应用：
 
 1. 10-根据课程提供的场景，实现一个订单处理Service，模拟处理100万订单：后面提供模拟数据
 2. 20-使用多线程方法优化订单处理，对比处理性能
@@ -50,9 +50,9 @@
 4. 30-使用分布式集群+分库分表方式处理拆分订单，对比处理性能：第6模块讲解分库分表
 5. 30-使用读写分离和分布式缓存优化订单的读性能：第6、8模块讲解读写分离和缓存
 
-### 4. 框架
+## 4. 框架
 
-#### 4.1 Spring AOP
+### 4.1 Spring AOP
 
 1. 10-讲网关的frontend/backend/filter/router/线程池都改造成Spring配置方式
 2. 20-基于AOP改造Netty网关，filter和router使用AOP方式实现
@@ -60,13 +60,13 @@
 4. 30-尝试使用ByteBuddy实现一个简单的基于类的AOP
 5. 30-尝试使用ByteBuddy与Instrument实现一个简单JavaAgent实现无侵入下的AOP
 
-#### 4.2 Spring ORM
+### 4.2 Spring ORM
 
 1. 基于AOP和自定义注解，实现@MyCache(60)对于指定方法返回值缓存60秒
 2. 自定义实现一个数据库连接池，并整合Hibernate/Mybatis/Spring/SpringBoot
 3. 基于MyBatis实现一个简单的分库分表+读写分离+分布式ID生成方案
 
-### 5. 数据库与性能
+## 5. 数据库与性能
 
 1. 模拟1000万订单数据，测试不同方式下导入导出（数据备份还原）MySQL的速度，包括jdbc程序处理和命令行处理，思考和实践，如何提升处理效率
 2. 对MySQL配置不同的数据库连接池（DBCP、C3P0、Druid、Hikari），测试增删改查100万次，对比性能，生成报告
@@ -74,16 +74,16 @@
 4. 尝试实现或改造一个非精确分页的组件，思考是否可以用于改造自己的业务系统
 5. 基于必做作业2.0版本，实现读写分离-数据库中间件版本3.0
 
-### 6. 分库分表
+## 6. 分库分表
 
 1. 思考总结常用的数据拆分和数据迁移同步方案，以及它们的优势劣势，适用场景，考虑是否可以引入到自己的工作中
 2. 设计实现一个简单的XA分布式事务框架demo，只需要能管理和调用2个MySQL的本地事务即可，不需要考虑全局事务的持久化和恢复、高可用等
 3. 设计实现一个TCC分布式事务框架的简单Demo，需要实现事务管理器，不需要实现全局事务的持久化和恢复、高可用等
 4. 设计实现一个AT分布式事务框架的简单Demo，仅需要支持根据主键id进行的单个删改操作的SQL或插入操作的事务
 
-### 7. RPC与分布式服务化
+## 7. RPC与分布式服务化
 
-#### 7.1 RPC与Dubbo
+### 7.1 RPC与Dubbo
 
 1. 升级作业中的自定义RPC程序：
 - 尝试使用压测并分析优化RPC性能
@@ -101,7 +101,7 @@
 - 整合Dubbo+Sentinel，实现限流功能；
 - 整合Dubbo与Skywalking，实现全链路性能监控。
 
-#### 7.2 自定义RPC
+### 7.2 自定义RPC
 
 1. rpcfx1.1: 给自定义RPC实现简单的分组(group)和版本(version)。
 
@@ -129,7 +129,7 @@
 
 6. 实现最终版本6.0：压测并分析调优5.4版本。
 
-### 8. 分布式缓存
+## 8. 分布式缓存
 
 1. 基于其他各类场景，设计并在示例代码中实现简单demo：
 - 实现分数排名或者排行榜；
@@ -148,9 +148,9 @@
 5. 练习hazelcast的各种功能；
 6. 搭建hazelcast 3节点集群，写入100万数据到一个map，模拟和演示高可用，测试一下性能。
 
-### 9. 分布式消息
+## 9. 分布式消息
 
-#### 9.1 消息队列原理与应用
+### 9.1 消息队列原理与应用
 
 1. 基于数据库的订单表，模拟消息队列处理订单：
 - 一个程序往表里写新订单，标记状态为未处理(status=0);
@@ -174,7 +174,7 @@
 - 定序：将Order对象写入到kafka集群的order.usd2cny队列，要求数据有序并且不丢失；
 - 撮合：模拟撮合程序（不需要实现撮合逻辑），从kafka获取order数据，并打印订单信息，要求可重放, 顺序消费, 消息仅处理一次。
 
-#### 9.2 自定义消息中间件
+### 9.2 自定义消息中间件
 
 1. v1.0-内存队列：基于内存Queue实现生产和消费API（示例代码已经完成）
 - 创建内存BlockingQueue，作为底层消息存储
