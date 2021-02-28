@@ -12,7 +12,8 @@ public class DynamicProxy implements InvocationHandler {
 
     public Object bind(Object target) {
         this.target = target;
-        return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+        return Proxy.newProxyInstance(
+                target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
     }
 
     @Override
@@ -20,13 +21,15 @@ public class DynamicProxy implements InvocationHandler {
         Long start = System.currentTimeMillis();
         Object result = method.invoke(target, args);
         Long end = System.currentTimeMillis();
-        String format = String.format("执行: class => %s, 方法=> %s, 参数 => %s, 耗时 => %sms, 执行结果 => %s, 当前路径 => %s",
-                target.getClass().getName(),
-                method.getName(),
-                JSON.toJSON(args),
-                end - start,
-                JSON.toJSON(result),
-                target.getClass().getResource("").getPath());
+        String format =
+                String.format(
+                        "执行: class => %s, 方法=> %s, 参数 => %s, 耗时 => %sms, 执行结果 => %s, 当前路径 => %s",
+                        target.getClass().getName(),
+                        method.getName(),
+                        JSON.toJSON(args),
+                        end - start,
+                        JSON.toJSON(result),
+                        target.getClass().getResource("").getPath());
         System.out.println(format);
         return result;
     }
