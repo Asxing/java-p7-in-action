@@ -10,11 +10,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class AXClassLoader extends ClassLoader {
-    // 基础包路径
+    /**
+     * 基础包路径
+     */
     private String basePackagePath;
-    /** 需要该类加载器直接加载的类文件的基目录 */
+    /**
+     * 需要该类加载器直接加载的类文件的基目录
+     */
     private String basedir;
-    /** 需要由该类加载器直接加载的类名 */
+    /**
+     * 需要由该类加载器直接加载的类名
+     */
     private HashSet<Object> dynaclazns;
 
     public AXClassLoader(String basedir, String[] clazns, String packagePath) {
