@@ -11,14 +11,14 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.AttributeKey;
 
-
 public class NettyServer {
     public static void main(String[] args) {
         int port = 8080;
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
-        serverBootstrap.group(boss, worker)
+        serverBootstrap
+                .group(boss, worker)
                 .channel(NioServerSocketChannel.class)
                 // 可以给服务端的 channel，也就是NioServerSocketChannel指定一些自定义属性，然后我们可以通过channel.attr()取出这个属性
                 .attr(AttributeKey.newInstance("serverAttrKey"), "serverAttrValue")
@@ -32,44 +32,59 @@ public class NettyServer {
                 // 通俗地说，如果要求高实时性，有数据发送时就马上发送，就关闭，如果需要减少发送次数减少网络交互，就开启。
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 // 服务启动过程中可以做一些操作
-                .handler(new ChannelInitializer<NioServerSocketChannel>() {
-                    @Override
-                    protected void initChannel(NioServerSocketChannel nioServerSocketChannel) throws Exception {
-                        System.out.println("服务启动中。。。。。");
-                    }
-                })
-                .childHandler(new ChannelInitializer<NioSocketChannel>() {
-                    @Override
-                    protected void initChannel(NioSocketChannel nioSocketChannel) {
-                        nioSocketChannel.pipeline().addLast(new StringDecoder());
-                        nioSocketChannel.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
+                .handler(
+                        new ChannelInitializer<NioServerSocketChannel>() {
                             @Override
-                            protected void channelRead0(ChannelHandlerContext channelHandlerContext, String msg) throws Exception {
-                                System.out.println("receive msg: " + msg);
+                            protected void initChannel(
+                                    NioServerSocketChannel nioServerSocketChannel)
+                                    throws Exception {
+                                System.out.println("服务启动中。。。。。");
                             }
-                        });
-                    }
-                })
+                        })
+                .childHandler(
+                        new ChannelInitializer<NioSocketChannel>() {
+                            @Override
+                            protected void initChannel(NioSocketChannel nioSocketChannel) {
+                                nioSocketChannel.pipeline().addLast(new StringDecoder());
+                                nioSocketChannel
+                                        .pipeline()
+                                        .addLast(
+                                                new SimpleChannelInboundHandler<String>() {
+                                                    @Override
+                                                    protected void channelRead0(
+                                                            ChannelHandlerContext
+                                                                    channelHandlerContext,
+                                                            String msg)
+                                                            throws Exception {
+                                                        System.out.println("receive msg: " + msg);
+                                                    }
+                                                });
+                            }
+                        })
                 .bind(port)
                 // 添加一个端口冲突递增的逻辑
-                .addListener(future -> {
-                    if (future.isSuccess()) {
-                        System.out.println("端口[" + port + "]绑定成功");
-                    } else {
-                        System.out.println("端口[" + port + "]绑定失败");
-                        bind(serverBootstrap, port + 1);
-                    }
-                });
+                .addListener(
+                        future -> {
+                            if (future.isSuccess()) {
+                                System.out.println("端口[" + port + "]绑定成功");
+                            } else {
+                                System.out.println("端口[" + port + "]绑定失败");
+                                bind(serverBootstrap, port + 1);
+                            }
+                        });
     }
 
     private static void bind(ServerBootstrap serverBootstrap, int port) {
-        serverBootstrap.bind(port).addListener(future -> {
-            if (future.isSuccess()) {
-                System.out.println("端口[" + port + "]绑定成功!");
-            } else {
-                System.err.println("端口[" + port + "]绑定失败!");
-                bind(serverBootstrap, port + 1);
-            }
-        });
+        serverBootstrap
+                .bind(port)
+                .addListener(
+                        future -> {
+                            if (future.isSuccess()) {
+                                System.out.println("端口[" + port + "]绑定成功!");
+                            } else {
+                                System.err.println("端口[" + port + "]绑定失败!");
+                                bind(serverBootstrap, port + 1);
+                            }
+                        });
     }
 }
