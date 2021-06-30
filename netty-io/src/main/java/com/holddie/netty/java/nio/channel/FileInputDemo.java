@@ -1,4 +1,4 @@
-package com.holddie.netty.nio.channel;
+package com.holddie.netty.java.nio.channel;
 
 import java.io.FileInputStream;
 import java.nio.ByteBuffer;

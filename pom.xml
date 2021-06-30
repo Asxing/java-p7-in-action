@@ -28,6 +28,7 @@
         <module>activemq-chat</module>
 		<module>java-base</module>
         <module>jvm-base</module>
+        <module>netty-base</module>
     </modules>
     <packaging>pom</packaging>
 

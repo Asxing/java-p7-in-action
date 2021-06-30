@@ -1,4 +1,4 @@
-package com.holddie.netty.nio;
+package com.holddie.netty.java.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

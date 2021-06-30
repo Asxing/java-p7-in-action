@@ -1,4 +1,4 @@
-package com.holddie.netty.nio.buffer;
+package com.holddie.netty.java.nio.buffer;
 
 import java.nio.IntBuffer;
 
