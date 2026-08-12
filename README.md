@@ -1,4 +1,10 @@
+
+
 # java-p7-in-action
+
+## 环境要求与构建
+- **JDK**: 8 (项目配置 `<maven.compiler.source>` 与 `<maven.compiler.target>` 均为 8)
+- **构建命令**: 在项目根目录执行 `mvn clean install` 即可编译所有子模块。
 
 ## 设计原则
 
